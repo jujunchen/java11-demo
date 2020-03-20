@@ -3,8 +3,14 @@ package lang;
 import org.junit.Test;
 
 import java.beans.JavaBean;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedType;
+import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -12,6 +18,8 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
+import java.net.URL;
+import java.security.ProtectionDomain;
 import java.util.Arrays;
 import java.util.List;
 
@@ -703,58 +711,258 @@ public class ClassTest {
         System.out.println(method1.getName());
     }
 
-
+    /**
+     * 返回一个构造器对象，该对象反映此类对象所表示的类或接口的指定构造函数。
+     * parameterTypes参数是一个类对象的数组，它按声明的顺序标识构造函数的形式参数类型。
+     * 如果此类对象表示在非静态上下文中声明的内部类，则形式参数类型包括显式封闭实例作为第一个参数。
+     */
     @Test
-    public void test1() {
-        //将该类转换成指定类的子类
-        Class<? extends Animal> subclass = Person.class.asSubclass(Animal.class);
+    public void getDeclaredConstructor() throws NoSuchMethodException {
+        Constructor constructor = Person.class.getDeclaredConstructor();
+        System.out.println(constructor);
+    }
 
-        //获取注解类,忽略父类注解
+    /**
+     * 查找具有给定名称的资源。
+     */
+    @Test
+    public void getResourceAsStream() {
+        //通过这种是能找到文件的
+//        InputStream i = new FileInputStream(getClass().getResource("/File.txt").getPath());
+        //无法找到文件
+//        InputStream i = getClass().getResourceAsStream(getClass().getResource("/File.txt").getPath());
+        //将File.txt放到该文件同目录就可以找到
+        try (InputStream i = getClass().getResourceAsStream("/File.txt");
+             BufferedReader r = new BufferedReader(new InputStreamReader(i))) {
+            String l;
+            String val = "";
+            while ((l = r.readLine()) != null) {
+                val = val + l;
+            }
+            System.out.println(val);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * 查找具有给定名称的资源。返回URL
+     */
+    @Test
+    public void getResource() {
+        URL url = getClass().getResource("/File.txt");
+        System.out.println(url);
+    }
+
+    /**
+     * 返回ProtectionDomain 。
+     * 如果安装了安全管理器，则此方法首先使用RuntimePermission("getProtectionDomain")权限调用安全管理器的checkPermission方法，以确保可以获取ProtectionDomain 。
+     *
+     * 当类装载器将类型装入Java虚拟机时，它们将为每个类型指派一个保护域。
+     * 保护域定义了授予一段特定代码的所有权限。（一个保护域对应策略文件中的一个或多个Grant子句。）
+     * 装载入Java虚拟机的每一个类型都属于一个且仅属于一个保护域
+     * https://blog.csdn.net/yfqnihao/article/details/8271415
+     */
+    @Test
+    public void getProtectionDomain() {
+        ProtectionDomain protectionDomain = getClass().getProtectionDomain();
+        System.out.println(protectionDomain);
+    }
+
+
+    /**
+     * 如果要在调用此方法时初始化，则返回将分配给此类的断言状态。 如果此类已设置其断言状态，则将返回最新设置;
+     * 否则，如果任何包默认断言状态属于此类，则返回最具体的相关包默认断言状态的最新设置;
+     * 否则，如果此类不是系统类（即，它具有类加载器），则返回其类加载器的默认断言状态; 否则，返回系统类的默认断言状态。
+     * 很少有程序员需要这种方法; 它是为了JRE本身的利益而提供的。 （它允许类在初始化时确定是否应该启用断言。）
+     * 请注意，此方法不保证返回与指定类关联的（或将要）关联的实际断言状态（或将被初始化）。
+     */
+    @Test
+    public void desiredAssertionStatus() {
+        System.out.println(getClass().desiredAssertionStatus());
+    }
+
+    /**
+     * 当且仅当此类在源代码中声明为枚举时返回true
+     */
+    @Test
+    public void isEnum() {
+        assert Status.class.isEnum();
+    }
+
+    /**
+     * 返回此枚举类的元素，如果此Class对象不表示枚举类型，则返回null。
+     */
+    @Test
+    public void getEnumConstants() {
+        System.out.println(Arrays.toString(Status.class.getEnumConstants()));
+    }
+
+
+    /**
+     * 将指定对象转换为当前Class表示的类或接口
+     */
+    @Test
+    public void cast() {
+        ChinesePeople chinesePeople = new ChinesePeople();
+        chinesePeople.setAge(18);
+        chinesePeople.setName("jujunchen");
+        Person person = Person.class.cast(chinesePeople);
+        System.out.println(person.getName());
+
+        //java.lang.ClassCastException: Cannot cast lang.Person to lang.ChinesePeople
+//        System.out.println(ChinesePeople.class.cast(new Person()));
+    }
+
+    /**
+     * 将该类转换成指定类的子类
+     */
+    @Test
+    public void asSubclass() {
+        Class<? extends Animal> subclass = Person.class.asSubclass(Animal.class);
+        System.out.println(subclass.getName());
+    }
+
+    /**
+     * 获取注解类,忽略父类注解，获取父类的注解，注解必须有@Inherited
+     */
+    @Test
+    public void getAnnotation() {
         JavaBean javaBean = ChinesePeople.class.getAnnotation(JavaBean.class);
         assert javaBean == null;
+        Car car = ChinesePeople.class.getAnnotation(Car.class);
+        assert  car != null;
+    }
 
-        //判断指定注解是否存在
+
+    /**
+     * 如果此元素上存在指定类型的注解，则返回true，否则返回false。 此方法主要用于方便地访问标记注解。
+     */
+    @Test
+    public void isAnnotationPresent() {
         assert Person.class.isAnnotationPresent(JavaBean.class);
+    }
 
-        //返回与指定类相关连的注解数组,不会获取父类的注解
+
+    /**
+     * 返回与指定类相关连的注解数组,获取父类的注解，注解必须有@Inherited
+     */
+    @Test
+    public void getAnnotationsByType() {
         Name[] annotations = ChinesePeople.class.getAnnotationsByType(Name.class);
         assert annotations.length == 1;
 
-        //返回此类上存在的注解,注解需要有@Inherited，才能被找到
+        Car[] annotations1 = ChinesePeople.class.getAnnotationsByType(Car.class);
+        assert annotations1.length == 1;
+    }
+
+
+    /**
+     * 返回此类上存在的注解,获取父类的注解，注解必须有@Inherited
+     */
+    @Test
+    public void getAnnotations() {
         Annotation[] allAnnotations = ChinesePeople.class.getAnnotations();
         assert allAnnotations.length == 2;
+    }
 
-        //获取指定注解类，忽略父类的注解
+
+    /**
+     * 获取指定注解类，忽略父类的注解,有@Inherited 也获取不到
+     */
+    @Test
+    public void getDeclaredAnnotation() {
         JavaBean javaBean1 = ChinesePeople.class.getDeclaredAnnotation(JavaBean.class);
         assert javaBean1 == null;
 
-        //获取该类上的注解，忽略父类的注解
+        Car car = ChinesePeople.class.getDeclaredAnnotation(Car.class);
+        assert car == null;
+    }
+
+    /**
+     * 获取指定注解类，返回数组，忽略父类的注解,有@Inherited 也获取不到
+     */
+    @Test
+    public void getDeclaredAnnotationsByType() {
+        Name[] names = ChinesePeople.class.getDeclaredAnnotationsByType(Name.class);
+        assert names.length == 1;
+
+        Car[] cars = ChinesePeople.class.getDeclaredAnnotationsByType(Car.class);
+        assert cars.length == 0;
+    }
+
+
+    /**
+     * 获取该类上的所有注解，忽略父类的注解
+     */
+    @Test
+    public void getDeclaredAnnotations() {
         Annotation[] javaBeans = ChinesePeople.class.getDeclaredAnnotations();
         assert javaBeans.length == 1;
+    }
 
-//        ChinesePeople.class.getDeclaredAnnotationsByType()
-//        ChinesePeople.class.getDeclaredAnnotations();
 
-        //获取该类的超类
+    /**
+     * 返回一个AnnotatedType对象，获取该Class对象的超类
+     * 如果此类表示Object类，接口类型，数组类型，基元类型或void，则返回值为null 。
+     */
+    @Test
+    public void getAnnotatedSuperclass() {
         AnnotatedType annotatedType = ChinesePeople.class.getAnnotatedSuperclass();
+        System.out.println(annotatedType.getType());
 
-        //获取该类的接口
+        AnnotatedType annotatedType1 = Person.class.getAnnotatedSuperclass();
+        System.out.println(annotatedType1.getType());
+    }
+
+    /**
+     * 获取该类的接口,返回AnnotatedType类型数组
+     *
+     * 如果此类对象表示类，则返回值是一个数组，其中包含表示接口类型用于指定类实现的接口的对象。 数组中对象的顺序对应于此类对象的声明的“implements”子句中使用的接口类型的顺序。
+     *
+     * 如果此类对象表示接口，则返回值是一个数组，其中包含表示接口类型用途的对象，以指定由接口直接扩展的接口。 数组中对象的顺序对应于此类对象的声明的“extends”子句中使用的接口类型的顺序。
+     *
+     * 如果此类对象表示其声明未明确指示任何带注释的超接口的类或接口，则返回值为长度为0的数组。
+     *
+     * 如果此类对象表示Object类，数组类型，基本类型或void，则返回值是长度为0的数组。
+     */
+    @Test
+    public void getAnnotatedInterfaces() {
         AnnotatedType[] annotatedTypes = ChinesePeople.class.getAnnotatedInterfaces();
         assert  annotatedTypes.length == 0;
 
         AnnotatedType[] annotatedTypes1 = Person.class.getAnnotatedInterfaces();
         assert annotatedTypes1.length == 1;
-
-        //嵌套主机,内部类所在父类，如果不是内部类返回本身
-        Class<?> chinesePeopleClass = ChinesePeople.ZjPeople.class.getNestHost();
-
-        //确定指定的类和该类是否是同一个嵌套的成员
-        assert ChinesePeople.class.isNestmateOf(ChinesePeople.ZjPeople.class);
-
-        //返回内部类，包括本身
-        Class<?>[] chinesePeoples = ChinesePeople.class.getNestMembers();
     }
 
+
+    /**
+     * 嵌套主机,内部类所在父类，如果不是内部类返回本身
+     */
+    @Test
+    public void getNestHost() {
+        Class<?> chinesePeopleClass = ChinesePeople.ZjPeople.class.getNestHost();
+        System.out.println(chinesePeopleClass.getName());
+    }
+
+
+    /**
+     * 确定指定的类和该类是否是同一个嵌套的成员
+     */
+    @Test
+    public void isNestmateOf() {
+        assert ChinesePeople.class.isNestmateOf(ChinesePeople.ZjPeople.class);
+    }
+
+
+    /**
+     * 返回一个数组，内部类，包括本身。
+     */
+    @Test
+    public void getNestMembers() {
+        Class<?>[] chinesePeoples = ChinesePeople.class.getNestMembers();
+        System.out.println(Arrays.toString(chinesePeoples));
+    }
 
 
 }
