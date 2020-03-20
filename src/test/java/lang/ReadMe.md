@@ -48,3 +48,7 @@ https://blog.csdn.net/GeekLeee/article/details/84966934
 ##CharSequence
 该接口是char值的可读序列，提供对许多不同类型的char序列的统一，只读访问。
 比如String,StringBuffer,StringBuilder等都实现了该接口。
+
+##Class
+类实例对象，表示类和接口。
+枚举类型是一种类，注释类型是一种接口。 每个数组也属于一个类，该类反映为类对象，由具有相同元素类型和维数的所有数组共享。 原始Java类型（ boolean ， byte ， char ， short ， int ， long ， float ，和double ），以及关键字void也表示为类对象。
