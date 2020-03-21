@@ -332,29 +332,573 @@ public class CharacterTest {
          */
         System.out.println(Character.codePointCount(new char[]{'a','b','c'}, 0 , 3));
     }
+    
+    
+    @Test
+    public void offsetByCodePoints() {
+        /*
+        返回给定char序列中的索引，该索引从给定的index偏移codePointOffset代码点。
+        index和codePointOffset给出的文本范围内的未配对代理计为每个代码点。
+        参数
+            seq - 字符序列
+            index - 要偏移的索引
+            codePointOffset - 代码点中的偏移量
+        结果
+            char序列中的索引
+         */
+        System.out.println(Character.offsetByCodePoints("abcd", 0, 1));
+
+        /*
+        返回给定的索引char子阵是从给定的偏移index由codePointOffset代码点。
+        start和count参数指定char数组的子数组。 由index和codePointOffset给出的文本范围内的未配对代理计为每个代码点。
+        参数
+            a - char数组
+            start - 子阵列的第一个 char的索引
+            count - char阵列的长度
+            index - 要偏移的索引
+            codePointOffset - 代码点中的偏移量
+        结果
+            数组中的索引
+         */
+        System.out.println(Character.offsetByCodePoints(new char[]{'a','b','c','d'}, 0, 4,0,1));
+    }
 
 
 
     @Test
-    public void methodTest() {
-        //是否标题属性
-        System.out.println(Character.isTitleCase('L'));
+    public void isLowerCase() {
+        /*
+         * 确定指定的字符是否为小写字符
+         */
+        System.out.println(Character.isLowerCase('A'));
 
-        System.out.println(Character.getType(97));
-        //翻转字符的字节顺序
-//        System.out.println(Character.reverseBytes('2'));
-        System.out.println(Character.getDirectionality('A'));
-        System.out.println(Character.isWhitespace(' '));
-        System.out.println(Character.getNumericValue('a'));
-        char ch  = 97;
-        System.out.println(ch);
-
-        System.out.println(Character.codePointAt(new char[]{'a'}, 0));
-        System.out.println(Character.toChars(97));
-        System.out.println(Character.digit('A', 2));
-        System.out.println(Character.forDigit(-1,10));
+        /*
+        确定指定的字符（Unicode代码点）是否为小写字符。
+         */
+        System.out.println(Character.isLowerCase(97));
     }
 
+    @Test
+    public void isUpperCase() {
+        /*
+        确定指定的字符（Unicode代码点）是否为大写字符
+         */
+        //用法同isLowerCase
+    }
+
+
+    @Test
+    public void isTitleCase() {
+        /*
+        确定指定的字符是否为标题字符。
+        字符是否为标题字符，如果它的一般类别类型，通过提供Character.getType(ch) ，是TITLECASE_LETTER 。
+         */
+        System.out.println(Character.isTitleCase('L'));
+    }
+    
+    
+    @Test
+    public void isDigit() {
+        /*
+        确定指定的字符是否为数字
+         */
+        System.out.println(Character.isDigit('1'));
+
+
+        /*
+         * 确定指定的字符（Unicode代码点）是否为数字
+         */
+        System.out.println(Character.isDigit(97));
+    }
+    
+    
+    @Test
+    public void isDefined() {
+        /*
+        确定是否在Unicode中定义了字符。
+        如果至少满足下列条件之一，则定义字符：
+        它在UnicodeData文件中有一个条目。
+        它具有UnicodeData文件定义的范围中的值。
+         */
+        System.out.println(Character.isDefined('a'));
+
+        /*
+        确定是否在Unicode中定义了字符（Unicode代码点）
+         */
+        System.out.println(Character.isDefined(97));
+    }
+    
+    
+    @Test
+    public void isLetter() {
+        /*
+        确定指定的字符是否为字母
+
+        如果字符的一般类别类型（由Character.getType(ch)提供）是以下任何一种字符，则该字符被视为字母：
+        UPPERCASE_LETTER
+        LOWERCASE_LETTER
+        TITLECASE_LETTER
+        MODIFIER_LETTER
+        OTHER_LETTER
+         */
+        System.out.println(Character.isLetter('A'));
+
+        /*
+        确定指定的字符（Unicode代码点）是否为字母
+         */
+        System.out.println(Character.isLetter(97));
+    }
+
+
+    @Test
+    public void isLetterOrDigit() {
+        /*
+        确定指定的字符是字母或者数字
+         */
+        System.out.println(Character.isLetterOrDigit('A'));
+        System.out.println(Character.isLetterOrDigit('1'));
+        System.out.println(Character.isLetterOrDigit('?'));
+
+        /*
+        确定指定的字符（Unicode代码点）是字母还是数字
+         */
+        System.out.println(Character.isLetterOrDigit(97));
+    }
+
+
+    @Test
+    public void isAlphabetic() {
+        /*
+        确定指定的字符（Unicode代码点）是否为字母。
+        如果字符的一般类别类型（由getType(codePoint)提供）是以下任何一种，则该字符被视为字母字符：
+
+        UPPERCASE_LETTER
+        LOWERCASE_LETTER
+        TITLECASE_LETTER
+        MODIFIER_LETTER
+        OTHER_LETTER
+        LETTER_NUMBER
+        或者它具有由Unicode标准定义的贡献属性Other_Alphabetic。
+         */
+        System.out.println(Character.isAlphabetic(123));
+        System.out.println(Character.isAlphabetic(97));
+    }
+
+
+    /**
+     * 确定指定的字符（Unicode代码点）是否为Unicode标准定义的CJKV（中文，日文，韩文和越南文）表意文字
+     */
+    @Test
+    public void isIdeographic() {
+        System.out.println(Character.isIdeographic('哈'));
+        System.out.println(Character.isIdeographic('a'));
+    }
+
+
+    /**
+     * 确定指定的字符是否允许作为Java标识符中的第一个字符。
+     * 当且仅当满足下列条件之一时，字符才可以作为Java标识符：
+     *
+     * isLetter(ch)返回true
+     * getType(ch)返回LETTER_NUMBER
+     * ch是货币符号（例如'$' ）
+     * ch是连接标点字符（例如'_' ）。
+     */
+    @Test
+    public void isJavaIdentifierStart() {
+        System.out.println(Character.isJavaIdentifierStart('?'));
+
+        System.out.println(Character.isJavaIdentifierStart(97));
+    }
+
+
+    /**
+     * 确定指定的字符是否可以作为Java标识符的一部分，而不是第一个字符。
+     * 如果满足以下任何条件，则字符可能是Java标识符的一部分：
+     */
+    @Test
+    public void isJavaIdentifierPart() {
+        System.out.println(Character.isJavaIdentifierPart('?'));
+
+        System.out.println(Character.isJavaIdentifierPart(97));
+    }
+
+
+    /**
+     * 确定指定的字符是否允许作为Unicode标识符中的第一个字符。
+     * 当且仅当满足下列条件之一时，字符才可以启动Unicode标识符：
+     *
+     * isLetter(ch)返回true
+     * getType(ch)返回LETTER_NUMBER 。
+     */
+    @Test
+    public void isUnicodeIdentifierStart() {
+        System.out.println(Character.isUnicodeIdentifierStart('哈'));
+        System.out.println(Character.isUnicodeIdentifierStart('_'));
+
+        //代码点
+        System.out.println(Character.isUnicodeIdentifierStart(97));
+    }
+
+
+    /**
+     * 确定指定的字符是否可能是Unicode标识符的一部分，而不是第一个字符
+     */
+    @Test
+    public void isUnicodeIdentifierPart() {
+        //支持，字符串，和代码点
+    }
+
+
+    /**
+     * 确定指定的字符是否应被视为Java标识符或Unicode标识符中的可忽略字符。
+     * Java标识符或Unicode标识符中可以忽略以下Unicode字符：
+     *
+     * ISO控制字符不是空格
+     * '\u0000'至'\u0008'
+     * '\u000E'至'\u001B'
+     * '\u007F'至'\u009F'
+     * 具有FORMAT常规类别值的所有字符
+     *
+     * 结果
+     *      true如果字符是可忽略的控制字符，可能是Java或Unicode标识符的一部分; 否则为false
+     */
+    @Test
+    public void isIdentifierIgnorable() {
+        System.out.println(Character.isIdentifierIgnorable('\u0000'));
+        //也支持代码点
+    }
+    
+    
+    @Test
+    public void toLowerCase() {
+        /*
+        使用UnicodeData文件中的大小写映射信息将字符参数转换为小写。
+        请注意，对于某些字符范围， Character.isLowerCase(Character.toLowerCase(ch))并不总是返回true ，特别是那些符号或表意符号。
+
+        通常，应使用String.toLowerCase()将字符映射为小写。
+
+        String案例映射方法比Character案例映射方法有几个好处。
+
+        String案例映射方法可以执行区域设置敏感的映射，上下文相关的映射和1：M字符映射，而Character案例映射方法则不能。
+
+        注意：此方法无法处理supplementary characters 。 要支持所有Unicode字符（包括增补字符），请使用toLowerCase(int)方法。
+
+        参数
+                ch - 要转换的字符。
+        结果
+                字符的小写，如果有的话; 否则，角色本身。
+         */
+        System.out.println(Character.toLowerCase('A'));
+
+        System.out.println(Character.isLowerCase(Character.toLowerCase('_')));
+
+        //也支持使用代码点
+    }
+    
+    
+    @Test
+    public void toUpperCase() {
+        /*
+        使用UnicodeData文件中的大小写映射信息将字符参数转换为大写。
+        请注意，对于某些字符范围， Character.isUpperCase(Character.toUpperCase(ch))并不总是返回true ，特别是那些符号或表意符号。
+
+        通常，应使用String.toUpperCase()将字符映射为大写。
+
+        String案例映射方法比Character案例映射方法有几个好处。
+
+        String案例映射方法可以执行区域设置敏感的映射，上下文相关的映射和1：M字符映射，而Character案例映射方法则不能。
+
+        注意：此方法无法处理supplementary characters 。 要支持所有Unicode字符（包括增补字符），请使用toUpperCase(int)方法。
+
+        参数
+            ch - 要转换的字符。
+        结果
+            字符的大写，如果有的话; 否则，角色本身。
+         */
+        System.out.println(Character.toUpperCase('a'));
+
+        //也支持使用代码点
+    }
+
+
+    @Test
+    public void toTitleCase() {
+        /*
+        使用UnicodeData文件中的大小写映射信息将字符参数转换为标题。 如果一个字符没有明确的标题映射，并且根据UnicodeData本身不是一个标题字符串，那么大写映射将作为等效的标题映射返回。 如果char参数已经是标题char ，则将返回相同的char值。
+        请注意，对于某些字符范围， Character.isTitleCase(Character.toTitleCase(ch))并不总是返回true 。
+
+        注意：此方法无法处理supplementary characters 。 要支持所有Unicode字符（包括增补字符），请使用toTitleCase(int)方法。
+
+        参数
+            ch - 要转换的字符。
+        结果
+            相当于该字符的标题词，如果有的话; 否则，角色本身。
+         */
+        System.out.println(Character.toTitleCase('a'));
+        
+        //支持使用代码点
+    }
+    
+    
+    @Test
+    public void digit() {
+        /*
+        返回指定基数中字符ch的数值。
+        如果基数不在范围MIN_RADIX â‰¤ radix â‰¤ MAX_RADIX或者价值ch不是指定基数的有效数字， -1返回。 如果至少满足下列条件之一，则字符是有效数字：
+
+        方法isDigit是字符的true ，并且字符的Unicode十进制数值（或其单字符分解）小于指定的基数。 在这种情况下，返回十进制数值。
+        该字符是大写拉丁字母'A'至'Z' ，其代码小于radix + 'A' - 10 。 在这种情况下，返回ch - 'A' + 10 。
+        该字符是小写拉丁字母'a'到'z' ，其代码小于radix + 'a' - 10 。 在这种情况下，返回ch - 'a' + 10 。
+        该字符是全'\uFF21'写拉丁字母A（ '\uFF21' ）到Z（ '\uFF3A' ）之一，其代码小于radix + '\uFF21' - 10 。 在这种情况下，返回ch - '\uFF21' + 10 。
+        该字符是全宽小写拉丁字母a（ '\uFF41' ）到z（ '\uFF5A' ）之一，其代码小于radix + '\uFF41' - 10 。 在这种情况下，返回ch - '\uFF41' + 10 。
+         */
+        System.out.println(Character.digit('A', 16));
+        System.out.println(Character.digit('A', 10));
+
+        //也支持使用代码点
+    }
+
+
+    /**
+     * 返回指定的Unicode字符表示的int值。 例如，字符'\u216C' （罗马数字50）将返回值为50的int。
+     * 大写字母AZ（ '\u0041'到'\u005A' ），小写字母（ '\u0061'到'\u007A' ）和全宽变体（ '\uFF21'到'\uFF3A'和'\uFF41'到'\uFF5A' ）形式的数值从10到35
+     * '\uFF5A' 。这与Unicode规范无关，不会为这些char值分配数值。
+     *
+     * 如果字符没有数字值，则返回-1。 如果字符的数值不能表示为非负整数（例如，小数值），则返回-2。
+     *
+     * 注意：此方法无法处理supplementary characters 。 要支持所有Unicode字符（包括增补字符），请使用getNumericValue(int)方法。
+     *
+     * 参数
+     *      ch - 要转换的字符。
+     * 结果
+     *      字符的数值，作为非负int值; -2如果字符具有数值但该值不能表示为非负int值; 如果字符没有数字值，则返回-1。
+     */
+    @Test
+    public void getNumericValue() {
+        System.out.println(Character.getNumericValue('A'));
+        //支持使用代码点
+    }
+
+
+    /**
+     * 确定指定的字符是否为Unicode空格字符。 当且仅当Unicode标准将字符指定为空格字符时，才将字符视为空格字符。 如果角色的常规类别类型是以下任何一种，则此方法返回true：
+     * SPACE_SEPARATOR
+     * LINE_SEPARATOR
+     * PARAGRAPH_SEPARATOR
+     * 注意：此方法无法处理supplementary characters 。 要支持所有Unicode字符（包括增补字符），请使用isSpaceChar(int)方法。
+     *
+     * 参数
+     *      ch - 要测试的角色。
+     * 结果
+     *      true如果角色是空格字符; 否则为false 。
+     */
+    @Test
+    public void isSpaceChar() {
+        System.out.println(Character.isSpaceChar(' '));
+        System.out.println(Character.isSpaceChar('\ue00f'));
+        //支持使用代码点
+    }
+
+
+    /**
+     * 根据Java确定指定的字符是否为空格。 当且仅当它满足以下条件之一时，字符才是Java空白字符：
+     * 它是Unicode空格字符（ SPACE_SEPARATOR ， LINE_SEPARATOR ，或PARAGRAPH_SEPARATOR ），但不也是非打破空间（ '\u00A0' ， '\u2007' ，
+     * '\u202F' ）。
+     * 它是'\t' ，U + 0009 HORIZONTAL '\t' 。
+     * 它是'\n' ，U + 000A LINE FEED。
+     * 它是'\u000B' ，U + 000B VERTICAL '\u000B' 。
+     * 它是'\f' ，U + 000C FORM FEED。
+     * 它是'\r' ，U + 000D '\r' RETURN。
+     * 它是'\u001C' ，U + 001C FILE SEPARATOR。
+     * 它是'\u001D' ，U + 001D GROUP SEPARATOR。
+     * 它是'\u001E' ，U + 001E RECORD SEPARATOR。
+     * 它是'\u001F' ，U + 001F UNIT SEPARATOR。
+     */
+    @Test
+    public void isWhitespace() {
+        System.out.println(Character.isWhitespace(' '));
+    }
+
+
+    /**
+     * 确定指定的字符是否为ISO控制字符。
+     *
+     * 一个字符被认为如果其代码是在范围为ISO控制字符'\u0000'通过'\u001F'或在范围'\u007F'通过'\u009F' 。
+     *
+     * 注意：此方法无法处理supplementary characters 。
+     *
+     * 要支持所有Unicode字符（包括增补字符），请使用{@link Character#isISOControl(int)}方法。
+     *
+     * 参数
+     *  ch - 要测试的角色。
+     * 结果
+     *  true如果字符是ISO控制字符; 否则为false
+     */
+    @Test
+    public void isISOControl() {
+        System.out.println(Character.isISOControl('\u001F'));
+        //支持使用代码点
+    }
+
+
+    /**
+     * 返回表示字符常规类别的值。
+     * 注意：此方法无法处理supplementary characters 。
+     *
+     * 要支持所有Unicode字符（包括增补字符），请使用{@link Character#getType(int)}方法。
+     *
+     * 参数
+     *      ch - 要测试的角色。
+     * 结果
+     *      类型为 int的值，表示字符的常规类别
+     */
+    @Test
+    public void getType() {
+        System.out.println(Character.getType(97));
+        //支持使用代码点
+    }
+
+
+    /**
+     * 确定指定基数中特定数字的字符表示形式。
+     *
+     * 如果值radix不是有效基数，或者值digit不是指定基数中的有效数字，则返回空字符（ '\u0000' ）。
+     * 该radix参数是有效的，如果它是大于或等于MIN_RADIX且小于或等于MAX_RADIX 。
+     * 如果0 <= digit < radix ，则digit参数有效。
+     *
+     * 如果该数字小于10，则返回'0' + digit 。 否则，返回值'a' + digit - 10 。
+     *
+     * 参数
+     *  digit - 要转换为字符的数字。
+     *  radix - 基数。
+     * 结果
+     *  指定基数中指定数字的 char表示形式。
+     */
+    @Test
+    public void forDigit() {
+        //10进制
+        System.out.println(Character.forDigit(1, 10));
+        //16进制
+        System.out.println(Character.forDigit(11, 16));
+    }
+
+
+    /**
+     * 返回给定字符的Unicode方向性属性。
+     *
+     * 字符方向性用于计算文本的视觉排序。 未定义char值的方向性值为DIRECTIONALITY_UNDEFINED 。
+     * 注意：此方法无法处理supplementary characters 。
+     * 要支持所有Unicode字符（包括增补字符），请使用getDirectionality(int)方法。
+     *
+     * 参数
+     *  ch - char ，其请求方向性属性。
+     * 结果
+     *  char值的方向性属性。
+     */
+    @Test
+    public void getDirectionality() {
+        System.out.println(Character.getDirectionality('?'));
+        //支持使用代码点
+    }
+
+
+    /**
+     * 确定是否根据Unicode规范镜像该字符。
+     * 当以从右到左的文本显示时，镜像字符应使其字形水平镜像。 例如， '\u0028' LEFT PARENTHESIS在语义上被定义为左括号 。
+     * 这将显示为从右到左的文本中从左到右但作为“）”的文本中的“（”。
+     * 注意：此方法无法处理supplementary characters 。 要支持所有Unicode字符（包括增补字符），请使用isMirrored(int)方法。
+     *
+     * 参数
+     *      ch - char ，请求镜像属性
+     * 结果
+     *      true如果char是镜像的，则 false如果 char未镜像或未定义。
+     */
+    @Test
+    public void isMirrored() {
+        System.out.println(Character.isMirrored('\u0028'));
+        //支持代码点
+    }
+
+
+    /**
+     * 以数字方式比较两个 Character对象。
+     * Specified by:
+     * compareTo在界面 Comparable<Character>
+     * 参数
+     *      anotherCharacter - 要比较的 Character 。
+     * 结果
+     *      值0如果参数Character等于这个Character ; 的值小于0 ，如果这Character在数值上比少Character参数;
+     *      如果此Character在数值上大于Character参数（无符号比较），则值大于0 。 请注意，这是严格的数字比较; 它不依赖于语言环境。
+     */
+    @Test
+    public void compareTo() {
+        
+    }
+
+
+    /**
+     * 以数字方式比较两个char值。 返回的值与返回的值相同：
+     *   Character.valueOf(x).compareTo(Character.valueOf(y))
+     * 参数
+     *      x - 第一个 char来比较
+     *      y - 第二个 char进行比较
+     * 结果
+     *      值0如果x == y ; 小于0的值，如果x < y ; 如果为0则值大于x > y
+     */
+    @Test
+    public void compare() {
+        
+    }
+
+
+    /**
+     * 返回通过反转指定的 char值中的字节顺序获得的值。
+     * 参数
+     *      ch - 其中 char反转字节顺序。
+     * 结果
+     *      通过反转（或等效地，交换）指定的 char值中的字节获得的值。
+     */
+    @Test
+    public void reverseBytes() {
+        System.out.println(Character.reverseBytes('?'));
+    }
+
+
+    /**
+     * 返回指定字符codePoint的Unicode名称，如果代码点为unassigned ，则返回null。
+     * 注意：如果未通过UnicodeData文件（由Unicode Consortium维护的Unicode字符数据库的一部分）为指定的字符分配名称，则返回的名称与表达式的结果相同。
+     *
+     * Character.UnicodeBlock.of(codePoint).toString().replace('_', ' ') + " " + Integer.toHexString(codePoint)
+     * .toUpperCase(Locale.ROOT);
+     * 参数
+     *      codePoint - 字符（Unicode代码点）
+     * 结果
+     *      指定字符的Unicode名称，如果未分配代码点，则返回null。
+     */
+    @Test
+    public void getName() {
+        System.out.println(Character.getName(300));
+    }
+
+
+    /**
+     * 返回给定Unicode字符名称指定的Unicode字符的代码点值。
+     * 注意：如果UnicodeData文件（由Unicode Consortium维护的Unicode字符数据库的一部分）未为字符分配名称，则其名称将定义为表达式的结果
+     *
+     * Character.UnicodeBlock.of(codePoint).toString().replace('_', ' ') + " " + Integer.toHexString(codePoint)
+     * .toUpperCase(Locale.ROOT);
+     * name匹配不区分大小写，删除了任何前导和尾随空格字符。
+     *
+     * 参数
+     *      name - Unicode字符名称
+     * 结果
+     *      由其名称指定的字符的代码点值。
+     */
+    @Test
+    public void codePointOf() {
+        System.out.println(Character.codePointOf("\u54c8"));
+    }
 
 
 }
