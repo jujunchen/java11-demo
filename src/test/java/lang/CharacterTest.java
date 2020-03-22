@@ -897,7 +897,7 @@ public class CharacterTest {
      */
     @Test
     public void codePointOf() {
-        System.out.println(Character.codePointOf("\u54c8"));
+        System.out.println(Character.codePointOf("\u0000"));
     }
 
 
