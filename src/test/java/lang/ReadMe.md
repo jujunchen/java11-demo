@@ -52,3 +52,28 @@ https://blog.csdn.net/GeekLeee/article/details/84966934
 ## Class
 类实例对象，表示类和接口。
 枚举类型是一种类，注释类型是一种接口。 每个数组也属于一个类，该类反映为类对象，由具有相同元素类型和维数的所有数组共享。 原始Java类型（ boolean ， byte ， char ， short ， int ， long ， float ，和double ），以及关键字void也表示为类对象。
+
+## ClassCastException
+如果类无法强制转换为指定类，抛出该异常
+```
+Object x = new Integer(0);
+System.out.println((String)x);
+```
+
+## ClassCircularityError
+当Java虚拟机检测到正在加载类的超类存在循环时，抛出
+
+## ClassFormatError
+当Java虚拟机尝试读取类文件并格式化错误或者无法解析类文件时，抛出
+
+## ClassLoader
+类加载器是一个负责加载类的对象  
+Java 9之前的类加载器：  
+Bootstrap ClassLoader：负责加载rt.jar包中的类  
+Extension ClassLoader: 负责加载Java的扩展类库，jre/lib/ext目录或者java.ext.dirs属性指定的目录  
+System ClassLoader: 负责加载classpath配置路径的类文件
+
+Java 9 之后：  
+Bootstrap ClassLoader: 加载lib/modules基础模块  
+Platform ClassLoader: 平台类加载器，加载Java SE 平台API，及其实现类和由平台类加载器或父级定义的运行时类  
+System ClassLoader: 系统类加载器，也称为应用程序类加载器，加载指定的应用程序类路径，模块路径或者JDK指定工具上定义的类
