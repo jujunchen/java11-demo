@@ -77,3 +77,32 @@ Java 9 之后：
 Bootstrap ClassLoader: 加载lib/modules基础模块  
 Platform ClassLoader: 平台类加载器，加载Java SE 平台API，及其实现类和由平台类加载器或父级定义的运行时类  
 System ClassLoader: 系统类加载器，也称为应用程序类加载器，加载指定的应用程序类路径，模块路径或者JDK指定工具上定义的类
+
+## ClassNotFoundException
+当应用程序尝试使用以下命令通过其字符串名称加载类时抛出：
+- Class forName方法。
+- ClassLoader的findSystemClass方法。
+- ClassLoader的loadClass方法。
+但是找不到具有指定名称的类的定义。
+
+## ClassValue
+懒惰地将计算值与（可能）每种类型相关联。例如，如果动态语言需要为消息发送调用站点遇到的每个类构造消息调度表，则可以使用ClassValue来缓存为遇到的每个类快速执行消息发送所需的信息。
+
+## Cloneable
+类实现Cloneable接口，以向Object.clone()方法指示该方法对该类的实例进行字段到字段复制是合法的。    
+在未实现Cloneable接口的实例上调用Object的clone方法会导致抛出异常CloneNotSupportedException 。  
+按照惯例，实现此接口的类应使用公共方法覆盖Object.clone （受保护），此接口不包含clone方法。 因此，仅仅通过实现该接口来克隆对象是不可能的。 即使反射调用clone方法，也无法保证它会成功
+
+## CloneNotSupportedException
+抛出此异常表示调用类Object中的clone方法来克隆对象，但该对象的类未实现Cloneable接口。  
+覆盖clone方法的应用程序也可以抛出此异常，以指示无法克隆或不应克隆对象
+
+## Comparable
+实现此接口的对象的列表（和数组）可以由Collections.sort （和Arrays.sort ）自动排序。   
+实现该接口的对象，可以使用如在键sorted map或作为在元件sorted set ，而不需要指定一个comparator 。
+
+## Deprecated
+标识了表示代码不建议使用，或者未来会删除
+
+## Double
+基本类型double的包装类型
