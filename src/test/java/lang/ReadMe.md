@@ -106,3 +106,23 @@ System ClassLoader: 系统类加载器，也称为应用程序类加载器，加
 
 ## Double
 基本类型double的包装类型
+
+## Enum
+枚举类型的公共基类
+
+## EnumConstantNotPresentException
+当应用程序尝试按名称访问枚举常量并且枚举类型不包含具有指定名称的常量时抛出
+
+## Error
+Error是Throwable的一个子类，表示严重的错误，不应该捕获
+
+## Exception
+Throwable的子类，表示合理的应用程序异常，可以捕获.  
+不属于RuntimeException子类的异常都是检查异常，需要显式throws抛出
+
+
+## Throwable
+所有错误和异常的超类。  
+//todo  
+getCause 为什么需要加synchronized？  
+printStackTrace 导致内存异常？
