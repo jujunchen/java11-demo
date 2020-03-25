@@ -1,4 +1,6 @@
 # java.lang包
+**按照字典顺序排列**
+
 ## AbstractMethodError
 在尝试调用抽象方法时抛出。 比如定义了一个抽象方法，其中一个方法需要子类实现，不希望用户直接通过抽象方法调用，就可以在该方法中抛出该异常
           
@@ -131,3 +133,41 @@ Throwable的子类，表示合理的应用程序异常，可以捕获.
 //todo  
 getCause 为什么需要加synchronized？  
 printStackTrace 导致内存异常？
+
+## FunctionalInterface
+一种注解，表示该接口是一种功能接口，可以使用Lambda表达式。  
+但不使用该注解，编译器还是会将满足功能接口定义的任何接口视为功能接口
+
+## IllegalAccessError
+如果应用程序尝试访问或修改字段，或调用其无权访问的方法，则抛出该异常。  
+通常，编译器会捕获此错误; 如果类的定义不兼容地更改，则此错误只能在运行时发生
+
+## IllegalAccessException
+当应用程序尝试反射创建实例（数组除外），当前正在执行的方法无法访问指定类的字段，方法或构造函数，抛出IllegalAccessException，  
+
+## IllegalArgumentException
+当方法被传递非法或不适当的参数时，抛出该异常
+
+## IllegalCallerException
+当调用发不正确的调用方法时，抛出该异常
+
+## IllegalMonitorStateException
+抛出此异常表示线程已尝试在对象的监视器上等待，或者在没有指定监视器的情况下通知在对象监视器上等待的其他线程
+
+## IllegalStateException
+表示在非法或者不适当的时间调用了方法
+
+## IllegalThreadStateException
+线程未处于所请求操作的适当状态，将抛出异常
+
+## IncompatibleClassChangeError
+在某些类定义发生不兼容的类更改时抛出。   
+此后正在执行的方法所依赖的某个类的定义已经发生了变化
+
+## IndexOutOfBoundsException
+抛出以指示某种索引（例如数组，字符串或向量）超出范围。  
+应用程序可以将此类子类化以指示类似的异常
+
+## InheritableThreadLocal
+ThreadLocal的子类，他可以获取父线程中的数据  
+https://www.cnblogs.com/noteless/p/10448283.html
