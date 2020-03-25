@@ -120,6 +120,11 @@ Error是Throwable的一个子类，表示严重的错误，不应该捕获
 Throwable的子类，表示合理的应用程序异常，可以捕获.  
 不属于RuntimeException子类的异常都是检查异常，需要显式throws抛出
 
+## ExceptionInInitializerError
+表示在静态初始化程序或者静态变量初始化时发生异常
+
+## Float
+基本类型float的包装类型
 
 ## Throwable
 所有错误和异常的超类。  
