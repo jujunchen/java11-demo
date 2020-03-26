@@ -171,3 +171,15 @@ printStackTrace 导致内存异常？
 ## InheritableThreadLocal
 ThreadLocal的子类，他可以获取父线程中的数据  
 https://www.cnblogs.com/noteless/p/10448283.html
+
+## InstantiationError
+当应用程序尝试使用Java new构造来实例化抽象类或接口时，抛出该异常
+
+## InstantiationException
+当应用程序尝试使用Class的newInstance方法创建类的实例时抛出，但无法实例化指定的类对象。 
+实例化可能由于各种原因而失败，包括但不限于：
+class对象表示抽象类，接口，数组类，基元类型或void
+该类没有空构造函数
+
+## Integer
+基本类型int的包装类型
