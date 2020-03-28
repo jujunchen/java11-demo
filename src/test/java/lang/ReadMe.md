@@ -199,3 +199,12 @@ if (Thread.interrupted())  // Clears interrupted status!
 
 ## LayerInstantiationException
 创建module layer 失败时抛出
+
+## LinkageError
+表示某个类对另一个类存在依懒性，但另一个类编译后，两个类存在不兼容现象
+
+## Long
+基本类型long的包装类
+
+## Math
+包含一些计算方法
