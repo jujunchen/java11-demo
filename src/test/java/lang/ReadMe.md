@@ -183,3 +183,19 @@ class对象表示抽象类，接口，数组类，基元类型或void
 
 ## Integer
 基本类型int的包装类型
+
+## InternalError
+表示虚拟机内部发生了意外错误
+
+## InterruptedException
+线程被中断时抛出该异常
+```
+if (Thread.interrupted())  // Clears interrupted status!
+      throw new InterruptedException();
+```
+
+## Iterable
+实现此接口,就允许对象使用增强型for语句
+
+## LayerInstantiationException
+创建module layer 失败时抛出
