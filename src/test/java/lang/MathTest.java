@@ -262,4 +262,201 @@ public class MathTest {
         assert Math.rint(3.5) == 4.0;
     }
 
+    /**
+     * 返回第二参数作为第一个参数的幂值
+     * 参数
+     *      a - 基数。
+     *      b - 指数。
+     * 结果
+     *      a的b次方值
+     */
+    @Test
+    public void powTest() {
+        System.out.println(Math.pow(2,3));
+    }
+
+
+    /**
+     * 返回与参数四舍五入后最接近的int值，特殊情况
+     *      如果参数为NaN，则结果为0。
+     *      如果参数为负无穷大或任何小于或等于Integer.MIN_VALUE的值，则结果等于Integer.MIN_VALUE的值。
+     *      如果参数为正无穷大或任何大于或等于Integer.MAX_VALUE的值，则结果等于Integer.MAX_VALUE的值。
+     * 参数
+     *      a - 要舍入为整数的浮点值。
+     * 结果
+     *      参数的值四舍五入到最接近的 int值
+     */
+    @Test
+    public void round() {
+        assert Math.round(3.1) == 3;
+        assert Math.round(3.5) == 4;
+
+        long l = Math.round(3.0);
+    }
+
+    /**
+     * 返回大于0.0 小于 1.0 的伪随机数
+     */
+    @Test
+    public void randomTest() {
+        System.out.println(Math.random());
+    }
+
+
+    /**
+     * 返回参数计算的总和，如果溢出int范围抛出异常
+     */
+    @Test
+    public void addExactTest() {
+        System.out.println(Math.addExact(10,10));
+
+        long l = Math.addExact(10l, 10l);
+    }
+
+
+    /**
+     * 返回第一个参数减第二参数后剩余的值,如果溢出，抛出异常
+     */
+    @Test
+    public void subtractExactTest() {
+        int a = Math.subtractExact(10,1);
+        assert a == 9;
+        int a1 = Math.subtractExact(10,-1);
+        assert a1 == 11;
+
+        long a2 = Math.subtractExact(10l, 1l);
+    }
+
+    /**
+     * 返回两个参数的乘积，异常抛出异常
+     */
+    @Test
+    public void multiplyExact() {
+        int a = Math.multiplyExact(10,2);
+        assert a == 20;
+        
+        long a1 = Math.multiplyExact(1l, 2l);
+        
+        long a2 = Math.multiplyExact(1l, 10);
+    }
+
+
+    /**
+     * 返回参数+1后的值，溢出抛出异常
+     */
+    @Test
+    public void incrementExact() {
+        int a = Math.incrementExact(10);
+        assert a == 11;
+        
+        long b = Math.incrementExact(10l);
+    }
+
+    /**
+     * 返回参数减1后的值，溢出抛出异常
+     */
+    @Test
+    public void decrementExact() {
+        int a = Math.decrementExact(10);
+        assert a == 9;
+
+        long b = Math.decrementExact(1l);
+    }
+
+    /**
+     * 返回参数的否定值
+     */
+    @Test
+    public void negateExact() {
+        int a = Math.negateExact(10);
+        assert a == -10;
+
+        int b = Math.negateExact(-10);
+        assert b == 10;
+        
+        long c = Math.negateExact(10);
+    }
+
+
+    /**
+     * 将参数转换为int型
+     */
+    @Test
+    public void toIntExactTest() {
+        int a = Math.toIntExact(10l);
+    }
+
+    /**
+     * 将整型转换为long型，再做乘法
+     */
+    @Test
+    public void multiplyFull() {
+        long a = Math.multiplyFull(10,2);
+    }
+
+    /**
+     * 返回 long作为两个64位因子的128位乘积的最高64位。
+     * 参数
+     * x - 第一个值
+     * y - 第二个值
+     */
+    @Test
+    public void multiplyHigh() {
+        System.out.println(Math.multiplyHigh(10l, 3l));
+    }
+
+    /**
+     * 返回小于或等于代数商的最大值（最接近正无穷大） int 。
+     * 有一种特殊情况，如果被除数是Integer.MIN_VALUE且除数是-1 ，则发生整数溢出，结果等于Integer.MIN_VALUE 。
+     * 正整数除法在舍入到零舍入模式（截断）下操作。 相反，该操作在朝向负无穷大（地板）舍入模式的轮次下起作用。
+     * 当精确结果为负时，地板舍入模式会提供截断的不同结果。
+     *
+     * 如果参数的符号相同，则floorDiv和/运算符的结果相同。
+     * 例如， floorDiv(4, 3) == 1和(4 / 3) == 1 。
+     * 如果参数的符号不同，则商为负， floorDiv返回小于或等于商的整数， /运算符返回最接近零的整数。
+     * 例如， floorDiv(-4, 3) == -2 ，而(-4 / 3) == -1 。
+     * 参数
+     * x - 股息
+     * y - 除数
+     * 结果
+     * 最大（最接近正无穷大） int值小于或等于代数商
+     */
+    @Test
+    public void floorDiv() {
+        System.out.println(Math.floorDiv(10,3));
+    }
+
+
+    /**
+     * 返回第一个参数除第二参数的余数
+     *
+     * floorMod为x - (floorDiv(x, y) * y) ，与除数y具有相同的符号，并且在-abs(y) < r < +abs(y)的范围内。
+     *
+     * floorDiv和floorMod之间的关系floorDiv ：
+     *
+     * floorDiv(x, y) * y + floorMod(x, y) == x
+     * 在之间的值的差floorMod和%操作者是由于之间的差floorDiv返回小于或等于商和整数/操作者返回最接近零的整数。
+     *
+     * 例子：
+     *
+     * 如果参数的符号相同，则floorMod和%运算符的结果相同。
+     * floorMod(4, 3) == 1 ; 和(4 % 3) == 1
+     * 如果参数的符号不同，则结果与%运算符不同。
+     * floorMod(+4, -3) == -2 ; 和(+4 % -3) == +1
+     * floorMod(-4, +3) == +2 ; 和(-4 % +3) == -1
+     * floorMod(-4, -3) == -1 ; 和(-4 % -3) == -1
+     * 如果参数的符号未知且需要正模数，则可以计算为(floorMod(x, y) + abs(y)) % abs(y)
+     */
+    @Test
+    public void floorMod() {
+        int a = Math.floorMod(10,2);
+        assert a == 0;
+
+        int b = Math.floorMod(10,3);
+        assert b == 1;
+
+        System.out.println(4 % -3);
+        System.out.println(-4 % 3);
+    }
+
 }
