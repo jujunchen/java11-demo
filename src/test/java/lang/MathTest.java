@@ -459,4 +459,290 @@ public class MathTest {
         System.out.println(-4 % 3);
     }
 
+
+    /**
+     * 返回参数的绝对值
+     */
+    @Test
+    public void absTest() {
+        int a = Math.abs(-10);
+        assert a == 10;
+
+        float b = Math.abs(10.0f);
+        System.out.println(b);
+    }
+
+    /**
+     * 返回参数的最大值
+     */
+    @Test
+    public void maxTest() {
+        System.out.println(Math.max(0,-0));
+        System.out.println(Math.max(0.0, -0.0));
+    }
+
+
+    /**
+     * 前两个参数的乘积加上第三个参数的值。然后舍入一次到最接近的double。使用round to nearest even rounding mode完成舍入。
+     * 相反，如果a * b + c被评估为常规浮点表达式，则涉及两个舍入误差，第一个用于乘法运算，第二个用于加法运算。
+     * 特别情况：
+     *
+     * 如果任何参数是NaN，则结果为NaN。
+     * 如果前两个参数中的一个是无穷大而另一个是零，则结果为NaN。
+     * 如果前两个参数的确切乘积是无穷大的（换句话说，至少有一个参数是无穷大而另一个既不是零也不是NaN），第三个参数是相反符号的无穷大，结果是NaN。
+     * 请注意， fma(a, 1.0, c)返回与（ a + c ）相同的结果。 然而， fma(a, b, +0.0) 并不总是返回相同的结果为（ a * b ），因为fma(-0.0, +0.0, +0.0)为+0.0
+     * ，而（ -0.0 * +0.0 ）为-0.0 ; fma(a, b, -0.0)相当于（ a * b ）。
+     *
+     */
+    @Test
+    public void fmaTest() {
+        System.out.println(Math.fma(0.0, -0.0, -0.0));
+        System.out.println(Math.fma(-0.0, 0.0 , 0.0));
+        System.out.println(0.0 * -0.0);
+    }
+
+
+    /**
+     * 返回参数ulp的大小
+     * https://blog.csdn.net/lantianjialiang/article/details/43985303
+     */
+    @Test
+    public void ulpTest() {
+        System.out.println(Math.ulp(1));
+    }
+
+    /**
+     * 返回参数的正负数。
+     * 如果参数为零，则为零;如果参数大于零，则为1.0;如果参数小于零，则为-1.0。
+     *
+     * 特别情况：
+     * 如果参数是NaN，则结果为NaN。
+     * 如果参数为正零或负零，则结果与参数相同
+     */
+    @Test
+    public void signnumTest() {
+        System.out.println(Math.signum(-1));
+        System.out.println(Math.signum(-0));
+    }
+
+    /**
+     * 返回double值的双曲正弦值。 x的双曲正弦定义为（ e x -e -x ）/ 2，其中e是Euler's number 。
+     * 特别案例：
+     *
+     * 如果参数是NaN，则结果为NaN。
+     * 如果参数是无穷大，则结果是无穷大，其符号与参数相同。
+     * 如果参数为零，则结果为零，其参数符号相同。
+     * 计算结果必须在精确结果的2.5 ulps范围内。
+     *
+     * 参数
+     * x - 要返回双曲正弦的数字。
+     * 结果
+     * 双曲正弦 x 。
+     */
+    @Test
+    public void sinhTest() {
+        
+    }
+
+
+    /**
+     * 返回double值的双曲余弦值。 x的双曲余弦定义为（ e x + e -x ）/ 2，其中e是Euler's number 。
+     * 特别案例：
+     *
+     * 如果参数是NaN，则结果为NaN。
+     * 如果参数是无穷大的，那么结果就是正无穷大。
+     * 如果参数为零，则结果为1.0 。
+     * 计算结果必须在精确结果的2.5 ulps范围内。
+     *
+     * 参数
+     * x - 要返回双曲余弦值的数字。
+     * 结果
+     * 双曲余弦值为 x
+     */
+    @Test
+    public void cosh() {
+        
+    }
+
+    /**
+     * 返回double值的双曲正切值。 x的双曲正切定义为（ e x -e -x ）/（ e x + e -x ），换句话说， sinh(x) / cosh(x) 。 请注意，精确tanh的绝对值始终小于1。
+     * 特别案例：
+     *
+     * 如果参数是NaN，则结果为NaN。
+     * 如果参数为零，则结果为零，其参数符号相同。
+     * 如果参数为正无穷大，则结果为+1.0 。
+     * 如果参数为负无穷大，则结果为-1.0 。
+     * 计算结果必须在精确结果的2.5 ulps范围内。 任何有限输入的tanh的结果必须具有小于或等于1的绝对值。注意，一旦tanh的确切结果在±1的极限值的ulp的1/2内，正确签名Â± 1.0应该退还。
+     *
+     * 参数
+     * x - 要返回双曲正切的数字。
+     * 结果
+     * 双曲正切 x 
+     */
+    @Test
+    public void tanh() {
+        
+    }
+
+    /**
+     * 返回sqrt（ x的2次方 + y的2次方 ），没有中间溢出或下溢。
+     * 特别案例：
+     *
+     * 如果任一参数是无穷大，则结果为正无穷大。
+     * 如果任一参数是NaN且两个参数都不是无穷大，则结果为NaN。
+     * 计算结果必须在精确结果的1 ulp范围内。 如果一个参数保持不变，则结果必须在另一个参数中是半单调的。
+     *
+     * 参数
+     * x - 一个值
+     * y - 一个值
+     * 结果
+     * sqrt（ x的2次方 + y的2次方 ）没有中间上溢或下溢
+     */
+    @Test
+    public void hypot() {
+        System.out.println(Math.hypot(2,2));
+    }
+
+
+    /**
+     * 返回e x -1。 请注意，对于接近0的x值， expm1(x) + 1的精确和更接近e x的真实结果，而不是exp(x) 。
+     * 特别案例：
+     *
+     * 如果参数是NaN，则结果为NaN。
+     * 如果参数是正无穷大，那么结果是正无穷大。
+     * 如果参数为负无穷大，则结果为-1.0。
+     * 如果参数为零，则结果为零，其参数符号相同。
+     * 计算结果必须在精确结果的1 ulp范围内。 结果必须是半单调的。 任何有限输入的结果expm1必须大于或等于-1.0 。 请注意，一旦e x - 1的确切结果在极限值-1的1/2 ulp范围内，则应返回-1.0 。
+     *
+     * 参数
+     * x - 在计算 e x -1时将 e提高到的指数。
+     * 结果
+     * 值 e x - 1
+     */
+    @Test
+    public void expm1() {
+
+    }
+
+
+    /**
+     * 返回参数之和1注的自然对数，对于小值x ，结果log1p(x)更接近LN（1 +的真实结果x ），比的浮点评估log(1.0+x) 。
+     * 特别案例：
+     *
+     * 如果参数为NaN或小于-1，则结果为NaN。
+     * 如果参数是正无穷大，那么结果是正无穷大。
+     * 如果参数为负数，则结果为负无穷大。
+     * 如果参数为零，则结果为零，其参数符号相同。
+     * 计算结果必须在精确结果的1 ulp范围内。 结果必须是半单调的。
+     *
+     * 参数
+     * x - 一个值
+     * 结果
+     * 值ln（ x + 1），自然日志 x + 1
+     */
+    @Test
+    public void log1p() {
+        
+    }
+
+
+    /**
+     * 返回带有第二个浮点参数符号的第一个浮点参数。 请注意，与StrictMath.copySign方法不同，此方法不要求将NaN sign参数视为正值; 允许实现将一些NaN参数视为肯定，将其他NaN参数视为否定以允许更高的性能。
+     * 参数
+     * magnitude - 提供结果大小的参数
+     * sign - 提供结果符号的参数
+     * 结果
+     * 值为 magnitude且符号为 sign
+     */
+    @Test
+    public void copySign() {
+
+    }
+
+
+    /**
+     * 返回float表示中使用的无偏指数。 特别案例：
+     * 如果参数为NaN或无穷大，则结果为Float.MAX_EXPONENT + 1。
+     * 如果参数为零或次正规，则结果为Float.MIN_EXPONENT -1。
+     * 参数
+     * f - 值 float
+     * 结果
+     * 论证的无偏见指数
+     */
+    @Test
+    public void getExponent() {
+        
+    }
+
+    /**
+     * 返回第二个参数方向上第一个参数旁边的浮点数。 如果两个参数比较相等，则返回第二个参数。
+     * 特别案例：
+     *
+     * 如果任一参数是NaN，则返回NaN。
+     * 如果两个参数都是带符号的零，则返回direction不变（如果参数比较相等，则返回第二个参数的要求暗示）。
+     * 如果start是± Double.MIN_VALUE且direction具有使得结果应具有较小幅度的值，则返回与start具有相同符号的零。
+     * 如果start是无限且direction具有使得结果应具有较小幅度的值，则返回start ， 其具有与start相同的符号。
+     * 如果start等于± Double.MAX_VALUE且direction具有使得结果应具有更大幅度的值，则返回与start具有相同符号的无穷大。
+     * 参数
+     * start - 启动浮点值
+     * direction - 表示应返回 start的邻居或 start哪一个的值
+     * 结果
+     * 与 start相邻的浮点数方向为 direction
+     */
+    @Test
+    public void nextAfter() {
+        //9.999999
+        System.out.println(Math.nextAfter(10, 1));
+        //10.000001
+        System.out.println(Math.nextAfter(10, 11));
+
+    }
+
+
+    /**
+     * 返回正无穷大方向上与d相邻的浮点值。 此方法在语义上等效于nextAfter(d, Double.POSITIVE_INFINITY) ; 但是， nextUp实现可能比其等效的nextAfter调用运行得更快。
+     * 特别案例：
+     *
+     * 如果参数是NaN，则结果为NaN。
+     * 如果参数为正无穷大，则结果为正无穷大。
+     * 如果参数为零，则结果为Double.MIN_VALUE
+     * 参数
+     * d - 开始浮点值
+     * 结果
+     * 相邻的浮点值更接近正无穷大
+     */
+    @Test
+    public void nextUp() {
+        
+    }
+
+
+    /**
+     * 返回负无穷大方向上与d相邻的浮点值。 此方法在语义上等效于nextAfter(d, Double.NEGATIVE_INFINITY) ; 但是， nextDown实现可能比其等效的nextAfter调用运行得更快。
+     * 特别案例：
+     *
+     * 如果参数是NaN，则结果为NaN。
+     * 如果参数为负无穷大，则结果为负无穷大。
+     * 如果参数为零，则结果为-Double.MIN_VALUE
+     * 参数
+     * d - 启动浮点值
+     * 结果
+     * 相邻的浮点值更接近负无穷大
+     */
+    @Test
+    public void nextDown() {
+        
+    }
+
+
+    /**
+     * @see Math#scalb(float, int) 
+     * @see Math#scalb(double, int) 
+     */
+    @Test
+    public void scalb() {
+        
+    }
+
+
 }

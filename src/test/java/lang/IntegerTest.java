@@ -265,4 +265,17 @@ public class IntegerTest {
         
     }
 
+
+    /**
+     * 返回参数的正负数
+     *
+     * 如果指定的值是负的，返回值是-1; 如果指定的值是零，返回0; 如果指定的值是正的，返回1
+     */
+    @Test
+    public void signumTest() {
+        System.out.println(Integer.signum(1));
+        System.out.println(Integer.signum(-1));
+        System.out.println(Integer.signum(-0));
+    }
+
 }
