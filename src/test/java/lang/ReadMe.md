@@ -208,3 +208,11 @@ if (Thread.interrupted())  // Clears interrupted status!
 
 ## Math
 包含一些计算方法
+
+## Module
+表示运行时模块  
+```
+模块是可以通过模块名统一指代包和资源的一种组合。模块声明指定了模块的名称，定义了
+模块及其包与其他模块的关系。
+资料：https://www.jianshu.com/p/6704c0e1ec39
+```
