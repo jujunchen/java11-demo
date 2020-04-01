@@ -255,3 +255,9 @@ if (Thread.interrupted())  // Clears interrupted status!
 ## Number
 提供数字值转换为基本数据类型byte ， double ， float ， int ， long ，和short
 的抽象方法。基本数据的类型的包装类都继承了该抽象方法
+
+## Object
+所有类的超类，所有对象包括数据实现了该类方法
+```
+虚假唤醒：https://blog.csdn.net/LuckyBug007/article/details/70053669?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
+```
