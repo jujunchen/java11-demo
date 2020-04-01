@@ -216,3 +216,42 @@ if (Thread.interrupted())  // Clears interrupted status!
 模块及其包与其他模块的关系。
 资料：https://www.jianshu.com/p/6704c0e1ec39
 ```
+
+## ModuleLayer
+从Configuration中的模块图创建图层，并将每个模块映射到ClassLoader 。 创建图层会通知Java虚拟机有关可从模块加载的类，以便Java虚拟机知道每个类所属的模块
+
+## NegativeArraySizeException
+如果应用程序尝试创建负大小的数组，则抛出该异常
+
+## NoClassDefFoundError
+如果Java虚拟机或ClassLoader实例尝试加载类的定义（作为普通方法调用的一部分或作为使用new表达式创建新实例的new ），则new该类，并且无法找到该类的定义。
+搜索的类定义在编译当前正在执行的类时存在，但无法再找到该定义
+
+## NoSuchFieldError
+如果应用程序尝试访问或修改对象的指定字段，并且该对象不再具有该字段，则抛出该异常。
+通常，编译器会捕获此错误; 如果类的定义不兼容地更改，则此错误只能在运行时发生。
+
+## NoSuchFieldException
+表示该类没有指定名称的字段
+
+## NoSuchMethodError
+如果应用程序尝试调用类的指定方法（静态或实例），并且该类不再具有该方法的定义，则抛出该异常。
+通常，编译器会捕获此错误; 如果类的定义不兼容地更改，则此错误只能在运行时发生。
+
+## NoSuchMethodException
+无法找到特定方法时抛出
+
+## NullPointerException
+当应用程序在以下情况尝试使用null时抛出。 这些包括：
+- 调用null对象的实例方法。
+- 访问或修改null对象的字段。
+- 将null的长度视为数组。
+- 访问或修改值为null的元素。
+- 抛出null ，它是Throwable值
+
+## NumberFormatException
+抛出以表示应用程序已尝试将字符串转换为其中一种数字类型，但该字符串没有适当的格式
+
+## Number
+提供数字值转换为基本数据类型byte ， double ， float ， int ， long ，和short
+的抽象方法。基本数据的类型的包装类都继承了该抽象方法
