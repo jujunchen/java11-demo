@@ -261,3 +261,12 @@ if (Thread.interrupted())  // Clears interrupted status!
 ```
 虚假唤醒：https://blog.csdn.net/LuckyBug007/article/details/70053669?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
 ```
+
+## OutOfMemoryError
+当Java虚拟机内存不足无法分配对象时抛出
+
+## Override
+注解，表示覆盖超类中的方法
+
+## Package
+表示与类加载器关联的运行时包的数据
