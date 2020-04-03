@@ -270,3 +270,13 @@ if (Thread.interrupted())  // Clears interrupted status!
 
 ## Package
 表示与类加载器关联的运行时包的数据
+
+## Process
+Process提供对ProcessBuilder.start和Runtime.exec启动的本机进程的控制。 该类提供了从进程执行输入，执行输出到进程，等待进程完成，检查进程的退出状态以及销毁（杀死）进程的方法。  
+比如通过Java 启动一个记事本。
+
+## ProcessBuilder
+Java调用本地程序或者脚本。
+每个ProcessBuilder实例管理一组进程属性。 start()方法使用这些属性创建新的Process实例。 可以从同一实例重复调用start()方法，以创建具有相同或相关属性的新子进程 。
+
+可以调用startPipeline方法来创建新进程的管道，将每个进程的输出直接发送到下一个进程。 每个进程都具有其各自ProcessBuilder的属性。
