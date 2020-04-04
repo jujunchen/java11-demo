@@ -280,3 +280,10 @@ Java调用本地程序或者脚本。
 每个ProcessBuilder实例管理一组进程属性。 start()方法使用这些属性创建新的Process实例。 可以从同一实例重复调用start()方法，以创建具有相同或相关属性的新子进程 。
 
 可以调用startPipeline方法来创建新进程的管道，将每个进程的输出直接发送到下一个进程。 每个进程都具有其各自ProcessBuilder的属性。
+
+
+## ProcessHandle
+一个接口，识别并提供对本机进程的控制。 可以监控每个单独的过程的活跃度，列出其子项，获取有关过程的信息或将其销毁。
+
+## Readable
+Readable是字符的来源。 来自Readable字符通过Readable可供读取方法的调用者使用
