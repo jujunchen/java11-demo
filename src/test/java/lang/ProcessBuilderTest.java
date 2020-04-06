@@ -2,8 +2,12 @@ package lang;
 
 import org.junit.Test;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +77,21 @@ public class ProcessBuilderTest {
      * https://www.cnblogs.com/mistor/p/6129682.html
      */
     @Test
-    public void redirectInput() {
-        
+    public void redirectInput() throws Exception {
+        ProcessBuilder processBuilder = new ProcessBuilder("zsh");
+        File file = new File(getClass().getResource("/redirectInput.sh").toURI());
+        processBuilder.redirectInput(file);
+
+        File outFile = new File(getClass().getResource("/redirectOutput.txt").toURI());
+        processBuilder.redirectOutput(outFile);
+
+        Process process = processBuilder.start();
+        InputStream inputStream = process.getInputStream();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        String line = "";
+        while ((line = bufferedReader.readLine()) != null) {
+            System.out.println(line);
+        }
+        final int status = process.waitFor();
     }
 }
