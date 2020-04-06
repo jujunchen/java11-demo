@@ -79,19 +79,27 @@ public class ProcessBuilderTest {
     @Test
     public void redirectInput() throws Exception {
         ProcessBuilder processBuilder = new ProcessBuilder("zsh");
-        File file = new File(getClass().getResource("/redirectInput.sh").toURI());
-        processBuilder.redirectInput(file);
+        //将错误输出合并到标准输出流中，以便process.getInputStream()直接读取
+        processBuilder.redirectErrorStream(true);
+        //重定向输入
+        File input = new File(getClass().getResource("/redirectInput.sh").toURI());
+        processBuilder.redirectInput(input);
 
+        //重定向输出
         File outFile = new File(getClass().getResource("/redirectOutput.txt").toURI());
         processBuilder.redirectOutput(outFile);
 
         Process process = processBuilder.start();
+
         InputStream inputStream = process.getInputStream();
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         String line = "";
         while ((line = bufferedReader.readLine()) != null) {
             System.out.println(line);
         }
+
+        //一直等待直到process进程终止，返回0
         final int status = process.waitFor();
     }
 }
