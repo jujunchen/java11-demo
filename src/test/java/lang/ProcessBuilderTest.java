@@ -35,11 +35,22 @@ public class ProcessBuilderTest {
 
 
     /**
-     * 返回此流程构建器的工作目录。 随后由此对象启动的子进程的start()方法将使用此作为其工作目录。 返回的值可能是null - 这意味着使用当前Java进程的工作目录，通常是系统属性user.dir指定的目录，作为子进程的工作目录。
-     * @throws IOException
+     * 返回此流程构建器的工作目录。
+     *
+     * 随后由此对象启动的子进程的start()方法将使用此作为其工作目录。
+     *
+     * 返回的值可能是null - 这意味着使用当前Java进程的工作目录，通常是系统属性user.dir指定的目录，作为子进程的工作目录。
      */
     @Test
-    public void directory() throws IOException {
+    public void directory() {
         File file = new ProcessBuilder().directory();
+        System.out.println(file);
+        String str = System.getProperty("user.dir");
+        System.out.println(str);
+        /*
+        设置此流程构建器的工作目录
+         */
+        ProcessBuilder file1 = new ProcessBuilder().directory(new File(str));
+        System.out.println(file1.directory());;
     }
 }
