@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,6 +88,7 @@ public class ProcessBuilderTest {
         File outFile = new File(getClass().getResource("/redirectOutput.txt").toURI());
         processBuilder.redirectOutput(outFile);
 
+        //启动构建器，执行命令
         Process process = processBuilder.start();
 
         InputStream inputStream = process.getInputStream();
@@ -102,4 +102,29 @@ public class ProcessBuilderTest {
         //一直等待直到process进程终止，返回0
         final int status = process.waitFor();
     }
+
+
+    /**
+     * 为每个ProcessBuilder启动一个Process，创建一个由标准输出和标准输入流链接的流程管道。
+     * 前面的输出流是后一个的输入流,不能访问中间进程的输入和输出流，除了第一个和最后一个
+     */
+    @Test
+    public void startPipeline() throws IOException {
+        ProcessBuilder pb = new ProcessBuilder("pwd");
+        ProcessBuilder pb1 = new ProcessBuilder("xargs", "echo");
+        List<ProcessBuilder> builderList = new ArrayList<>();
+        builderList.add(pb);
+        builderList.add(pb1);
+
+        List<Process> processList = ProcessBuilder.startPipeline(builderList);
+        Process process = processList.get(processList.size() - 1);
+        InputStream inputStream = process.getInputStream();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        String line = "";
+        while ((line = bufferedReader.readLine()) != null) {
+            System.out.println(line);
+        }
+
+    }
+
 }
