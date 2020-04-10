@@ -288,3 +288,15 @@ https://blog.csdn.net/Pengjx2014/article/details/78607192
 
 ## Readable
 Readable是字符的来源。 来自Readable字符通过Readable可供读取方法的调用者使用
+
+## ReflectiveOperationException
+反射抛出的异常超类
+
+## Runnable
+由其他线程执行类实现，必须实现一个run方法
+
+## Runtime
+每个Java应用程序都有一个Runtime实例，因为Runtime已被声明为一个静态变量。Runtime允许应用程序与运行应用程序的环境进行交互
+
+## RuntimeException
+RuntimeException及其子类都是未经检查的异常
