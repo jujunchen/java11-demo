@@ -308,3 +308,26 @@ RuntimeException及其子类都是未经检查的异常
 
 ## SafeVarargs
 该注解使用在方法或构造器上，能够抑制未经检查的警告
+
+## SecurityException
+由安全管理器抛出表示安全问题
+
+## SecurityManager
+安全管理器允许应用程序实现安全策略
+```
+SecurityManager security = System.getSecurityManager();
+     if (security != null) {
+         security.checkXXX(argument,  . . . );
+     }
+```
+
+## Short
+基本类型short的包装类，方法基本同Integer
+
+## StackOverflowError
+发生堆栈溢出抛出
+
+
+
+
+
