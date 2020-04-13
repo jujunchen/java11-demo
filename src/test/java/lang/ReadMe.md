@@ -336,6 +336,9 @@ StackWalker walker = StackWalker.getInstance(Option.RETAIN_CLASS_REFERENCE);
 Optional<Class<?>> callerClass = walker.walk(s -> s.map(StackFrame::getDeclaringClass).filter(interestingClasses::contains).findFirst());  
 ```
 
+## StrictMath
+包含用于执行基本数字运算的方法，例如基本指数，对数，平方根和三角函数
+与Math中的方法类同，两种有互相调用
 
 
 
