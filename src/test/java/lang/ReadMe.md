@@ -327,6 +327,14 @@ SecurityManager security = System.getSecurityManager();
 ## StackOverflowError
 发生堆栈溢出抛出
 
+## StackWalker
+堆栈助行器，返回一个StackFrame顺序流，可以通过顺序流遍历堆栈帧。
+其是线程安全的，多个线程可以共享一个StackWalker来遍历自己的堆栈
+```
+//找到第一个调用者过滤已知的实现类列表：
+StackWalker walker = StackWalker.getInstance(Option.RETAIN_CLASS_REFERENCE);   
+Optional<Class<?>> callerClass = walker.walk(s -> s.map(StackFrame::getDeclaringClass).filter(interestingClasses::contains).findFirst());  
+```
 
 
 
