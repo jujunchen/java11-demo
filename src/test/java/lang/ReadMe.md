@@ -340,5 +340,6 @@ Optional<Class<?>> callerClass = walker.walk(s -> s.map(StackFrame::getDeclaring
 包含用于执行基本数字运算的方法，例如基本指数，对数，平方根和三角函数
 与Math中的方法类同，两种有互相调用
 
-
+## String
+表示字符串，字符串不可变，值在创建后无法修改，并存与字符串缓冲区中
 
