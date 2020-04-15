@@ -69,8 +69,59 @@ public class StringTest {
      */
     @Test
     public void codePointAt() {
-        int codePoint = "abc".codePointAt(1);
+        int codePoint = "abc".codePointAt(0);
         System.out.println(codePoint);
+    }
+
+    /**
+     * 返回指定索引之前的字符代码点
+     * index从1到length
+     */
+    @Test
+    public void codePointBefore() {
+        int codePoint  = "abc".codePointBefore(1);
+        System.out.println(codePoint);
+    }
+
+    /**
+     * 返回此String的指定文本范围内的Unicode代码点数
+     * 参数
+     * beginIndex - 文本范围的第一个 char的索引
+     * endIndex - 文本范围的最后 char之后的索引
+     */
+    @Test
+    public void codePointCount() {
+        int codePointCount ="abc".codePointCount(0,3);
+        System.out.println(codePointCount);
+    }
+
+
+    /**
+     * 返回从指定的索引开始偏移指定的代码点值后，所在的索引值
+     * 参数
+     * index - 要偏移的索引
+     * codePointOffset - 代码点中的偏移量，负数向左偏移
+     */
+    @Test
+    public void offsetByCodePoints() {
+        //从b开始向左偏移1位，即索引为0
+        int offsetByCodePoints = "abc".offsetByCodePoints(1,-1);
+        System.out.println(offsetByCodePoints);
+    }
+
+    /**
+     * 将此字符串中的字符复制到目标字符数组中
+     * 参数
+     * srcBegin - 要复制的字符串中第一个字符的索引。
+     * srcEnd - 要复制的字符串中的最后一个字符后面的索引。
+     * dst - 目标数组。
+     * dstBegin - 目标数组中的起始偏移量。
+     */
+    @Test
+    public void getChars() {
+        char[] dst = new char[10];
+        "abc".getChars(0,1,dst,1);
+        assert 'a' == dst[1];
     }
 
 
