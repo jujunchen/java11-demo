@@ -124,5 +124,23 @@ public class StringTest {
         assert 'a' == dst[1];
     }
 
+    /**
+     * 如果字符串与指定的StringBuffer字符串序列相同，则返回true
+     */
+    @Test
+    public void contentEquals() {
+        StringBuffer stringBuffer = new StringBuffer("abc");
+        assert "abc".contentEquals(stringBuffer);
 
+        assert "abc".contentEquals("abc");
+    }
+
+
+    /**
+     * 忽略大小写，比较字符串是相同，忽略语言环境，在不同语言环境下，结果可能不同
+     */
+    @Test
+    public void equalsIgnoreCase() {
+        assert "ABC".equalsIgnoreCase("abc");
+    }
 }
