@@ -3,6 +3,7 @@ package lang;
 import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
+import java.util.regex.Matcher;
 
 /**
  * @author jujun chen
@@ -243,6 +244,81 @@ public class StringTest {
 
         //返回作为此序列的子序列的字符序列
         CharSequence charSequence = "hamburger".subSequence(4, 8);
+    }
+
+
+    /**
+     * 将指定的字符串连接到此字符串的末尾
+     */
+    @Test
+    public void concat() {
+        System.out.println("abc".concat("123"));
+    }
+
+    /**
+     * 替换字符
+     */
+    @Test
+    public void replace() {
+        System.out.println("abc".replace("a","b"));
+    }
+
+    /**
+     * 判断此字符串是否与给定的正则表达式匹配。
+     * 调用str .matches( regex )形式的此方法会产生与表达式完全相同的结果
+     *
+     * Pattern. matches(regex, str)
+     */
+    @Test
+    public void matches() {
+        System.out.println("abc".matches("[a-z]+"));
+    }
+
+    /**
+     * 当且仅当此字符串包含指定的char值序列时，才返回true
+     */
+    @Test
+    public void contains() {
+        assert "abc".contains("abc");
+    }
+
+    /**
+     * 将给定替换的给定regular expression匹配的此字符串的第一个子字符串替换。
+     * 调用str .replaceFirst(形式的此方法regex , repl )产生与表达式完全相同的结果
+     *
+     * Pattern.compile(regex).matcher(str).replaceFirst(repl)
+     * 请注意，替换字符串中的反斜杠（ \ ）和美元符号（ $ ）可能会导致结果与将其视为文字替换字符串时的结果不同; 见Matcher.replaceFirst(java.lang.String) 。
+     * 如果需要，请使用Matcher.quoteReplacement(java.lang.String)来抑制这些字符的特殊含义。
+     *
+     * 参数
+     * regex - 要与此字符串匹配的正则表达式
+     * replacement - 要替换第一个匹配项的字符串
+     */
+    @Test
+    public void replaceFirst() {
+        System.out.println("abc\\123".replaceFirst("[a-z]+\\\\+","a"));
+
+        System.out.println(Matcher.quoteReplacement("abc\\123\\$"));;
+    }
+
+    /**
+     * 将给定替换的给定regular expression匹配的此字符串的每个子字符串替换
+     */
+    @Test
+    public void replaceAll() {
+        System.out.println("abc".replaceAll("[a-z]+","1"));
+    }
+
+    /**
+     * 将此字符串中与文字目标序列匹配的每个子字符串替换为指定的文字替换序列。
+     * 替换从字符串的开头到结尾，例如，在字符串“aaa”中将“aa”替换为“b”将导致“ba”而不是“ab”。
+     * 参数
+     * target - 要替换的char值序列
+     * replacement - char值的替换序列
+     */
+    @Test
+    public void replaceCharSequence() {
+        System.out.println("aaa".replace("aa","b"));
     }
 
 }
