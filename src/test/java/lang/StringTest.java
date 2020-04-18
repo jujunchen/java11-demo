@@ -3,6 +3,9 @@ package lang;
 import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 
 /**
@@ -319,6 +322,60 @@ public class StringTest {
     @Test
     public void replaceCharSequence() {
         System.out.println("aaa".replace("aa","b"));
+    }
+
+    /**
+     * 根据指定的正则将字符串拆分
+     * 如果没有匹配，返回字符串本身
+     * 参数
+     * regex - 分隔正则表达式
+     * limit - 应用模式匹配次数
+     */
+    @Test
+    public void split() {
+        String aa = "boo:and:foo";
+        //如果limit为正，则匹配次数为limit-1，最后一个元素为字符串剩余的字符串
+        //如果limit为0，则能多次匹配，并且会丢弃尾随空字符串
+        //如果limit为负，能多次匹配，不丢弃尾随空字符串
+        System.out.println(Arrays.toString(aa.split(":",2)));
+        System.out.println(Arrays.toString(aa.split(":",5)));
+        System.out.println(Arrays.toString(aa.split(":",-2)));
+        System.out.println(Arrays.toString(aa.split("o",-2)));
+        System.out.println(Arrays.toString(aa.split("o",0)));
+
+        //等同于limit为0，将丢弃后面的空字符串
+        System.out.println(Arrays.toString(aa.split("o")));
+    }
+
+    /**
+     * 根据给定的分隔符，连接给定的元素
+     */
+    @Test
+    public void join() {
+        System.out.println(String.join(",","Java","PHP","GO"));
+        System.out.println(String.join(",", List.of("Java","PHP","GO")));
+    }
+
+
+    @Test
+    public void toLowerCase() {
+        //使用指定的语言环境进行小写转换
+        String aa = "AabC";
+        System.out.println(aa.toLowerCase(Locale.ITALIAN));
+
+        //使用默认语言环境进行转换
+        System.out.println(aa.toLowerCase());
+    }
+
+
+    @Test
+    public void toUpperCase() {
+        //使用指定的语言环境进行大写转换
+        String aa = "AabC";
+        System.out.println(aa.toUpperCase(Locale.ITALIAN));
+
+        //使用默认语言进行转换
+        System.out.println(aa.toUpperCase());
     }
 
 }
