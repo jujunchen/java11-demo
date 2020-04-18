@@ -472,4 +472,39 @@ public class StringTest {
         System.out.println(aa);
     }
 
+    @Test
+    public void valueOf() {
+        //返回对象的字符串形式
+        Person person = new Person();
+        person.age = 18;
+        person.name= "陈";
+        System.out.println(String.valueOf(person));
+
+        //返回char数组参数的字符串形式，等同于copyValueOf​(char[] data, int offset, int count)
+        System.out.println(String.valueOf(new char[]{'H','E','L','L','O'}));
+
+        //返回char数组指定偏移量的子字符，等同于copyValueOf​(char[] data)
+        System.out.println(String.valueOf(new char[]{'H','E','L','L','O'},2,2));
+    }
+
+    /**
+     * 返回字符串的字符串常量池引用
+     */
+    @Test
+    public void intern() {
+        String a = "abc";
+        String b = "abc";
+        System.out.println(a.intern() == b.intern());
+    }
+
+    /**
+     * 返回一个字符串，其值为此字符串的串联重复count次。
+     * 如果此字符串为空或count为零，则返回空字符串
+     */
+    @Test
+    public void repeat() {
+        System.out.println("abc".repeat(0));
+        System.out.println("abc".repeat(2));
+    }
+
 }
