@@ -378,4 +378,98 @@ public class StringTest {
         System.out.println(aa.toUpperCase());
     }
 
+    /**
+     * 删除前导和尾导空白字符
+     */
+    @Test
+    public void trim() {
+        String aa = " Ab C ";
+        System.out.println(aa.trim());
+    }
+
+    /**
+     * 删除前导和尾导的空白字符，包括unicode空白符
+     */
+    @Test
+    public void strip() {
+        String aa = " Ab C ";
+        System.out.println(aa.strip());
+
+        String bb = '\u2000' + "abc" + '\u2000';
+        System.out.println("abc".equals(bb.trim()));
+        System.out.println("abc".equals(bb.strip()));
+    }
+
+    /**
+     * 删除前导空白字符，包括unicode空白字符
+     */
+    @Test
+    public void stripLeading() {
+        String bb = '\u2000' + "abc" + '\u2000';
+        String bb2 = "abc" + '\u2000';
+        assert bb2.equals(bb.stripLeading());
+    }
+
+    /**
+     * 删除尾导空白字符，包括unicode空白字符
+     */
+    @Test
+    public void stripTrailing() {
+        String bb = '\u2000' + "abc" + '\u2000';
+        String bb2 = '\u2000' + "abc";
+        assert bb2.equals(bb.stripTrailing());
+    }
+
+
+    /**
+     * 字符串是否只包含空白字符
+     */
+    @Test
+    public void isBlank() {
+        String a = '\u2000' + "";
+        assert a.isBlank();
+
+        String a1 = "   ";
+        assert a1.isBlank();
+    }
+
+    /**
+     * 返回字符串的行流，由换行符分隔。
+     * 换行符包括，"\n","\r","\r\n"
+     */
+    @Test
+    public void lines() {
+        String aa = "你好\nJava\n";
+        aa.lines().forEach(item -> {
+            System.out.println(item);
+        });
+    }
+
+    /**
+     * 返回字符串的int 流
+     */
+    @Test
+    public void chars() {
+        String aa = "abc";
+        aa.chars().forEach(item -> System.out.println(item));
+    }
+
+    /**
+     * 返回字符串的代码点值流
+     */
+    @Test
+    public void codePoints() {
+        String aa = "abc";
+        aa.codePoints().forEach(item -> System.out.println(item));
+    }
+
+    /**
+     * 将字符串转换为字符数组
+     */
+    @Test
+    public void toCharArray() {
+        String aa = String.format("%s，你好，%s","Java","Good");
+        System.out.println(aa);
+    }
+
 }
