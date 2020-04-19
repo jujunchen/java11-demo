@@ -343,3 +343,8 @@ Optional<Class<?>> callerClass = walker.walk(s -> s.map(StackFrame::getDeclaring
 ## String
 表示字符串，字符串不可变，值在创建后无法修改，并存与字符串缓冲区中
 
+## StringBuffer
+线程安全的，可变字符
+
+## StringBuilder
+一个可变的字符，不提供线程同步
