@@ -348,3 +348,13 @@ Optional<Class<?>> callerClass = walker.walk(s -> s.map(StackFrame::getDeclaring
 
 ## StringBuilder
 一个可变的字符，不提供线程同步
+
+## StringIndexOutOfBoundsException
+索引不存在异常
+
+## SuppressWarnings
+指示应在带注释的元素（以及带注释的元素中包含的所有程序元素中）中抑制指定的编译器警告
+
+## System
+提供的设施包括标准输入，标准输出和错误输出流; 访问外部定义的属性和环境变量; 加载文件和库的方法; 以及用于快速复制阵列的一部分的实用方法。
+
