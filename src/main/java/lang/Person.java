@@ -1,7 +1,7 @@
 package lang;
 
 import java.beans.JavaBean;
-import java.lang.annotation.Documented;
+import java.util.Objects;
 
 /**
  * @author jujun chen
@@ -47,5 +47,20 @@ public class Person implements Animal{
                 ", age=" + age +
                 ", address='" + address + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return age == person.age &&
+                Objects.equals(name, person.name) &&
+                Objects.equals(address, person.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return 111;
     }
 }
