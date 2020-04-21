@@ -365,4 +365,35 @@ Optional<Class<?>> callerClass = walker.walk(s -> s.map(StackFrame::getDeclaring
 错误异常，只有在线程终止后必须清理的情况下，才应该捕获此类的实例
 
 ## ThreadGroup
-线程组表示一组线程，此外线程组还可以包括其他线程组
+线程组表示一组线程，此外线程组还可以包括其他线程组。允许线程访问有关其自己的线程组的信息，但不允许访问有关其线程组的父线程组或任何其他线程组的信息。
+
+## ThreadLocal
+提供线程的局部变量，每个线程都拥有一个独立副本
+
+## Throwable
+该类是所有的错误和异常的超类
+
+## TypeNotPresentException
+当应用程序尝试使用表示类型名称的字符串访问类型时抛出，但不能找到具有指定名称的类型的定义
+
+## UnknownError
+在Java虚拟机中发生未知但严重的异常时抛出
+
+## UnsatisfiedLinkError
+如果Java虚拟机无法找到声明为 native的方法的相应本机语言定义，则抛出该异常
+
+
+## UnsupportedClassVersionError
+当Java虚拟机尝试读取类文件并确定不支持文件中的主要版本号和次要版本号时抛出
+
+## UnsupportedOperationException
+抛出以指示不支持所请求的操作
+
+## VerifyError
+当“验证程序”检测到类文件虽然格式正确但包含某种内部不一致或安全问题时抛出
+
+## VirtualMachineError
+抛出此异常表示Java虚拟机已损坏或已耗尽其继续运行所需的资源
+
+## Void
+Void类是一个不可实例化的占位符类，用于保存对表示Java关键字void的类对象的引用
