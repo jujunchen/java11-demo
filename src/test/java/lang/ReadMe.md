@@ -363,3 +363,6 @@ Optional<Class<?>> callerClass = walker.walk(s -> s.map(StackFrame::getDeclaring
 
 ## ThreadDeath
 错误异常，只有在线程终止后必须清理的情况下，才应该捕获此类的实例
+
+## ThreadGroup
+线程组表示一组线程，此外线程组还可以包括其他线程组
