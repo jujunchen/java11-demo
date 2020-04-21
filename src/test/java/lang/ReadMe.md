@@ -360,3 +360,6 @@ Optional<Class<?>> callerClass = walker.walk(s -> s.map(StackFrame::getDeclaring
 
 ## Thread
 线程是程序中执行的线程，创建线程的方法：继承Thread创建子类；实现Runnable接口；使用Callable和Future创建线程
+
+## ThreadDeath
+错误异常，只有在线程终止后必须清理的情况下，才应该捕获此类的实例
