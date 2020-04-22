@@ -105,7 +105,7 @@ public class ThreadTest {
      */
     @Test
     public void interrupt() {
-        
+
     }
 
 }
