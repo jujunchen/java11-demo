@@ -108,4 +108,46 @@ public class ThreadTest {
 
     }
 
+    /**
+     * 判断当前线程是否已被中断。该操作将清除线程的中断状态
+     * true 线程被中断，false 线程未被中断
+     */
+    @Test
+    public void interrupted() throws InterruptedException {
+        //中断当前线程
+        Thread.currentThread().interrupt();
+        System.out.println(Thread.interrupted());
+        System.out.println(Thread.interrupted());
+    }
+
+    /**
+     * 测试指定的线程是否已被中断，该操作不会清除线程的中断状态
+     */
+    @Test
+    public void isInterrupted() throws InterruptedException {
+        Thread thread = new Thread(() -> {
+
+            try {
+                for (int i = 0; i < 10000; i++) {
+                    System.out.println(i);
+                    Thread.sleep(100);
+                }
+                System.out.println("aaaa");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        System.out.println("thread start...");
+        thread.start();
+
+        thread.interrupt();
+        System.out.println("thread interrupt...");
+
+        System.out.println(thread.isInterrupted());
+        System.out.println(thread.isInterrupted());
+
+        //等待一会
+        Thread.sleep(3000);
+    }
+
 }
