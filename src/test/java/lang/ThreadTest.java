@@ -2,6 +2,9 @@ package lang;
 
 import org.junit.Test;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 /**
  * @author jujun chen
  * @date 2020/04/21
@@ -121,30 +124,51 @@ public class ThreadTest {
     }
 
     /**
-     * 测试指定的线程是否已被中断，该操作不会清除线程的中断状态
+     * 判断指定的线程是否已被中断，该操作不会清除线程的中断状态
+     * true 线程被中断， false 线程未被中断
      */
     @Test
     public void isInterrupted() throws InterruptedException {
         Thread thread = new Thread(() -> {
-
             try {
-                for (int i = 0; i < 10000; i++) {
+                FileWriter fileWriter = new FileWriter("test.txt");
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                for (int i = 0; i < 1000000000; i++) {
+//                    bufferedWriter.write(String.valueOf(i));
+//                    bufferedWriter.newLine();
                     System.out.println(i);
-                    Thread.sleep(100);
+                    Thread.sleep(10);
                 }
+
                 System.out.println("aaaa");
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
+            System.out.println("线程内部判断是否中断：" + Thread.currentThread().isInterrupted());
         });
         System.out.println("thread start...");
         thread.start();
+        System.out.println("线程是否存活：" + thread.isAlive());
+        /*
+        如果该线程阻塞的调用wait() ， wait(long) ，或wait(long, int)的方法Object类，
 
+        或的join() ， join(long) ， join(long, int) ， sleep(long) ，或sleep(long, int) ，
+
+        这个类的方法，那么它的中断状态将被清除，即调用isInterrupted会返回false,并且将收到InterruptedException 。
+
+        如果在InterruptibleChannel上的I / O操作中阻止该线程，则通道将关闭，线程的中断状态将被设置，线程将收到ClosedByInterruptException 。
+
+        如果该线程在Selector中被阻塞，则线程的中断状态将被设置，它将立即从选择操作返回，可能具有非零值，就像调用选择器的wakeup方法一样。
+
+        如果以前的条件都不成立，则将设置该线程的中断状态。
+         */
         thread.interrupt();
         System.out.println("thread interrupt...");
 
-        System.out.println(thread.isInterrupted());
-        System.out.println(thread.isInterrupted());
+        System.out.println("线程是否中断：" + thread.isInterrupted());
+        System.out.println("再次检查线程是否中断：" + thread.isInterrupted());
+        //判断线程是否存活,即使线程被中断了，只要是没有执行完任务，线程算存活
+        System.out.println("线程是否存活：" + thread.isAlive());
 
         //等待一会
         Thread.sleep(3000);
