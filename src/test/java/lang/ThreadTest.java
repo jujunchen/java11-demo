@@ -267,4 +267,69 @@ public class ThreadTest {
     }
 
 
+    /**
+     * 设置守护线程
+     *
+     * 如果当前的线程只剩守护线程，Java虚拟机就会退出
+     *
+     * 该方法必须在start方法前调用
+     */
+    @Test
+    public void setDaemon() throws InterruptedException {
+        Thread thread = new Thread(() -> System.out.println("thread"));
+        thread.setDaemon(true);
+        thread.start();
+
+        Thread.sleep(3000);
+
+        //测试线程是否为守护线程
+        System.out.println(thread.isDaemon());
+    }
+
+
+    /**
+     * 返回此线程的上下文ClassLoader
+     */
+    @Test
+    public void getContextClassLoader() {
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        System.out.println(classLoader.getName());
+
+        //设置线程的ClassLoader
+//        Thread.currentThread().setContextClassLoader();
+    }
+
+
+    /**
+     * 当且仅当当前线程在指定对象上保存监视器锁时，返回true 。
+     * 此方法旨在允许程序断言当前线程已经拥有指定的锁：
+     *
+     *   assert Thread.holdsLock(obj);
+     */
+    @Test
+    public void holdsLock() {
+
+    }
+
+
+    /**
+     * 获取线程的标识，线程ID是创建此线程事生成的正数long,在生命周期内保持不变，唯一，线程终止后，可以重用该线程ID
+     */
+    @Test
+    public void getId() {
+        System.out.println(Thread.currentThread().getId());
+        Thread thread = new Thread();
+        System.out.println(thread.getId());
+    }
+
+
+    /**
+     * 返回此线程的状态。 此方法设计用于监视系统状态，而不是用于同步控制
+     */
+    @Test
+    public void getState() {
+        Thread.State state = Thread.currentThread().getState();
+        System.out.println(state);
+    }
+
 }
