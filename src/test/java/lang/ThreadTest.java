@@ -174,4 +174,97 @@ public class ThreadTest {
         Thread.sleep(3000);
     }
 
+    /**
+     * 更改此线程的优先级,线程优先级 1- 10，默认优先级5
+     */
+    @Test
+    public void setPriority() throws InterruptedException {
+        Thread thread0 = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                System.out.println(Thread.currentThread().getName() + "(" + Thread.currentThread().getPriority() + ")");
+            }
+        });
+        Thread thread1 = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                System.out.println(Thread.currentThread().getName() + "(" + Thread.currentThread().getPriority() + ")");
+            }
+        });
+        thread0.setPriority(1);
+        thread0.start();
+        thread1.start();
+
+        Thread.sleep(3000);
+    }
+
+
+    /**
+     * 返回当前线程thread group及其子组中活动线程数的估计值。 递归迭代当前线程的线程组中的所有子组。
+     * 返回的值只是一个估计值，因为当此方法遍历内部数据结构时，线程数可能会动态更改，并且可能会受到某些系统线程的影响。
+     * 此方法主要用于调试和监视目的。
+     *
+     * 结果
+     * 估计当前线程的线程组和当前线程的线程组作为祖先的任何其他线程组中的活动线程数
+     */
+    @Test
+    public void activeCount() {
+
+    }
+
+
+    /**
+     * 将当前线程的线程组及其子组中的每个活动线程复制到指定的数组中。
+     * 此方法只调用当前线程的线程组的ThreadGroup.enumerate(Thread[])方法。
+     * 应用程序可能会使用activeCount方法来估计数组应该有多大，但是如果数组太短而无法容纳所有线程，则会以静默方式忽略额外的线程。
+     * 如果获取当前线程的线程组及其子组中的每个活动线程至关重要，则调用者应验证返回的int值是否严格小于tarray的长度。
+     *
+     * 由于此方法存在固有的竞争条件，因此建议仅将该方法用于调试和监视目的。
+     *
+     * 参数
+     * tarray - 要放置线程列表的数组
+     * 结果
+     * 放入数组的线程数
+     */
+    @Test
+    public void enumerate() {
+        ThreadGroup threadGroup = new ThreadGroup("ThreadGroup1");
+        Thread thread = new Thread(threadGroup,() -> System.out.println("thread"));
+        Thread[] threadAry = new Thread[1];
+        //当前线程为main线程
+        Thread.enumerate(threadAry);
+        for (Thread item : threadAry) {
+            System.out.println(item.getName());;
+        }
+    }
+
+
+    /**
+     * 一直等待指定时间，直到线程执行结束，0表示一直等待
+     * @throws InterruptedException
+     */
+    @Test
+    public void join() throws InterruptedException {
+        Thread thread0 = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                System.out.println(Thread.currentThread().getName() + "(" + Thread.currentThread().getPriority() + ")");
+            }
+        });
+        Thread thread1 = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                System.out.println(Thread.currentThread().getName() + "(" + Thread.currentThread().getPriority() + ")");
+            }
+        });
+        thread0.setPriority(1);
+        thread0.start();
+        //等待thread0  1秒
+        thread0.join(1000);
+        thread1.start();
+
+//如果放在线程开始的后面，是达不到线程顺序执行效果的
+//        thread0.join();
+//        thread1.join();
+
+        Thread.sleep(3000);
+    }
+
+
 }
