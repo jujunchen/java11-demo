@@ -51,7 +51,7 @@ public class AccessibleObjectTest {
         person1.setAddress("绍兴诸暨");
         Field field = person1.getClass().getDeclaredField("address");
         //未设置，无法访问私有属性
-//        field.setAccessible(true);
+        field.setAccessible(true);
         System.out.println(field.canAccess(person1));
     }
 }
