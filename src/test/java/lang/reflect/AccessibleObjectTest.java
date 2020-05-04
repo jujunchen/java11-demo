@@ -11,7 +11,12 @@ import java.lang.reflect.Field;
  * @date 2020/05/01
  */
 public class AccessibleObjectTest {
-    
+
+    /**
+     * 设置为ture用于方法反射对象的私有属性
+     * @throws IllegalAccessException
+     * @throws NoSuchFieldException
+     */
     @Test
     public void setAccessible() throws IllegalAccessException, NoSuchFieldException {
         //对数组中的每个元素这只accessible标志
@@ -30,8 +35,13 @@ public class AccessibleObjectTest {
         field.setAccessible(true);
         System.out.println(field.get(person1));
     }
-    
-    
+
+
+    /**
+     * 尝试设置反射对象，如果设置成功返回true
+     * @throws NoSuchFieldException
+     * @throws IllegalAccessException
+     */
     @Test
     public void trySetAccessible() throws NoSuchFieldException, IllegalAccessException {
         Person person1 = new Person();
@@ -45,6 +55,10 @@ public class AccessibleObjectTest {
     }
 
 
+    /**
+     * 测试反射对象能否设置accessible
+     * @throws NoSuchFieldException
+     */
     @Test
     public void canAccess() throws NoSuchFieldException {
         Person person1 = new Person();
