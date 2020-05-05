@@ -1,10 +1,15 @@
 package lang.reflect;
 
+import lang.Car;
+import lang.ClassTest;
+import lang.Name;
 import lang.Person;
 import org.junit.Test;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 
 /**
  * @author jujun chen
@@ -67,5 +72,75 @@ public class AccessibleObjectTest {
         //未设置，无法访问私有属性
         field.setAccessible(true);
         System.out.println(field.canAccess(person1));
+    }
+
+
+    /**
+     * 返回要查询的注解类型,继承自AnnotatedElement接口
+     */
+    @Test
+    public void getAnnotation() {
+        Person person1 = new Person();
+        Annotation annotation = person1.getClass().getAnnotation(Car.class);
+        System.out.println(annotation.toString());
+    }
+
+    /**
+     * 判断是否存在指定的注解
+     */
+    @Test
+    public void isAnnotationPresent() {
+        Person person = new Person();
+        if (person.getClass().isAnnotationPresent(Car.class)) {
+            System.out.println("存在Car注解");
+        }
+    }
+
+
+    /**
+     * 返回指定的注解数组
+     */
+    @Test
+    public void getAnnotationsByType() {
+        Person person = new Person();
+        Annotation[] annotations = person.getClass().getAnnotationsByType(Name.class);
+        System.out.println(Arrays.toString(annotations));
+    }
+
+
+    /**
+     * 返回对象上的注解
+     */
+    @Test
+    public void getAnnotations() {
+        Person person = new Person();
+        Annotation[] annotations = person.getClass().getAnnotations();
+        System.out.println(Arrays.toString(annotations));
+    }
+
+
+    /**
+     * @see ClassTest#getDeclaredAnnotation()
+     */
+    @Test
+    public void getDeclaredAnnotation() {
+
+    }
+
+
+    /**
+     * @see ClassTest#getDeclaredAnnotationsByType
+     */
+    @Test
+    public void getDeclaredAnnotationsByType() {
+
+    }
+
+    /**
+     * @see ClassTest#getDeclaredAnnotations
+     */
+    @Test
+    public void getDeclaredAnnotations() {
+
     }
 }
