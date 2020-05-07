@@ -25,3 +25,13 @@
 ## Array
 提供了动态创建和访问数组的静态方法  
 Array允许在获取或设置操作期间进行加宽转换，但如果发生缩小转换，则抛出IllegalArgumentException 
+
+## Constructor
+提供类的构造函数的信息和访问权限
+
+## Executable
+Method 和 Constructor的超类
+
+## Field
+提供字段的信息和访问权限，可以是静态字段和实例字段
+
