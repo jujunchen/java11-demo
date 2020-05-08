@@ -35,3 +35,34 @@ Method 和 Constructor的超类
 ## Field
 提供字段的信息和访问权限，可以是静态字段和实例字段
 
+## GenericArrayType
+表示一种数组类型，其组件类型是参数化类型或类型变量
+
+## GenericDeclaration
+声明类型变量的所有实体的通用接口
+
+## GenericSignatureFormatError
+当需要解释类型，方法或构造函数的通用签名信息的反射方法遇到语法错误的签名属性时抛出
+
+## InaccessibleObjectException
+不能设置访问权限时，抛出的异常
+
+## InvocationHandler
+是由代理实例的调用处理程序实现的接口  
+每个代理实例都有一个关联的调用处理程序。 在代理实例上调用方法时，方法调用将被编码并调度到其调用处理程序的invoke方法
+
+## InvocationTargetException
+是一个已检查的异常，它包装被调用的方法或构造函数抛出的异常
+
+## MalformedParameterizedTypeException
+当需要实例化它的反射方法遇到语义错误的参数化类型时抛出
+
+## MalformedParametersException
+尝试从类文件中读取方法参数并确定一个或多个参数格式错误时抛出
+
+## Member
+成员是反映单个成员（字段或方法）或构造函数的标识信息的接口
+
+## Method
+方法提供有关类或接口上的单个方法的信息和访问权限。 反射的方法可以是类方法或实例方法（包括抽象方法）。  
+方法允许在将实际参数与基础方法的形式参数进行匹配时进行扩展转换，但如果发生缩小转换则会抛出IllegalArgumentException
