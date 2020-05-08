@@ -14,6 +14,15 @@ public class Person implements Animal{
     public String name;
     public int age;
     private String address;
+    Status status;
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
     public String getAddress() {
         return address;
