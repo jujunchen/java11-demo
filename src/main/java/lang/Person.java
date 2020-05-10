@@ -32,7 +32,7 @@ public class Person implements Animal{
         this.address = address;
     }
 
-    public String getName() {
+    public <F> String getName() {
         return name;
     }
 
