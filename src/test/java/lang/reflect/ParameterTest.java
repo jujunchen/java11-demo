@@ -94,11 +94,13 @@ public class ParameterTest {
 
     /**
      * 如果此参数是隐式声明的，返回true
-     * 什么叫隐式声明？todo
+     * https://blog.csdn.net/zsk1196468672/article/details/51628145
      */
     @Test
     public void isImplicit() throws NoSuchMethodException {
         Method method = Person.class.getMethod("setStatus", Status.class);
+        //为true的例子？
+        //todo
         boolean bl = method.getParameters()[0].isImplicit();
         System.out.println(bl);
     }
