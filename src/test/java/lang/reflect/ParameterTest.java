@@ -4,6 +4,7 @@ import lang.Person;
 import lang.Status;
 import org.junit.Test;
 
+import java.lang.reflect.AnnotatedType;
 import java.lang.reflect.Executable;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -68,6 +69,38 @@ public class ParameterTest {
         Method method = Person.class.getMethod("setStatus", Status.class);
         Type type = method.getParameters()[0].getParameterizedType();
         System.out.println(type.getTypeName());
+    }
+
+    /**
+     * 返回表示此参数的声明类型的类对象
+     */
+    @Test
+    public void getType() throws NoSuchMethodException {
+        Method method = Person.class.getMethod("setStatus", Status.class);
+        Class cls = method.getParameters()[0].getType();
+        System.out.println(cls.getName());
+    }
+
+
+    /**
+     * 返回此参数的声明类型，用AnnotatedType对象表示
+     * @throws NoSuchMethodException
+     */
+    @Test
+    public void getAnnotatedType() throws NoSuchMethodException {
+        Method method = Person.class.getMethod("setStatus", Status.class);
+        AnnotatedType annotatedType = method.getParameters()[0].getAnnotatedType();
+    }
+
+    /**
+     * 如果此参数是隐式声明的，返回true
+     * 什么叫隐式声明？todo
+     */
+    @Test
+    public void isImplicit() throws NoSuchMethodException {
+        Method method = Person.class.getMethod("setStatus", Status.class);
+        boolean bl = method.getParameters()[0].isImplicit();
+        System.out.println(bl);
     }
 
 }
