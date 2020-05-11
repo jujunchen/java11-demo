@@ -5,6 +5,7 @@ import lang.Status;
 import org.junit.Test;
 
 import java.lang.reflect.AnnotatedType;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Executable;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -12,19 +13,22 @@ import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
 
 /**
+ * 资料：https://www.shangmayuan.com/a/10368cdcf8a5426a9131160f.html
+ *
  * @author jujun chen
  * @date 2020/05/11
  */
 public class ParameterTest {
     
     /**
-     * todo
      * 如果参数根据类文件具有名称，则返回true
+     * 编译的时候增加 -parameters 参数就能返回true
+     * IDEA增加参数的方法：http://www.mamicode.com/info-detail-2162647.html
      * @throws NoSuchMethodException
      */
     @Test
     public void isNamePresent() throws NoSuchMethodException {
-        Method method = Person.class.getMethod("setStatus", Status.class);
+        Method method = Person.class.getMethod("setName", String.class);
         Parameter[] parameters = method.getParameters();
         for (Parameter parameter : parameters) {
             System.out.println(parameter.getName());
@@ -99,10 +103,20 @@ public class ParameterTest {
     @Test
     public void isImplicit() throws NoSuchMethodException {
         Method method = Person.class.getMethod("setStatus", Status.class);
-        //为true的例子？
-        //todo
         boolean bl = method.getParameters()[0].isImplicit();
         System.out.println(bl);
+
+        //java 编译器会为内部类的构造方法建立一个隐式参数
+        Constructor<InnerClass> constructor = InnerClass.class.getConstructor(ParameterTest.class, String.class);
+        Parameter[] parameters = constructor.getParameters();
+        for (Parameter parameter : parameters) {
+            System.out.println(parameter + " -> " + parameter.isImplicit());
+        }
+    }
+
+    class InnerClass {
+        public InnerClass(String key) {
+        }
     }
 
 }
