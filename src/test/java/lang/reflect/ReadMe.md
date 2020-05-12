@@ -73,3 +73,6 @@ Method 和 Constructor的超类
 ## Parameter
 提供有关方法参数的信息，包括名称和修饰符
 https://www.shangmayuan.com/a/10368cdcf8a5426a9131160f.html
+
+## ParameterizedType
+参数化方法在反射方法第一次需要时创建，实现此接口的实例必须实现equals()
