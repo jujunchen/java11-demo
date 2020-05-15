@@ -79,3 +79,18 @@ https://www.shangmayuan.com/a/10368cdcf8a5426a9131160f.html
 
 ## Proxy
 提供动态创建对象的静态方法
+
+## ReflectPermission
+反射操作的权限类，用于构造具有指定权限的反射操作权限类
+
+## Type
+所有Type类型的接口
+
+## TypeVariable
+类型变量的接口
+
+## UndeclaredThrowableException
+由invoke抛出的异常
+
+## WildcardType
+比如?,？extends Number 或者 ？super Integer ，具有获取类型的上限，和下限方法
