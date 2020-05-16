@@ -1,5 +1,7 @@
 package lang.reflect;
 
+import lang.JDKProxy;
+import lang.Person;
 import org.junit.Test;
 
 /**
@@ -44,4 +46,17 @@ public class ProxyTest {
     public void getInvocationHandler() {
         
     }
+
+    //todo 目前报错
+    @Test
+    public void jdkProxyTest() {
+        Person person = new Person();
+        person.setAge(18);
+
+        JDKProxy jdkProxy = new JDKProxy(person);
+        Person proxy = jdkProxy.getProxy();
+        System.out.println(proxy.toString());
+    }
+
 }
+
