@@ -1,12 +1,15 @@
 package appfuncs.simplefuncs;
 
-import static appsupport.supportfuncs.SupportFuncs.isFactor;
-
 /**
  * @author jujun chen
  * @date 2020/05/17
  */
 public class SimpleMathFuncs {
+
+    public static boolean isFactor(int a, int b) {
+        if((b % a) == 0) return true;
+        return false ;
+    }
 
     public static int lcf(int a, int b) {
         a = Math.abs(a);

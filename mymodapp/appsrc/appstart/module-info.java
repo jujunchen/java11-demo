@@ -5,4 +5,8 @@
  */
 module appstart {
     requires appfuncs;
+    requires userfuncs;
+
+    //声明使用BinFuncProvider
+    uses userfuncs.binaryfuncs.BinFuncProvider;
 }

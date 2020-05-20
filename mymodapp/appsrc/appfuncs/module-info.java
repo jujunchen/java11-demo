@@ -5,5 +5,6 @@
  */
 module appfuncs {
     exports appfuncs.simplefuncs;
+    //依赖传递
     requires transitive appsupport;
 }
