@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.util.Arrays;
 
 /**
  * @author jujun chen
@@ -86,11 +87,57 @@ public class BigDecimalTest {
         //java.lang.ArithmeticException: Non-terminating decimal expansion; no exact representable decimal result.
         //精确位数 this.scale() - divisor.scale()
 //        BigDecimal bigDecimal4 = bigDecimal.divide(bigDecimal1);
-
+        //如果无法除尽，需要配置保留小数，和舍入规则
         BigDecimal bigDecima4 = new BigDecimal("10");
-        BigDecimal bigDecimal5 = new BigDecimal("3");
+        BigDecimal bigDecimal5 = new BigDecimal("1");
         BigDecimal bigDecimal6 = bigDecima4.divide(bigDecimal5);
+        BigDecimal bigDecimal7 = bigDecima4.divide(bigDecimal5, new MathContext(1));
         System.out.println(bigDecimal6);
+        System.out.println(bigDecimal7);
+    }
+    
+    
+    @Test
+    public void divideToIntegralValue() {
+        BigDecimal bigDecimal = new BigDecimal("10");
+        BigDecimal bigDecimal1 = new BigDecimal("3");
+        //3
+        BigDecimal bigDecimal2 = bigDecimal.divideToIntegralValue(bigDecimal1);
+        //3，舍入部分不会影响小数位数
+        BigDecimal bigDecimal3 = bigDecimal.divideToIntegralValue(bigDecimal1,new MathContext(1));
+        System.out.println(bigDecimal2);
+        System.out.println(bigDecimal3);
+    }
+
+    @Test
+    public void remainder() {
+        //求余数，这不是求模运算
+        BigDecimal bigDecimal = new BigDecimal("-7");
+        BigDecimal bigDecimal1 = new BigDecimal("4");
+
+        BigDecimal bigDecimal2 = bigDecimal.remainder(bigDecimal1);
+        System.out.println(bigDecimal2);
+    }
+
+    /**
+     * 返回整数商和余数
+     */
+    @Test
+    public void divideAndRemainder() {
+        BigDecimal bigDecimal = new BigDecimal("-7");
+        BigDecimal bigDecimal1 = new BigDecimal("4");
+
+        BigDecimal[] bigDecimal2 = bigDecimal.divideAndRemainder(bigDecimal1);
+//        BigDecimal[] bigDecimal2 = bigDecimal.divideAndRemainder(bigDecimal1, new MathContext(2));
+        System.out.println(Arrays.toString(bigDecimal2));
+    }
+
+    @Test
+    public void sqrt() {
+        //平方根，并进行舍入
+        BigDecimal bigDecimal = new BigDecimal(2);
+        BigDecimal bigDecimal1 = bigDecimal.sqrt(new MathContext(3));
+        System.out.println(bigDecimal1);
     }
 
 }
