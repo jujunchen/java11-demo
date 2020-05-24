@@ -140,4 +140,145 @@ public class BigDecimalTest {
         System.out.println(bigDecimal1);
     }
 
+    @Test
+    public void pow() {
+        //返回n次方值
+        BigDecimal bigDecimal = new BigDecimal(2);
+        System.out.println(bigDecimal.pow(2));
+
+        //舍入模式
+        System.out.println(bigDecimal.pow(-2,new MathContext(2)));
+    }
+
+    /**
+     * 返回绝对值
+     */
+    @Test
+    public void abs() {
+        BigDecimal bigDecimal = new BigDecimal(-2);
+        System.out.println(bigDecimal.abs());
+    }
+
+    /**
+     * 返回反向值
+     */
+    @Test
+    public void negate() {
+        BigDecimal bigDecimal = new BigDecimal(2);
+        System.out.println(bigDecimal.negate());
+    }
+
+    @Test
+    public void plus() {
+        BigDecimal bigDecimal = new BigDecimal(-2);
+        System.out.println(bigDecimal.plus());
+    }
+
+    /**
+     * 返回符号位
+     * -1 表示负数；0表示零，1表示正数
+     */
+    @Test
+    public void signum() {
+        BigDecimal bigDecimal = new BigDecimal(-2);
+        BigDecimal bigDecimal2 = new BigDecimal(0);
+        BigDecimal bigDecimal3 = new BigDecimal(2);
+        System.out.println(bigDecimal.signum());
+        System.out.println(bigDecimal2.signum());
+        System.out.println(bigDecimal3.signum());
+    }
+
+    /**
+     * 如果为零或正数，则比例是小数点右侧的位数。 
+     * 如果是负数，则将数字的未缩放值乘以10的n次方
+     */
+    @Test
+    public void scale() {
+        BigDecimal bigDecimal3 = new BigDecimal("200").setScale(-2);
+        System.out.println(bigDecimal3);
+    }
+
+    /**
+     * 返回未缩放值中的位数
+     */
+    @Test
+    public void precision() {
+        BigDecimal bigDecimal3 = new BigDecimal("200");
+        System.out.println(bigDecimal3.precision());
+    }
+
+    /**
+     * 计算(this * 10this.scale()次方)结果
+     */
+    @Test
+    public void unscaledValue() {
+        BigDecimal bigDecimal3 = new BigDecimal("200").setScale(3);
+        System.out.println(bigDecimal3.unscaledValue());
+    }
+
+    /**
+     * 根据MathContext设置进去舍入。 如果精度设置为0，则不进行舍入
+     */
+    @Test
+    public void round() {
+        BigDecimal bigDecimal3 = new BigDecimal("200").round(new MathContext(2));
+        System.out.println(bigDecimal3);
+    }
+
+    /**
+     * 相当于这个小数点向左移动n位置，负数相当于向右移动n位
+     */
+    @Test
+    public void movePointLeft() {
+        BigDecimal bigDecimal3 = new BigDecimal("200");
+        System.out.println(bigDecimal3.movePointLeft(2));
+        System.out.println(bigDecimal3.movePointLeft(-2));
+    }
+
+    /**
+     * this * 10n次方的结果
+     */
+    @Test
+    public void scaleByPowerOfTen() {
+        BigDecimal bigDecimal3 = new BigDecimal("2");
+        System.out.println(bigDecimal3.scaleByPowerOfTen(2));
+    }
+
+    /**
+     * 删除任何尾随0
+     */
+    @Test
+    public void stripTrailingZeros() {
+        BigDecimal bigDecimal3 = new BigDecimal("200");
+        System.out.println(bigDecimal3.stripTrailingZeros());
+        BigDecimal bigDecimal4 = new BigDecimal("200.00");
+        System.out.println(bigDecimal4.stripTrailingZeros());
+    }
+
+    /**
+     * 返回两数中较小值
+     */
+    @Test
+    public void min() {
+        BigDecimal bigDecimal3 = new BigDecimal("200");
+        BigDecimal bigDecimal4 = new BigDecimal("201");
+        System.out.println(bigDecimal3.min(bigDecimal4));
+    }
+
+    /**
+     * 返回两数中较大值
+     */
+    @Test
+    public void max() {
+        BigDecimal bigDecimal3 = new BigDecimal("200");
+        BigDecimal bigDecimal4 = new BigDecimal("201");
+        System.out.println(bigDecimal3.max(bigDecimal4));
+    }
+
+    @Test
+    public void ulp() {
+        BigDecimal bigDecimal3 = new BigDecimal("203");
+        System.out.println(bigDecimal3.ulp());
+    }
+
 }
