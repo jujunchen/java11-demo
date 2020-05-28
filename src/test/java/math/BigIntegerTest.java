@@ -36,4 +36,22 @@ public class BigIntegerTest {
         BigInteger bigInteger5 = new BigInteger(3, 3, new Random());
         System.out.println(bigInteger5);
     }
+
+    /**
+     * 返回指定bitLength位数的正素数
+     */
+    @Test
+    public void probablePrime() {
+        BigInteger bigInteger = BigInteger.probablePrime(2,new Random());
+        System.out.println(bigInteger);
+    }
+
+    /**
+     * 返回大于指定BigInteger的第一个素数
+     */
+    @Test
+    public void nextProbablePrime() {
+        BigInteger bigInteger = new BigInteger("3");
+        System.out.println(bigInteger.nextProbablePrime());
+    }
 }
