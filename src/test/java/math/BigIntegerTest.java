@@ -54,4 +54,58 @@ public class BigIntegerTest {
         BigInteger bigInteger = new BigInteger("3");
         System.out.println(bigInteger.nextProbablePrime());
     }
+
+    /**
+     * 返回数组，0位置表示平方根的整数s，1位置表示this-s*s
+     */
+    @Test
+    public void sqrtAndRemainder() {
+        BigInteger bigInteger = new BigInteger("3");
+        System.out.println(Arrays.toString(bigInteger.sqrtAndRemainder()));
+    }
+
+    /**
+     * 求两数绝对值的最大公约数
+     */
+    @Test
+    public void gcd() {
+        BigInteger bigInteger = new BigInteger("2");
+        BigInteger bigInteger2 = new BigInteger("-4");
+        System.out.println(bigInteger.gcd(bigInteger2));
+    }
+
+    /**
+     * 返回此BigInteger的否定值
+     */
+    @Test
+    public void negate() {
+        BigInteger bigInteger = new BigInteger("2");
+        System.out.println(bigInteger.negate());
+        BigInteger bigInteger1 = new BigInteger("-2");
+        System.out.println(bigInteger1.negate());
+    }
+
+
+    /**
+     * 返回表示BigInteger的正负数，1表示正数，0表示零，-1表示负数
+     */
+    @Test
+    public void signum() {
+        BigInteger bigInteger = new BigInteger("2");
+        System.out.println(bigInteger.signum());
+    }
+
+
+    /**
+     * 取模，模数始终为正数
+     */
+    @Test
+    public void mod() {
+        BigInteger bigInteger = new BigInteger("-5");
+        //java.lang.ArithmeticException: BigInteger: modulus not positive
+//        BigInteger bigInteger1 = new BigInteger("-2");
+        BigInteger bigInteger1 = new BigInteger("2");
+        System.out.println(bigInteger.remainder(bigInteger1));
+        System.out.println(bigInteger.mod(bigInteger1));
+    }
 }
