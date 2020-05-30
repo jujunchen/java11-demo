@@ -1,0 +1,15 @@
+# Java.text
+提供处理文本，日期，数字和消息的类和接口
+
+## Annotation
+表示注解特性
+
+## AttributedCharacterIterator
+接口，允许迭代属性信息
+
+## AttributedString
+用于保存文本和相关属性信息，属性通过引用传递
+
+## Bidi
+实现Unicode双向算法，用于文本的双向重新排序
+
