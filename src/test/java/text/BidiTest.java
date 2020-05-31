@@ -57,4 +57,51 @@ public class BidiTest {
         Bidi bidi4 = new Bidi("ABC", Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT);
         System.out.println(bidi4.isMixed());
     }
+
+    /**
+     * 文本是否是从左到右的顺序
+     */
+    @Test
+    public void isLeftToRight() {
+        Bidi bidi = new Bidi("ABC",Bidi.DIRECTION_LEFT_TO_RIGHT);
+        System.out.println(bidi.isLeftToRight());
+
+        Bidi bidi2 = new Bidi("ABC",Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT);
+        System.out.println(bidi2.isLeftToRight());
+    }
+
+    /**
+     * 文本是否是从右到左的顺序
+     */
+    @Test
+    public void isRightToLeft() {
+
+    }
+
+    /**
+     * 返回文中文本的长度
+     */
+    @Test
+    public void getLength() {
+        Bidi bidi = new Bidi("ABC",Bidi.DIRECTION_LEFT_TO_RIGHT);
+        System.out.println(bidi.getLength());
+    }
+
+    /**
+     * 如果基本方向是从左到右，则返回true
+     */
+    @Test
+    public void baseIsLeftToRight() {
+        Bidi bidi = new Bidi("ABC",Bidi.DIRECTION_LEFT_TO_RIGHT);
+        System.out.println(bidi.baseIsLeftToRight());
+    }
+
+    /**
+     * 返回基准级别，从左到右为0，从右到左为1
+     */
+    @Test
+    public void getBaseLevel() {
+        Bidi bidi = new Bidi("ABC",Bidi.DIRECTION_LEFT_TO_RIGHT);
+        System.out.println(bidi.getBaseLevel());
+    }
 }
