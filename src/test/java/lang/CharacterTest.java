@@ -442,6 +442,7 @@ public class CharacterTest {
         OTHER_LETTER
          */
         System.out.println(Character.isLetter('A'));
+        System.out.println(Character.isLetter('陈'));
 
         /*
         确定指定的字符（Unicode代码点）是否为字母
@@ -458,6 +459,7 @@ public class CharacterTest {
         System.out.println(Character.isLetterOrDigit('A'));
         System.out.println(Character.isLetterOrDigit('1'));
         System.out.println(Character.isLetterOrDigit('?'));
+        System.out.println(Character.isLetterOrDigit('陈'));
 
         /*
         确定指定的字符（Unicode代码点）是字母还是数字

@@ -13,3 +13,6 @@
 ## Bidi
 实现Unicode双向算法，用于文本的双向重新排序
 
+## BreakIterator
+查找不同语言中的字符、单词和句子的边界
+https://blog.csdn.net/liugang594/article/details/84539743
