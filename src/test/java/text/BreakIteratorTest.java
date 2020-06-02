@@ -47,9 +47,52 @@ public class BreakIteratorTest {
         System.out.println(breakIterator.next(1));
     }
 
+    /**
+     * 指定偏移量后的第一个文本边界
+     */
     @Test
     public void following() {
+        breakIterator.setText(examine);
+
         breakIterator.following(1);
+        //第一个边界是0，偏移后的第一个边界是6
         System.out.println(breakIterator.current());
+    }
+
+    /**
+     * 指定偏移量之前的最后一个文本边界
+     */
+    @Test
+    public void preceding() {
+        breakIterator.setText(examine);
+
+        breakIterator.preceding(1);
+
+        //偏移之前的最后一个边界是0
+        System.out.println(breakIterator.current());
+    }
+
+
+    /**
+     * 指定的偏移量处是文本边界返回true,否则返回false
+     */
+    @Test
+    public void isBoundary() {
+        breakIterator.setText(examine);
+
+        //false
+        System.out.println(breakIterator.isBoundary(1));
+        //true
+        System.out.println(breakIterator.isBoundary(6));
+    }
+
+
+    /**
+     * 返回所有语言环境的数组
+     */
+    @Test
+    public void getAvailableLocales() {
+        Locale[] locales = BreakIterator.getAvailableLocales();
+
     }
 }
