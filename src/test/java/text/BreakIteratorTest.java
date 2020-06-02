@@ -27,6 +27,7 @@ public class BreakIteratorTest {
 
         breakIterator.setText(examine);
 
+        //返回第一个文本边界
         int start = breakIterator.first();
         for (int end = breakIterator.next(); end != BreakIterator.DONE; start = end, end = breakIterator.next()) {
             System.out.println(examine.substring(start, end));

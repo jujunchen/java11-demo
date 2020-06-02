@@ -16,3 +16,9 @@
 ## BreakIterator
 查找不同语言中的字符、单词和句子的边界
 https://blog.csdn.net/liugang594/article/details/84539743
+
+## CharacterIterator
+该接口定义了用于文本双向迭代的协议
+
+## StringCharacterIterator
+String类型的文本双向迭代协议，实现自CharacterIterator
