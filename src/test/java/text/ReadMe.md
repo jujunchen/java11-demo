@@ -22,3 +22,6 @@ https://blog.csdn.net/liugang594/article/details/84539743
 
 ## StringCharacterIterator
 String类型的文本双向迭代协议，实现自CharacterIterator
+
+## ChoiceFormat
+用于MessageFormat处理复数形式
