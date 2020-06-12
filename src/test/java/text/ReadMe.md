@@ -25,3 +25,7 @@ String类型的文本双向迭代协议，实现自CharacterIterator
 
 ## ChoiceFormat
 用于MessageFormat处理复数形式
+
+## CollationElementIterator
+用于国际字符串遍历迭代，使用迭代器返回定位字符的排序优先级，
+排序优先级定义了如何在给定的排序规则对象中整理字符
