@@ -100,11 +100,11 @@ public class PackageTest {
 
     /**
      * 将此软件包的规范版本与所需版本进行比较。 如果此包规范版本号大于或等于所需的版本号，则返回true。
-     *
+     * <p>
      * 通过顺序地比较期望和规范字符串的相应组件来比较版本号。 每个组件都转换为十进制整数并比较值。
-     *
+     * <p>
      * 如果规范值大于期望值，则返回true。 如果值小于false则返回。 如果值相等，则跳过周期并比较下一对组件。
-     *
+     * <p>
      * 参数
      * desired - 所需版本的版本字符串。
      * 结果
@@ -112,14 +112,14 @@ public class PackageTest {
      */
     @Test
     public void isCompatibleWith() {
-        
+
     }
 
     /**
      * 回调用者的类加载器及其祖先定义的所有软件包 。
      * 返回的数组可能包含多个具有相同包名称的软件包对象，每个对象都由类加载器层次结构中的不同类加载器定义。
      * 调用此方法相当于在ClassLoader实例上调用ClassLoader.getPackages() ，该实例是调用者的类加载器。
-     *
+     * <p>
      * 结果
      * 由此类加载器及其祖先定义的 软件包对象的数组
      */
@@ -135,7 +135,7 @@ public class PackageTest {
      */
     @Test
     public void getAnnotation() {
-        
+
     }
 
 
@@ -169,7 +169,7 @@ public class PackageTest {
      */
     @Test
     public void getDeclaredAnnotation() {
-        
+
     }
 
 

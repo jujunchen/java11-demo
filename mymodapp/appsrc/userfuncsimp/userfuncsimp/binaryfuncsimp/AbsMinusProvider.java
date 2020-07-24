@@ -5,6 +5,7 @@ import userfuncs.binaryfuncs.BinaryFunc;
 
 /**
  * AbsMinus提供者，返回了AbsMinus实例
+ *
  * @author jujun chen
  * @date 2020/05/20
  */

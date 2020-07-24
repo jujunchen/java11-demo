@@ -25,7 +25,7 @@ public class BidiTest {
         embStart- 段落开头的嵌入数组的索引
         paragraphLength- 文本和嵌入数组中段落的长度
          */
-        Bidi bidi3 = new Bidi(new char[]{'A','B','C'}, 0, null, 0, 3, Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT);
+        Bidi bidi3 = new Bidi(new char[]{'A', 'B', 'C'}, 0, null, 0, 3, Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT);
     }
 
     /**
@@ -33,8 +33,8 @@ public class BidiTest {
      */
     @Test
     public void createLineBidi() {
-        Bidi bidi = new Bidi("ABC",Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT);
-        Bidi bidi2 = bidi.createLineBidi(1,2);
+        Bidi bidi = new Bidi("ABC", Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT);
+        Bidi bidi2 = bidi.createLineBidi(1, 2);
         System.out.println(bidi2.getLength());
         System.out.println(bidi.getLength());
     }
@@ -63,10 +63,10 @@ public class BidiTest {
      */
     @Test
     public void isLeftToRight() {
-        Bidi bidi = new Bidi("ABC",Bidi.DIRECTION_LEFT_TO_RIGHT);
+        Bidi bidi = new Bidi("ABC", Bidi.DIRECTION_LEFT_TO_RIGHT);
         System.out.println(bidi.isLeftToRight());
 
-        Bidi bidi2 = new Bidi("ABC",Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT);
+        Bidi bidi2 = new Bidi("ABC", Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT);
         System.out.println(bidi2.isLeftToRight());
     }
 
@@ -83,7 +83,7 @@ public class BidiTest {
      */
     @Test
     public void getLength() {
-        Bidi bidi = new Bidi("ABC",Bidi.DIRECTION_LEFT_TO_RIGHT);
+        Bidi bidi = new Bidi("ABC", Bidi.DIRECTION_LEFT_TO_RIGHT);
         System.out.println(bidi.getLength());
     }
 
@@ -92,7 +92,7 @@ public class BidiTest {
      */
     @Test
     public void baseIsLeftToRight() {
-        Bidi bidi = new Bidi("ABC",Bidi.DIRECTION_LEFT_TO_RIGHT);
+        Bidi bidi = new Bidi("ABC", Bidi.DIRECTION_LEFT_TO_RIGHT);
         System.out.println(bidi.baseIsLeftToRight());
     }
 
@@ -101,7 +101,7 @@ public class BidiTest {
      */
     @Test
     public void getBaseLevel() {
-        Bidi bidi = new Bidi("ABC",Bidi.DIRECTION_LEFT_TO_RIGHT);
+        Bidi bidi = new Bidi("ABC", Bidi.DIRECTION_LEFT_TO_RIGHT);
         System.out.println(bidi.getBaseLevel());
     }
 }

@@ -12,11 +12,11 @@ public class CharacterTest {
 
     /**
      * 返回表示指定的char值的Character实例。
-     *
+     * <p>
      * 如果不需要新的Character实例，则通常应优先使用此方法，而不是构造函数Character(char)
-     *
+     * <p>
      * 因为此方法可能通过缓存频繁请求的值来显着提高空间和时间性能。
-     *
+     * <p>
      * 此方法将始终缓存'\u0000'至'\u007F'范围内的值，并且可以缓存此范围之外的其他值
      */
     @Test
@@ -64,7 +64,7 @@ public class CharacterTest {
         返回表示指定字符（Unicode代码点）的String对象。 结果是一个长度为1或2的字符串，仅由指定的codePoint
          */
         //字符强转成int 就为ascii码，codePoint可以理解为是ascii码
-        int codePoint = (int)'哈';
+        int codePoint = (int) '哈';
         System.out.println(codePoint);
         System.out.println(Character.toString(codePoint));
     }
@@ -72,33 +72,33 @@ public class CharacterTest {
 
     /**
      * 确定指定的代码点是否有效
-     *
+     * <p>
      * true如果指定的代码点值介于{@link Character#MIN_CODE_POINT} 和 {@link Character#MAX_CODE_POINT}之间; 否则为false
      */
     @Test
     public void isValidCodePoint() {
-        int codePoint = (int)'哈';
+        int codePoint = (int) '哈';
         System.out.println(Character.isValidCodePoint(codePoint));
     }
 
     /**
      * 确定指定的字符（Unicode代码点）是否在Basic Multilingual Plane (BMP)中。这些代码点可以使用单个char表示。
-     *
+     * <p>
      * U+0000 to U+FFFF有时被称为基本多语言平面（BMP）
-     *
+     * <p>
      * 代码点大于U + FFFF的Characters称为补充字符
-     *
+     * <p>
      * char值表示基本多语言平面（BMP）代码点，包括代理代码点或UTF-16编码的代码单元。
-     *
+     * <p>
      * int值表示所有Unicode代码点，包括补充代码点。
-     *
+     * <p>
      * int的较低（最低有效）21位用于表示Unicode代码点，而较高（最高有效）11位必须为零
-     *
+     * <p>
      * true如果指定的代码点介于{@link Character#MIN_VALUE} 和 {@link Character#MAX_VALUE} 之间; 否则为false
      */
     @Test
     public void isBmpCodePoint() {
-        int codePoint = (int)'芏';
+        int codePoint = (int) '芏';
         System.out.println(Character.isBmpCodePoint(codePoint));
         System.out.println(Character.isBmpCodePoint(65535));
         System.out.println(Character.isBmpCodePoint(65536));
@@ -117,9 +117,9 @@ public class CharacterTest {
     /**
      * 确定给定的char值是否为Unicode high-surrogate code unit （也称为前导代理代码单元 ）。
      * 这些值本身不代表字符，但在UTF-16编码中用于表示supplementary characters
-     *
+     * <p>
      * true如果char值介于{@link Character#MIN_HIGH_SURROGATE} 和 {@link Character#MAX_HIGH_SURROGATE}之间;
-     *
+     * <p>
      * 否则为false
      */
     @Test
@@ -129,13 +129,12 @@ public class CharacterTest {
 
     /**
      * 确定给定的char值是否为Unicode low-surrogate code unit （也称为trailing-surrogate代码单元 ）
-     *
+     * <p>
      * 这些值本身不代表字符，但在UTF-16编码中以supplementary characters的表示形式使用。
-     *
+     * <p>
      * true如果char值介于{@link Character#MIN_LOW_SURROGATE} 和 {@link Character#MAX_LOW_SURROGATE}之间;
-     *
+     * <p>
      * 否则为false
-     *
      */
     @Test
     public void isLowSurrogate() {
@@ -144,11 +143,11 @@ public class CharacterTest {
 
     /**
      * 确定给定的char值是否为Unicode 代理代码单元 。
-     *
+     * <p>
      * 这些值本身不代表字符，但在UTF-16编码中用于表示supplementary characters 。
-     *
+     * <p>
      * char值是代理代码单元，当且仅当它是low-surrogate code unit或high-surrogate code unit时
-     *
+     * <p>
      * true如果char值介于{@link Character#MIN_SURROGATE} 和 {@link Character#MAX_SURROGATE} 之间; 否则为false
      */
     @Test
@@ -160,24 +159,24 @@ public class CharacterTest {
     /**
      * 确定指定的char值对是否为有效Unicode surrogate pair
      * 此方法等效于表达式：
-     *  isHighSurrogate(high) && isLowSurrogate(low)
+     * isHighSurrogate(high) && isLowSurrogate(low)
      */
     @Test
     public void isSurrogatePair() {
-        System.out.println(Character.isSurrogatePair('\uDBFF','\uDC00'));
+        System.out.println(Character.isSurrogatePair('\uDBFF', '\uDC00'));
     }
 
     /**
      * 确定表示指定字符（Unicode代码点）所需的char值的数量。
-     *
+     * <p>
      * 如果指定的字符等于或大于0x10000，则该方法返回2.否则，该方法返回1。
-     *
+     * <p>
      * 此方法不会将指定的字符验证为有效的Unicode代码点。 如有必要，调用者必须使用isValidCodePoint验证字符值。
-     *
+     * <p>
      * 参数
-     *      codePoint - 要测试的字符（Unicode代码点）。
+     * codePoint - 要测试的字符（Unicode代码点）。
      * 结果
-     *      2如果角色是有效的补充角色; 否则为1。
+     * 2如果角色是有效的补充角色; 否则为1。
      */
     @Test
     public void charCount() {
@@ -187,12 +186,12 @@ public class CharacterTest {
 
     /**
      * 将指定的代理单元转换为其补充代码点值。 此方法不验证指定的代理项对。
-     *
+     * <p>
      * 如有必要，使用isSurrogatePair对其进行验证。
      */
     @Test
     public void toCodePoint() {
-        System.out.println(Character.toCodePoint('\uDBFF','\uDC00'));
+        System.out.println(Character.toCodePoint('\uDBFF', '\uDC00'));
         System.out.println(Character.toString(1113088));
     }
 
@@ -210,14 +209,15 @@ public class CharacterTest {
         //数组 char
         System.out.println(Character.codePointAt(new char[]{'a'}, 0));
     }
-    
-    
+
+
     @Test
     public void codePointBefore() {
         /*
         返回CharSequence的给定索引之前的代码点。
 
-        如果char在值(index - 1)在CharSequence处于低代理项范围， (index - 2)不为负，并且char在值(index - 2)在CharSequence处于高代理项范围内，则对应于该代理对的增补代码点是回。
+        如果char在值(index - 1)在CharSequence处于低代理项范围， (index - 2)不为负，并且char在值(index - 2)
+        在CharSequence处于高代理项范围内，则对应于该代理对的增补代码点是回。
 
         否则，返回char值(index - 1) 。
          */
@@ -226,27 +226,27 @@ public class CharacterTest {
         /**
          * 返回char数组的给定索引之前的代码点,其他相同
          */
-        System.out.println(Character.codePointBefore(new char[]{'a','b','c'}, 1));
+        System.out.println(Character.codePointBefore(new char[]{'a', 'b', 'c'}, 1));
 
 
         /*
         返回char数组的给定索引之前的代码点，其中只能使用index大于或等于start数组元素，其他相同
          */
-        System.out.println(Character.codePointBefore(new char[]{'a','b','c'}, 3, 0));
+        System.out.println(Character.codePointBefore(new char[]{'a', 'b', 'c'}, 3, 0));
     }
 
 
     /**
      * 返回用于表示UTF-16编码中的字符的前导代理代码单元
-     *
+     * <p>
      * 如果指定的字符不是补充代码点 ，则返回未指定的char
-     *
+     * <p>
      * 如果isSupplementaryCodePoint(x)是true
-     *
+     * <p>
      * 则isHighSurrogate (highSurrogate(x))和toCodePoint (highSurrogate(x), lowSurrogate (x)) == x也总是true 。
-     *
+     * <p>
      * 参数
-     *      codePoint - 补充字符（Unicode代码点）
+     * codePoint - 补充字符（Unicode代码点）
      */
     @Test
     public void highSurrogate() {
@@ -259,17 +259,17 @@ public class CharacterTest {
      * 如果指定的字符不是supplementary character ，则返回未指定的char 。
      * 如果isSupplementaryCodePoint(x)是true ，那么isLowSurrogate (lowSurrogate(x))和toCodePoint ( highSurrogate (x),
      * lowSurrogate(x)) == x也总是true 。
-     *
+     * <p>
      * 参数
-     *      codePoint - 补充字符（Unicode代码点）
+     * codePoint - 补充字符（Unicode代码点）
      * 结果
-     *      低位代理代码单元，用于表示UTF-16编码中的字符
+     * 低位代理代码单元，用于表示UTF-16编码中的字符
      */
     @Test
     public void lowSurrogate() {
         System.out.println(Character.isSupplementaryCodePoint(65536));
         System.out.println(Character.lowSurrogate(65536));
-        System.out.println(Character.isLowSurrogate (Character.lowSurrogate(65536)));
+        System.out.println(Character.isLowSurrogate(Character.lowSurrogate(65536)));
     }
 
 
@@ -301,8 +301,8 @@ public class CharacterTest {
         System.out.println(Arrays.toString(Character.toChars(65536)));
         System.out.println(Arrays.toString(Character.toChars(33423)));
     }
-    
-    
+
+
     @Test
     public void codePointCount() {
         /*
@@ -330,10 +330,10 @@ public class CharacterTest {
         结果
             指定子数组中的Unicode代码点数
          */
-        System.out.println(Character.codePointCount(new char[]{'a','b','c'}, 0 , 3));
+        System.out.println(Character.codePointCount(new char[]{'a', 'b', 'c'}, 0, 3));
     }
-    
-    
+
+
     @Test
     public void offsetByCodePoints() {
         /*
@@ -360,9 +360,8 @@ public class CharacterTest {
         结果
             数组中的索引
          */
-        System.out.println(Character.offsetByCodePoints(new char[]{'a','b','c','d'}, 0, 4,0,1));
+        System.out.println(Character.offsetByCodePoints(new char[]{'a', 'b', 'c', 'd'}, 0, 4, 0, 1));
     }
-
 
 
     @Test
@@ -395,8 +394,8 @@ public class CharacterTest {
          */
         System.out.println(Character.isTitleCase('L'));
     }
-    
-    
+
+
     @Test
     public void isDigit() {
         /*
@@ -410,8 +409,8 @@ public class CharacterTest {
          */
         System.out.println(Character.isDigit(97));
     }
-    
-    
+
+
     @Test
     public void isDefined() {
         /*
@@ -427,8 +426,8 @@ public class CharacterTest {
          */
         System.out.println(Character.isDefined(97));
     }
-    
-    
+
+
     @Test
     public void isLetter() {
         /*
@@ -500,7 +499,7 @@ public class CharacterTest {
     /**
      * 确定指定的字符是否允许作为Java标识符中的第一个字符。
      * 当且仅当满足下列条件之一时，字符才可以作为Java标识符：
-     *
+     * <p>
      * isLetter(ch)返回true
      * getType(ch)返回LETTER_NUMBER
      * ch是货币符号（例如'$' ）
@@ -529,7 +528,7 @@ public class CharacterTest {
     /**
      * 确定指定的字符是否允许作为Unicode标识符中的第一个字符。
      * 当且仅当满足下列条件之一时，字符才可以启动Unicode标识符：
-     *
+     * <p>
      * isLetter(ch)返回true
      * getType(ch)返回LETTER_NUMBER 。
      */
@@ -555,23 +554,23 @@ public class CharacterTest {
     /**
      * 确定指定的字符是否应被视为Java标识符或Unicode标识符中的可忽略字符。
      * Java标识符或Unicode标识符中可以忽略以下Unicode字符：
-     *
+     * <p>
      * ISO控制字符不是空格
      * '\u0000'至'\u0008'
      * '\u000E'至'\u001B'
      * '\u007F'至'\u009F'
      * 具有FORMAT常规类别值的所有字符
-     *
+     * <p>
      * 结果
-     *      true如果字符是可忽略的控制字符，可能是Java或Unicode标识符的一部分; 否则为false
+     * true如果字符是可忽略的控制字符，可能是Java或Unicode标识符的一部分; 否则为false
      */
     @Test
     public void isIdentifierIgnorable() {
         System.out.println(Character.isIdentifierIgnorable('\u0000'));
         //也支持代码点
     }
-    
-    
+
+
     @Test
     public void toLowerCase() {
         /*
@@ -597,8 +596,8 @@ public class CharacterTest {
 
         //也支持使用代码点
     }
-    
-    
+
+
     @Test
     public void toUpperCase() {
         /*
@@ -627,7 +626,8 @@ public class CharacterTest {
     @Test
     public void toTitleCase() {
         /*
-        使用UnicodeData文件中的大小写映射信息将字符参数转换为标题。 如果一个字符没有明确的标题映射，并且根据UnicodeData本身不是一个标题字符串，那么大写映射将作为等效的标题映射返回。 如果char参数已经是标题char ，则将返回相同的char值。
+        使用UnicodeData文件中的大小写映射信息将字符参数转换为标题。 如果一个字符没有明确的标题映射，并且根据UnicodeData本身不是一个标题字符串，那么大写映射将作为等效的标题映射返回。
+        如果char参数已经是标题char ，则将返回相同的char值。
         请注意，对于某些字符范围， Character.isTitleCase(Character.toTitleCase(ch))并不总是返回true 。
 
         注意：此方法无法处理supplementary characters 。 要支持所有Unicode字符（包括增补字符），请使用toTitleCase(int)方法。
@@ -638,11 +638,11 @@ public class CharacterTest {
             相当于该字符的标题词，如果有的话; 否则，角色本身。
          */
         System.out.println(Character.toTitleCase('a'));
-        
+
         //支持使用代码点
     }
-    
-    
+
+
     @Test
     public void digit() {
         /*
@@ -666,15 +666,15 @@ public class CharacterTest {
      * 返回指定的Unicode字符表示的int值。 例如，字符'\u216C' （罗马数字50）将返回值为50的int。
      * 大写字母AZ（ '\u0041'到'\u005A' ），小写字母（ '\u0061'到'\u007A' ）和全宽变体（ '\uFF21'到'\uFF3A'和'\uFF41'到'\uFF5A' ）形式的数值从10到35
      * '\uFF5A' 。这与Unicode规范无关，不会为这些char值分配数值。
-     *
+     * <p>
      * 如果字符没有数字值，则返回-1。 如果字符的数值不能表示为非负整数（例如，小数值），则返回-2。
-     *
+     * <p>
      * 注意：此方法无法处理supplementary characters 。 要支持所有Unicode字符（包括增补字符），请使用getNumericValue(int)方法。
-     *
+     * <p>
      * 参数
-     *      ch - 要转换的字符。
+     * ch - 要转换的字符。
      * 结果
-     *      字符的数值，作为非负int值; -2如果字符具有数值但该值不能表示为非负int值; 如果字符没有数字值，则返回-1。
+     * 字符的数值，作为非负int值; -2如果字符具有数值但该值不能表示为非负int值; 如果字符没有数字值，则返回-1。
      */
     @Test
     public void getNumericValue() {
@@ -689,11 +689,11 @@ public class CharacterTest {
      * LINE_SEPARATOR
      * PARAGRAPH_SEPARATOR
      * 注意：此方法无法处理supplementary characters 。 要支持所有Unicode字符（包括增补字符），请使用isSpaceChar(int)方法。
-     *
+     * <p>
      * 参数
-     *      ch - 要测试的角色。
+     * ch - 要测试的角色。
      * 结果
-     *      true如果角色是空格字符; 否则为false 。
+     * true如果角色是空格字符; 否则为false 。
      */
     @Test
     public void isSpaceChar() {
@@ -725,17 +725,17 @@ public class CharacterTest {
 
     /**
      * 确定指定的字符是否为ISO控制字符。
-     *
+     * <p>
      * 一个字符被认为如果其代码是在范围为ISO控制字符'\u0000'通过'\u001F'或在范围'\u007F'通过'\u009F' 。
-     *
+     * <p>
      * 注意：此方法无法处理supplementary characters 。
-     *
+     * <p>
      * 要支持所有Unicode字符（包括增补字符），请使用{@link Character#isISOControl(int)}方法。
-     *
+     * <p>
      * 参数
-     *  ch - 要测试的角色。
+     * ch - 要测试的角色。
      * 结果
-     *  true如果字符是ISO控制字符; 否则为false
+     * true如果字符是ISO控制字符; 否则为false
      */
     @Test
     public void isISOControl() {
@@ -747,13 +747,13 @@ public class CharacterTest {
     /**
      * 返回表示字符常规类别的值。
      * 注意：此方法无法处理supplementary characters 。
-     *
+     * <p>
      * 要支持所有Unicode字符（包括增补字符），请使用{@link Character#getType(int)}方法。
-     *
+     * <p>
      * 参数
-     *      ch - 要测试的角色。
+     * ch - 要测试的角色。
      * 结果
-     *      类型为 int的值，表示字符的常规类别
+     * 类型为 int的值，表示字符的常规类别
      */
     @Test
     public void getType() {
@@ -764,18 +764,18 @@ public class CharacterTest {
 
     /**
      * 确定指定基数中特定数字的字符表示形式。
-     *
+     * <p>
      * 如果值radix不是有效基数，或者值digit不是指定基数中的有效数字，则返回空字符（ '\u0000' ）。
      * 该radix参数是有效的，如果它是大于或等于MIN_RADIX且小于或等于MAX_RADIX 。
      * 如果0 <= digit < radix ，则digit参数有效。
-     *
+     * <p>
      * 如果该数字小于10，则返回'0' + digit 。 否则，返回值'a' + digit - 10 。
-     *
+     * <p>
      * 参数
-     *  digit - 要转换为字符的数字。
-     *  radix - 基数。
+     * digit - 要转换为字符的数字。
+     * radix - 基数。
      * 结果
-     *  指定基数中指定数字的 char表示形式。
+     * 指定基数中指定数字的 char表示形式。
      */
     @Test
     public void forDigit() {
@@ -788,15 +788,15 @@ public class CharacterTest {
 
     /**
      * 返回给定字符的Unicode方向性属性。
-     *
+     * <p>
      * 字符方向性用于计算文本的视觉排序。 未定义char值的方向性值为DIRECTIONALITY_UNDEFINED 。
      * 注意：此方法无法处理supplementary characters 。
      * 要支持所有Unicode字符（包括增补字符），请使用getDirectionality(int)方法。
-     *
+     * <p>
      * 参数
-     *  ch - char ，其请求方向性属性。
+     * ch - char ，其请求方向性属性。
      * 结果
-     *  char值的方向性属性。
+     * char值的方向性属性。
      */
     @Test
     public void getDirectionality() {
@@ -810,11 +810,11 @@ public class CharacterTest {
      * 当以从右到左的文本显示时，镜像字符应使其字形水平镜像。 例如， '\u0028' LEFT PARENTHESIS在语义上被定义为左括号 。
      * 这将显示为从右到左的文本中从左到右但作为“）”的文本中的“（”。
      * 注意：此方法无法处理supplementary characters 。 要支持所有Unicode字符（包括增补字符），请使用isMirrored(int)方法。
-     *
+     * <p>
      * 参数
-     *      ch - char ，请求镜像属性
+     * ch - char ，请求镜像属性
      * 结果
-     *      true如果char是镜像的，则 false如果 char未镜像或未定义。
+     * true如果char是镜像的，则 false如果 char未镜像或未定义。
      */
     @Test
     public void isMirrored() {
@@ -828,38 +828,38 @@ public class CharacterTest {
      * Specified by:
      * compareTo在界面 Comparable<Character>
      * 参数
-     *      anotherCharacter - 要比较的 Character 。
+     * anotherCharacter - 要比较的 Character 。
      * 结果
-     *      值0如果参数Character等于这个Character ; 的值小于0 ，如果这Character在数值上比少Character参数;
-     *      如果此Character在数值上大于Character参数（无符号比较），则值大于0 。 请注意，这是严格的数字比较; 它不依赖于语言环境。
+     * 值0如果参数Character等于这个Character ; 的值小于0 ，如果这Character在数值上比少Character参数;
+     * 如果此Character在数值上大于Character参数（无符号比较），则值大于0 。 请注意，这是严格的数字比较; 它不依赖于语言环境。
      */
     @Test
     public void compareTo() {
-        
+
     }
 
 
     /**
      * 以数字方式比较两个char值。 返回的值与返回的值相同：
-     *   Character.valueOf(x).compareTo(Character.valueOf(y))
+     * Character.valueOf(x).compareTo(Character.valueOf(y))
      * 参数
-     *      x - 第一个 char来比较
-     *      y - 第二个 char进行比较
+     * x - 第一个 char来比较
+     * y - 第二个 char进行比较
      * 结果
-     *      值0如果x == y ; 小于0的值，如果x < y ; 如果为0则值大于x > y
+     * 值0如果x == y ; 小于0的值，如果x < y ; 如果为0则值大于x > y
      */
     @Test
     public void compare() {
-        
+
     }
 
 
     /**
      * 返回通过反转指定的 char值中的字节顺序获得的值。
      * 参数
-     *      ch - 其中 char反转字节顺序。
+     * ch - 其中 char反转字节顺序。
      * 结果
-     *      通过反转（或等效地，交换）指定的 char值中的字节获得的值。
+     * 通过反转（或等效地，交换）指定的 char值中的字节获得的值。
      */
     @Test
     public void reverseBytes() {
@@ -870,13 +870,13 @@ public class CharacterTest {
     /**
      * 返回指定字符codePoint的Unicode名称，如果代码点为unassigned ，则返回null。
      * 注意：如果未通过UnicodeData文件（由Unicode Consortium维护的Unicode字符数据库的一部分）为指定的字符分配名称，则返回的名称与表达式的结果相同。
-     *
+     * <p>
      * Character.UnicodeBlock.of(codePoint).toString().replace('_', ' ') + " " + Integer.toHexString(codePoint)
      * .toUpperCase(Locale.ROOT);
      * 参数
-     *      codePoint - 字符（Unicode代码点）
+     * codePoint - 字符（Unicode代码点）
      * 结果
-     *      指定字符的Unicode名称，如果未分配代码点，则返回null。
+     * 指定字符的Unicode名称，如果未分配代码点，则返回null。
      */
     @Test
     public void getName() {
@@ -887,15 +887,15 @@ public class CharacterTest {
     /**
      * 返回给定Unicode字符名称指定的Unicode字符的代码点值。
      * 注意：如果UnicodeData文件（由Unicode Consortium维护的Unicode字符数据库的一部分）未为字符分配名称，则其名称将定义为表达式的结果
-     *
+     * <p>
      * Character.UnicodeBlock.of(codePoint).toString().replace('_', ' ') + " " + Integer.toHexString(codePoint)
      * .toUpperCase(Locale.ROOT);
      * name匹配不区分大小写，删除了任何前导和尾随空格字符。
-     *
+     * <p>
      * 参数
-     *      name - Unicode字符名称
+     * name - Unicode字符名称
      * 结果
-     *      由其名称指定的字符的代码点值。
+     * 由其名称指定的字符的代码点值。
      */
     @Test
     public void codePointOf() {

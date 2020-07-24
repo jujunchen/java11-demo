@@ -20,11 +20,12 @@ import java.math.BigDecimal;
  * @date 2020/05/11
  */
 public class ParameterTest {
-    
+
     /**
      * 如果参数根据类文件具有名称，则返回true
      * 编译的时候增加 -parameters 参数就能返回true
      * IDEA增加参数的方法：http://www.mamicode.com/info-detail-2162647.html
+     *
      * @throws NoSuchMethodException
      */
     @Test
@@ -54,7 +55,8 @@ public class ParameterTest {
     public void getModifiers() throws NoSuchMethodException {
         Method method = Person.class.getMethod("setStatus", Status.class);
         int mod = method.getParameters()[0].getModifiers();
-        System.out.println(Modifier.isFinal(mod));;
+        System.out.println(Modifier.isFinal(mod));
+        ;
     }
 
     /**
@@ -63,7 +65,8 @@ public class ParameterTest {
     @Test
     public void getName() throws NoSuchMethodException {
         Method method = Person.class.getMethod("setStatus", Status.class);
-        System.out.println(method.getParameters()[0].getName());;
+        System.out.println(method.getParameters()[0].getName());
+        ;
     }
 
     /**
@@ -89,6 +92,7 @@ public class ParameterTest {
 
     /**
      * 返回此参数的声明类型，用AnnotatedType对象表示
+     *
      * @throws NoSuchMethodException
      */
     @Test

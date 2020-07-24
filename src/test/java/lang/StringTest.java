@@ -13,23 +13,23 @@ import java.util.regex.Matcher;
  * @date 2020/04/14
  */
 public class StringTest {
-    
+
     @Test
     public void String() throws UnsupportedEncodingException {
         String abc = "abc";
         String string = new String(abc.getBytes());
         System.out.println(string);
 
-        char[] chars = {'a','b','c'};
+        char[] chars = {'a', 'b', 'c'};
         //offset 为子串的第一个索引，count指定子count的长度
-        String string1 = new String(chars,1,1);
+        String string1 = new String(chars, 1, 1);
         System.out.println(string1);
 
         //代码点
-        String string2 = new String(new int[]{97},0,1);
+        String string2 = new String(new int[]{97}, 0, 1);
         System.out.println(string2);
 
-        String string3 = new String(abc.getBytes(),"UTF-8");
+        String string3 = new String(abc.getBytes(), "UTF-8");
         System.out.println(string3);
 
         //StringBuffer
@@ -83,7 +83,7 @@ public class StringTest {
      */
     @Test
     public void codePointBefore() {
-        int codePoint  = "abc".codePointBefore(1);
+        int codePoint = "abc".codePointBefore(1);
         System.out.println(codePoint);
     }
 
@@ -95,7 +95,7 @@ public class StringTest {
      */
     @Test
     public void codePointCount() {
-        int codePointCount ="abc".codePointCount(0,3);
+        int codePointCount = "abc".codePointCount(0, 3);
         System.out.println(codePointCount);
     }
 
@@ -109,7 +109,7 @@ public class StringTest {
     @Test
     public void offsetByCodePoints() {
         //从b开始向左偏移1位，即索引为0
-        int offsetByCodePoints = "abc".offsetByCodePoints(1,-1);
+        int offsetByCodePoints = "abc".offsetByCodePoints(1, -1);
         System.out.println(offsetByCodePoints);
     }
 
@@ -124,7 +124,7 @@ public class StringTest {
     @Test
     public void getChars() {
         char[] dst = new char[10];
-        "abc".getChars(0,1,dst,1);
+        "abc".getChars(0, 1, dst, 1);
         assert 'a' == dst[1];
     }
 
@@ -177,9 +177,9 @@ public class StringTest {
      */
     @Test
     public void regionMatches() {
-        System.out.println("abc".regionMatches(1,"abc",1,2));
+        System.out.println("abc".regionMatches(1, "abc", 1, 2));
         //比较忽略大小写
-        System.out.println("Abc".regionMatches(true,1,"abc",1,2));
+        System.out.println("Abc".regionMatches(true, 1, "abc", 1, 2));
     }
 
     /**
@@ -187,7 +187,7 @@ public class StringTest {
      */
     @Test
     public void startsWith() {
-        System.out.println("abc".startsWith("ab",0));
+        System.out.println("abc".startsWith("ab", 0));
         System.out.println("abc".startsWith("ab"));
     }
 
@@ -209,14 +209,14 @@ public class StringTest {
         System.out.println("abc".indexOf(97));
         System.out.println("abc".indexOf("ab"));
 
-        System.out.println("abc".indexOf('c',1));
-        System.out.println("abc".indexOf("c",1));
+        System.out.println("abc".indexOf('c', 1));
+        System.out.println("abc".indexOf("c", 1));
 
         //fromIndex 为负数，表示从0开始
         System.out.println("abc".indexOf('c', -2));
 
         //fromIndex大于等于字符串长度，则fromIndex为字符串长度,返回-1
-        System.out.println("abc".indexOf('c',3));
+        System.out.println("abc".indexOf('c', 3));
     }
 
     /**
@@ -228,8 +228,8 @@ public class StringTest {
         System.out.println("aba".lastIndexOf("a"));
 
         //从fromIndex指定的索引处开始搜索，如果是负数，返回-1
-        System.out.println("abc".lastIndexOf('c',1));
-        System.out.println("abc".lastIndexOf("c",1));
+        System.out.println("abc".lastIndexOf('c', 1));
+        System.out.println("abc".lastIndexOf("c", 1));
     }
 
     /**
@@ -263,13 +263,13 @@ public class StringTest {
      */
     @Test
     public void replace() {
-        System.out.println("abc".replace("a","b"));
+        System.out.println("abc".replace("a", "b"));
     }
 
     /**
      * 判断此字符串是否与给定的正则表达式匹配。
      * 调用str .matches( regex )形式的此方法会产生与表达式完全相同的结果
-     *
+     * <p>
      * Pattern. matches(regex, str)
      */
     @Test
@@ -288,20 +288,21 @@ public class StringTest {
     /**
      * 将给定替换的给定regular expression匹配的此字符串的第一个子字符串替换。
      * 调用str .replaceFirst(形式的此方法regex , repl )产生与表达式完全相同的结果
-     *
+     * <p>
      * Pattern.compile(regex).matcher(str).replaceFirst(repl)
      * 请注意，替换字符串中的反斜杠（ \ ）和美元符号（ $ ）可能会导致结果与将其视为文字替换字符串时的结果不同; 见Matcher.replaceFirst(java.lang.String) 。
      * 如果需要，请使用Matcher.quoteReplacement(java.lang.String)来抑制这些字符的特殊含义。
-     *
+     * <p>
      * 参数
      * regex - 要与此字符串匹配的正则表达式
      * replacement - 要替换第一个匹配项的字符串
      */
     @Test
     public void replaceFirst() {
-        System.out.println("abc\\123".replaceFirst("[a-z]+\\\\+","a"));
+        System.out.println("abc\\123".replaceFirst("[a-z]+\\\\+", "a"));
 
-        System.out.println(Matcher.quoteReplacement("abc\\123\\$"));;
+        System.out.println(Matcher.quoteReplacement("abc\\123\\$"));
+        ;
     }
 
     /**
@@ -309,7 +310,7 @@ public class StringTest {
      */
     @Test
     public void replaceAll() {
-        System.out.println("abc".replaceAll("[a-z]+","1"));
+        System.out.println("abc".replaceAll("[a-z]+", "1"));
     }
 
     /**
@@ -321,7 +322,7 @@ public class StringTest {
      */
     @Test
     public void replaceCharSequence() {
-        System.out.println("aaa".replace("aa","b"));
+        System.out.println("aaa".replace("aa", "b"));
     }
 
     /**
@@ -337,11 +338,11 @@ public class StringTest {
         //如果limit为正，则匹配次数为limit-1，最后一个元素为字符串剩余的字符串
         //如果limit为0，则能多次匹配，并且会丢弃尾随空字符串
         //如果limit为负，能多次匹配，不丢弃尾随空字符串
-        System.out.println(Arrays.toString(aa.split(":",2)));
-        System.out.println(Arrays.toString(aa.split(":",5)));
-        System.out.println(Arrays.toString(aa.split(":",-2)));
-        System.out.println(Arrays.toString(aa.split("o",-2)));
-        System.out.println(Arrays.toString(aa.split("o",0)));
+        System.out.println(Arrays.toString(aa.split(":", 2)));
+        System.out.println(Arrays.toString(aa.split(":", 5)));
+        System.out.println(Arrays.toString(aa.split(":", -2)));
+        System.out.println(Arrays.toString(aa.split("o", -2)));
+        System.out.println(Arrays.toString(aa.split("o", 0)));
 
         //等同于limit为0，将丢弃后面的空字符串
         System.out.println(Arrays.toString(aa.split("o")));
@@ -352,8 +353,8 @@ public class StringTest {
      */
     @Test
     public void join() {
-        System.out.println(String.join(",","Java","PHP","GO"));
-        System.out.println(String.join(",", List.of("Java","PHP","GO")));
+        System.out.println(String.join(",", "Java", "PHP", "GO"));
+        System.out.println(String.join(",", List.of("Java", "PHP", "GO")));
     }
 
 
@@ -468,7 +469,7 @@ public class StringTest {
      */
     @Test
     public void toCharArray() {
-        String aa = String.format("%s，你好，%s","Java","Good");
+        String aa = String.format("%s，你好，%s", "Java", "Good");
         System.out.println(aa);
     }
 
@@ -477,14 +478,14 @@ public class StringTest {
         //返回对象的字符串形式
         Person person = new Person();
         person.age = 18;
-        person.name= "陈";
+        person.name = "陈";
         System.out.println(String.valueOf(person));
 
         //返回char数组参数的字符串形式，等同于copyValueOf​(char[] data, int offset, int count)
-        System.out.println(String.valueOf(new char[]{'H','E','L','L','O'}));
+        System.out.println(String.valueOf(new char[]{'H', 'E', 'L', 'L', 'O'}));
 
         //返回char数组指定偏移量的子字符，等同于copyValueOf​(char[] data)
-        System.out.println(String.valueOf(new char[]{'H','E','L','L','O'},2,2));
+        System.out.println(String.valueOf(new char[]{'H', 'E', 'L', 'L', 'O'}, 2, 2));
     }
 
     /**

@@ -21,6 +21,7 @@ public class SystemTest {
 
     /**
      * 从键盘等设备获取输入流
+     *
      * @throws IOException
      */
     @Test
@@ -91,9 +92,9 @@ public class SystemTest {
      */
     @Test
     public void arraycopy() {
-        char[] chars1 = new char[]{'a','b','c'};
+        char[] chars1 = new char[]{'a', 'b', 'c'};
         char[] chars2 = new char[4];
-        System.arraycopy(chars1,0,chars2,0,3);
+        System.arraycopy(chars1, 0, chars2, 0, 3);
         System.out.println(Arrays.toString(chars2));
     }
 
@@ -135,7 +136,7 @@ public class SystemTest {
         System.out.println(System.getenv("PWD"));
 
         //返回获取环境变量
-        Map<String,String> envs = System.getenv();
+        Map<String, String> envs = System.getenv();
     }
 
     /**
@@ -153,7 +154,7 @@ public class SystemTest {
      */
     @Test
     public void gc() {
-        
+
     }
 
     /**
@@ -162,7 +163,7 @@ public class SystemTest {
      */
     @Test
     public void runFinalization() {
-        
+
     }
 
     @Test
@@ -188,5 +189,5 @@ public class SystemTest {
     public void mapLibraryName() {
         System.out.println(System.mapLibraryName("java.version"));
     }
-    
+
 }

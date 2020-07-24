@@ -16,11 +16,11 @@ public class StringCharacterIteratorTest {
         //A
         System.out.println(stringCharacterIterator.current());
 
-        StringCharacterIterator stringCharacterIterator1 = new StringCharacterIterator("ABC",1);
+        StringCharacterIterator stringCharacterIterator1 = new StringCharacterIterator("ABC", 1);
         //B
         System.out.println(stringCharacterIterator1.current());
 
-        StringCharacterIterator stringCharacterIterator2 = new StringCharacterIterator("ABC",2,3,2);
+        StringCharacterIterator stringCharacterIterator2 = new StringCharacterIterator("ABC", 2, 3, 2);
         //C
         System.out.println(stringCharacterIterator2.current());
     }

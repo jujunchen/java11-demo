@@ -17,7 +17,7 @@ public class StringBuilderTest {
         StringBuilder stringBuilder2 = new StringBuilder("abc");
         assert stringBuilder1.compareTo(stringBuilder2) == 0;
     }
-    
+
     @Test
     public void append() {
         Person person = new Person();
@@ -38,7 +38,7 @@ public class StringBuilderTest {
 
         //将指定的字符追加到此，从start索引开始，到end索引结束，包括头，不包括尾
         CharSequence charSequence2 = " Study";
-        stringBuilder.append(charSequence2, 0,6);
+        stringBuilder.append(charSequence2, 0, 6);
 
         //其他的append方法
         //将char数组的字符追加到此序列
@@ -75,8 +75,8 @@ public class StringBuilderTest {
     @Test
     public void delete() {
         StringBuilder stringBuilder = new StringBuilder("abc");
-        System.out.println(stringBuilder.delete(1,2));
-        System.out.println(stringBuilder.delete(2,2));
+        System.out.println(stringBuilder.delete(1, 2));
+        System.out.println(stringBuilder.delete(2, 2));
     }
 
     /**
@@ -92,7 +92,7 @@ public class StringBuilderTest {
     public void replace() {
         //从start开始到end结束(不包括)，使用str替换
         StringBuilder stringBuilder = new StringBuilder("abc");
-        System.out.println(stringBuilder.replace(0,2,"a"));
+        System.out.println(stringBuilder.replace(0, 2, "a"));
     }
 
     @Test
@@ -106,13 +106,13 @@ public class StringBuilderTest {
         offset - 要插入的子阵列中的第一个 char的索引。
         len - 要插入的子阵列中的 chars的数量。
          */
-        System.out.println(stringBuilder.insert(0,new char[]{'c','d','e','f'},1,3));
+        System.out.println(stringBuilder.insert(0, new char[]{'c', 'd', 'e', 'f'}, 1, 3));
 
         //将Object的字符串形式插入序列中
         //offset 插入的索引位置
         Person person = new Person();
         person.name = "Java";
-        System.out.println(stringBuilder.insert(0,person));
+        System.out.println(stringBuilder.insert(0, person));
 
         //将字符串插入序列中
         //offset 需要插入的索引位置
@@ -139,7 +139,7 @@ public class StringBuilderTest {
         //从指定的索引处开始，返回指定子字符串第一次出现的字符串中的索引
         //indexOf​(String str, int fromIndex)
     }
-    
+
     @Test
     public void lastIndexOf() {
         //返回指定子字符串最后一次出现的字符串中的索引
@@ -169,7 +169,7 @@ public class StringBuilderTest {
      */
     @Test
     public void ensureCapacity() {
-        
+
     }
 
     /**
@@ -179,7 +179,7 @@ public class StringBuilderTest {
      */
     @Test
     public void trimToSize() {
-        
+
     }
 
     /**
@@ -213,13 +213,13 @@ public class StringBuilderTest {
      */
     @Test
     public void offsetByCodePoints() {
-        
+
     }
 
     /**
      * 将字符从该序列复制到目标字符数组dst 。 要复制的第一个字符是索引srcBegin ; 要复制的最后一个字符位于索引srcEnd-1 。 要复制的字符总数为srcEnd-srcBegin 。
      * 字符被复制到dst的子dst从索引dstBegin开始并以索引结束：
-     *    dstbegin + (srcEnd-srcBegin) - 1
+     * dstbegin + (srcEnd-srcBegin) - 1
      * 参数
      * srcBegin - 以此偏移量开始复制。
      * srcEnd - 停止在此偏移处复制。
@@ -228,7 +228,7 @@ public class StringBuilderTest {
      */
     @Test
     public void getChars() {
-        
+
     }
 
     /**
@@ -238,7 +238,7 @@ public class StringBuilderTest {
      */
     @Test
     public void substring() {
-        
+
     }
 
     /**
@@ -246,7 +246,7 @@ public class StringBuilderTest {
      */
     @Test
     public void chars() {
-        
+
     }
 
     /**
@@ -254,7 +254,7 @@ public class StringBuilderTest {
      */
     @Test
     public void codePoints() {
-        
+
     }
 
 }

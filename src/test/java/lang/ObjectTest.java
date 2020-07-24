@@ -10,6 +10,7 @@ public class ObjectTest {
 
     /**
      * 浅拷贝，如果属性是引用类型，并不生成新引用
+     *
      * @throws CloneNotSupportedException
      */
     @Test
@@ -33,7 +34,7 @@ public class ObjectTest {
         System.out.println("修改后：car1=" + car1);
     }
 
-    static class Car implements Cloneable{
+    static class Car implements Cloneable {
         private Wheel wheel;
 
         public Wheel getWheel() {

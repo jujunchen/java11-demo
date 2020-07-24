@@ -50,7 +50,7 @@ public class ModuleTest {
     /**
      * 返回包含此模块的模块层。
      * 如果此模块不在模块层中，返回null。
-     *
+     * <p>
      * 模块层只包含命名模块，如果在未命名模块上调用，返回null
      */
     @Test
@@ -76,7 +76,6 @@ public class ModuleTest {
     /**
      * 如果调用者模块与当前模块相同，则更新当前模块对应的值为指定模块。
      * 如果指定模块与当前模块相同，则不做任何操作
-     *
      */
     @Test
     public void addReads() {

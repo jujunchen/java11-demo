@@ -1,5 +1,6 @@
 package math;
-import	java.math.BigInteger;
+
+import java.math.BigInteger;
 
 import org.junit.Test;
 
@@ -13,21 +14,21 @@ import java.util.Random;
  * @date 2020/05/26
  */
 public class BigIntegerTest {
-    
+
     @Test
     public void test() {
         BigInteger bigInteger = new BigInteger("-9");
         byte[] bytes = bigInteger.toByteArray();
         System.out.println(Arrays.toString(bytes));
 
-        BigInteger bigInteger1 = new BigInteger(bytes,0,1);
+        BigInteger bigInteger1 = new BigInteger(bytes, 0, 1);
         System.out.println(bigInteger1);
 
         BigInteger bigInteger2 = new BigInteger(bytes);
         System.out.println(bigInteger2);
 
         //radix 表示进制
-        BigInteger bigInteger3 = new BigInteger("10",10);
+        BigInteger bigInteger3 = new BigInteger("10", 10);
         System.out.println(bigInteger3);
 
         //随机数0-(2(3次方)-1)，0-7
@@ -43,7 +44,7 @@ public class BigIntegerTest {
      */
     @Test
     public void probablePrime() {
-        BigInteger bigInteger = BigInteger.probablePrime(2,new Random());
+        BigInteger bigInteger = BigInteger.probablePrime(2, new Random());
         System.out.println(bigInteger);
     }
 
@@ -181,17 +182,17 @@ public class BigIntegerTest {
      * 返回值为(this ^ val)的BigInteger。 （当且仅当此和val中的一个为负时，此方法返回负BigInteger。）
      * 1 xor 1 = -2
      * 二进制：000000001
-     *
+     * <p>
      * -1反码：111111110
-     *
+     * <p>
      * 补码：111111111
-     *
+     * <p>
      * 异或一个1就变成了111111110
-     *
+     * <p>
      * 然后补码转反码减1得111111101
-     *
+     * <p>
      * 去掉负号(反码转回来)得到000000010(2)
-     *
+     * <p>
      * 添回符号就变成-2了。
      */
     @Test
@@ -228,7 +229,7 @@ public class BigIntegerTest {
      */
     @Test
     public void testBit() {
-        
+
     }
 
 

@@ -10,55 +10,55 @@ public class MathTest {
 
     /**
      * 返回角度的三角正弦值。 特殊情况：
-     *      如果参数是NaN或无穷大，则结果为NaN。
-     *      如果参数为零，则结果为零，其参数符号相同。
+     * 如果参数是NaN或无穷大，则结果为NaN。
+     * 如果参数为零，则结果为零，其参数符号相同。
      * 计算结果必须在精确结果的1 ulp范围内。 结果必须是半单调的。
-     *
+     * <p>
      * 参数
-     *      a - 角度，以弧度表示。
+     * a - 角度，以弧度表示。
      * 结果
-     *      正弦。
+     * 正弦。
      */
     @Test
     public void sinTest() {
         double d = Math.sin(100.0);
         System.out.println(d);
-        double d1 = Math.sin(1.0/0.0);
+        double d1 = Math.sin(1.0 / 0.0);
         System.out.println(d1);
     }
 
     /**
      * 返回角度的三角余弦值。 特别：
-     *      如果参数是NaN或无穷大，则结果为NaN。
-     *      计算结果必须在精确结果的1 ulp范围内。 结果必须是半单调的。
-     *
+     * 如果参数是NaN或无穷大，则结果为NaN。
+     * 计算结果必须在精确结果的1 ulp范围内。 结果必须是半单调的。
+     * <p>
      * 参数
-     *      a - 角度，以弧度表示。
+     * a - 角度，以弧度表示。
      * 结果
-     *      余弦
+     * 余弦
      */
     @Test
     public void cosTest() {
         System.out.println(Math.cos(180));
-        System.out.println(Math.cos(1.0/0.0));
+        System.out.println(Math.cos(1.0 / 0.0));
     }
 
 
     /**
      * 返回角度的三角正切。 特别：
-     *      如果参数是NaN或无穷大，则结果为NaN。
-     *      如果参数为零，则结果为零，其参数符号相同。
-     *      计算结果必须在精确结果的1 ulp范围内。 结果必须是半单调的。
-     *
+     * 如果参数是NaN或无穷大，则结果为NaN。
+     * 如果参数为零，则结果为零，其参数符号相同。
+     * 计算结果必须在精确结果的1 ulp范围内。 结果必须是半单调的。
+     * <p>
      * 参数
-     *      a - 角度，以弧度表示。
+     * a - 角度，以弧度表示。
      * 结果
-     *      参数的正切
+     * 参数的正切
      */
     @Test
     public void tanTest() {
         System.out.println(Math.tan(100.0));
-        System.out.println(Math.tan(1.0/0.0));
+        System.out.println(Math.tan(1.0 / 0.0));
     }
 
 
@@ -67,13 +67,13 @@ public class MathTest {
      * 如果参数为NaN或其绝对值大于1，则结果为NaN。
      * 如果参数为零，则结果为零，其参数符号相同。
      * 计算结果必须在精确结果的1 ulp范围内。 结果必须是半单调的。
-     *
+     * <p>
      * 参数
      * a - 要返回其正弦值的值
      */
     @Test
     public void asinTest() {
-        
+
     }
 
     /**
@@ -94,13 +94,13 @@ public class MathTest {
 
     /**
      * 将以度为单位测量的角度转换为以弧度为单位测量的近似等效角度。
-     *
+     * <p>
      * 从度数到弧度的转换通常是不精确的。
-     *
+     * <p>
      * 参数
-     *      angdeg - 角度，以度为单位
+     * angdeg - 角度，以度为单位
      * 结果
-     *      以弧度为单位测量角度 angdeg
+     * 以弧度为单位测量角度 angdeg
      */
     @Test
     public void toRadiansTest() {
@@ -110,26 +110,26 @@ public class MathTest {
 
     /**
      * 将以弧度测量的角度转换为以度为单位测量的近似等效角度。
-     *
+     * <p>
      * 从弧度到度数的转换通常是不精确的; 用户不应该指望cos(toRadians(90.0))恰好等于0.0 。
      * 参数
-     *      angrad - 角度，以弧度表示
+     * angrad - 角度，以弧度表示
      * 结果
-     *      以度为单位测量角度 angrad
+     * 以度为单位测量角度 angrad
      */
     @Test
     public void toDegrees() {
         System.out.println(Math.toDegrees(1.5707963267948966));
         System.out.println(Math.cos(Math.toDegrees(1.5707963267948966)));
-        System.out.println(Math.PI/2);
+        System.out.println(Math.PI / 2);
     }
 
     /**
      * 返回欧拉数e为底的双精度值次幂。特殊情况：
-     * 	如果参数为NaN，那么结果为NaN。
-     * 	如果参数为正无穷大，那么结果为正无穷大。
-     * 	如果参数为负无穷大，那么结果是正零。
-     * 	计算结果必须在1 ulp 的确切结果。结果必须具有半单调。
+     * 如果参数为NaN，那么结果为NaN。
+     * 如果参数为正无穷大，那么结果为正无穷大。
+     * 如果参数为负无穷大，那么结果是正零。
+     * 计算结果必须在1 ulp 的确切结果。结果必须具有半单调。
      */
     @Test
     public void expTest() {
@@ -159,11 +159,11 @@ public class MathTest {
      * 如果参数为正零或负零，则结果为负无穷大。
      * 如果参数等于10 n，用于整数n，则结果为n。
      * 计算结果必须在精确结果的1 ulp范围内。 结果必须是半单调的。
-     *
+     * <p>
      * 参数
      * a - 一个值
      * 结果
-     * 基数为10的对数为 a 
+     * 基数为10的对数为 a
      */
     @Test
     public void log10Test() {
@@ -192,10 +192,10 @@ public class MathTest {
 
     /**
      * 返回double值的立方根，特殊情况
-     *  如果参数是NaN，则结果为NaN。
-     *  如果参数是无穷大，则结果是无穷大，其符号与参数相同。
-     *  如果参数为零，则结果为零，其参数符号相同。
-     *  计算结果必须在精确结果的1 ulp范围内
+     * 如果参数是NaN，则结果为NaN。
+     * 如果参数是无穷大，则结果是无穷大，其符号与参数相同。
+     * 如果参数为零，则结果为零，其参数符号相同。
+     * 计算结果必须在精确结果的1 ulp范围内
      */
     @Test
     public void cbrtTest() {
@@ -216,15 +216,15 @@ public class MathTest {
      */
     @Test
     public void IEEEremainder() {
-        System.out.println(Math.IEEEremainder(10,6));
+        System.out.println(Math.IEEEremainder(10, 6));
     }
 
     /**
      * 返回大于或等于参数且等于最小整数的double值，特殊情况
-     *  如果参数值已经等于数学整数，则结果与参数相同。
-     *  如果参数为NaN或无穷大或正零或负零，则结果与参数相同。
-     *  如果参数值小于零但大于-1.0，则结果为负零。
-     *  需要注意的是Math.ceil(x)正是-Math.floor(-x)
+     * 如果参数值已经等于数学整数，则结果与参数相同。
+     * 如果参数为NaN或无穷大或正零或负零，则结果与参数相同。
+     * 如果参数值小于零但大于-1.0，则结果为负零。
+     * 需要注意的是Math.ceil(x)正是-Math.floor(-x)
      */
     @Test
     public void ceilTest() {
@@ -233,12 +233,12 @@ public class MathTest {
 
     /**
      * 返回小于或等于参数且等于数学整数的最大值（最接近正无穷大） double 。 特别：
-     *      如果参数值已经等于数学整数，则结果与参数相同。
-     *      如果参数为NaN或无穷大或正零或负零，则结果与参数相同。
+     * 如果参数值已经等于数学整数，则结果与参数相同。
+     * 如果参数为NaN或无穷大或正零或负零，则结果与参数相同。
      * 参数
-     *      a - 一个值。
+     * a - 一个值。
      * 结果
-     *      最大（最接近正无穷大）浮点值，小于或等于参数且等于数学整数
+     * 最大（最接近正无穷大）浮点值，小于或等于参数且等于数学整数
      */
     @Test
     public void floorTest() {
@@ -248,12 +248,12 @@ public class MathTest {
     /**
      * 返回与double值最接近的double值，该值等于数学整数。
      * 如果两个double是数学整数的值同样接近，则结果是偶数的整数值。 特殊情况：
-     *      如果参数值已经等于数学整数，则结果与参数相同。
-     *      如果参数为NaN或无穷大或正零或负零，则结果与参数相同。
+     * 如果参数值已经等于数学整数，则结果与参数相同。
+     * 如果参数为NaN或无穷大或正零或负零，则结果与参数相同。
      * 参数
-     *      a - 值 double 。
+     * a - 值 double 。
      * 结果
-     *      最接近 a浮点值，等于数学整数
+     * 最接近 a浮点值，等于数学整数
      */
     @Test
     public void rintTest() {
@@ -265,26 +265,26 @@ public class MathTest {
     /**
      * 返回第二参数作为第一个参数的幂值
      * 参数
-     *      a - 基数。
-     *      b - 指数。
+     * a - 基数。
+     * b - 指数。
      * 结果
-     *      a的b次方值
+     * a的b次方值
      */
     @Test
     public void powTest() {
-        System.out.println(Math.pow(2,3));
+        System.out.println(Math.pow(2, 3));
     }
 
 
     /**
      * 返回与参数四舍五入后最接近的int值，特殊情况
-     *      如果参数为NaN，则结果为0。
-     *      如果参数为负无穷大或任何小于或等于Integer.MIN_VALUE的值，则结果等于Integer.MIN_VALUE的值。
-     *      如果参数为正无穷大或任何大于或等于Integer.MAX_VALUE的值，则结果等于Integer.MAX_VALUE的值。
+     * 如果参数为NaN，则结果为0。
+     * 如果参数为负无穷大或任何小于或等于Integer.MIN_VALUE的值，则结果等于Integer.MIN_VALUE的值。
+     * 如果参数为正无穷大或任何大于或等于Integer.MAX_VALUE的值，则结果等于Integer.MAX_VALUE的值。
      * 参数
-     *      a - 要舍入为整数的浮点值。
+     * a - 要舍入为整数的浮点值。
      * 结果
-     *      参数的值四舍五入到最接近的 int值
+     * 参数的值四舍五入到最接近的 int值
      */
     @Test
     public void round() {
@@ -308,7 +308,7 @@ public class MathTest {
      */
     @Test
     public void addExactTest() {
-        System.out.println(Math.addExact(10,10));
+        System.out.println(Math.addExact(10, 10));
 
         long l = Math.addExact(10l, 10l);
     }
@@ -319,9 +319,9 @@ public class MathTest {
      */
     @Test
     public void subtractExactTest() {
-        int a = Math.subtractExact(10,1);
+        int a = Math.subtractExact(10, 1);
         assert a == 9;
-        int a1 = Math.subtractExact(10,-1);
+        int a1 = Math.subtractExact(10, -1);
         assert a1 == 11;
 
         long a2 = Math.subtractExact(10l, 1l);
@@ -332,11 +332,11 @@ public class MathTest {
      */
     @Test
     public void multiplyExact() {
-        int a = Math.multiplyExact(10,2);
+        int a = Math.multiplyExact(10, 2);
         assert a == 20;
-        
+
         long a1 = Math.multiplyExact(1l, 2l);
-        
+
         long a2 = Math.multiplyExact(1l, 10);
     }
 
@@ -348,7 +348,7 @@ public class MathTest {
     public void incrementExact() {
         int a = Math.incrementExact(10);
         assert a == 11;
-        
+
         long b = Math.incrementExact(10l);
     }
 
@@ -373,7 +373,7 @@ public class MathTest {
 
         int b = Math.negateExact(-10);
         assert b == 10;
-        
+
         long c = Math.negateExact(10);
     }
 
@@ -391,7 +391,7 @@ public class MathTest {
      */
     @Test
     public void multiplyFull() {
-        long a = Math.multiplyFull(10,2);
+        long a = Math.multiplyFull(10, 2);
     }
 
     /**
@@ -410,7 +410,7 @@ public class MathTest {
      * 有一种特殊情况，如果被除数是Integer.MIN_VALUE且除数是-1 ，则发生整数溢出，结果等于Integer.MIN_VALUE 。
      * 正整数除法在舍入到零舍入模式（截断）下操作。 相反，该操作在朝向负无穷大（地板）舍入模式的轮次下起作用。
      * 当精确结果为负时，地板舍入模式会提供截断的不同结果。
-     *
+     * <p>
      * 如果参数的符号相同，则floorDiv和/运算符的结果相同。
      * 例如， floorDiv(4, 3) == 1和(4 / 3) == 1 。
      * 如果参数的符号不同，则商为负， floorDiv返回小于或等于商的整数， /运算符返回最接近零的整数。
@@ -423,22 +423,22 @@ public class MathTest {
      */
     @Test
     public void floorDiv() {
-        System.out.println(Math.floorDiv(10,3));
+        System.out.println(Math.floorDiv(10, 3));
     }
 
 
     /**
      * 返回第一个参数除第二参数的余数
-     *
+     * <p>
      * floorMod为x - (floorDiv(x, y) * y) ，与除数y具有相同的符号，并且在-abs(y) < r < +abs(y)的范围内。
-     *
+     * <p>
      * floorDiv和floorMod之间的关系floorDiv ：
-     *
+     * <p>
      * floorDiv(x, y) * y + floorMod(x, y) == x
      * 在之间的值的差floorMod和%操作者是由于之间的差floorDiv返回小于或等于商和整数/操作者返回最接近零的整数。
-     *
+     * <p>
      * 例子：
-     *
+     * <p>
      * 如果参数的符号相同，则floorMod和%运算符的结果相同。
      * floorMod(4, 3) == 1 ; 和(4 % 3) == 1
      * 如果参数的符号不同，则结果与%运算符不同。
@@ -449,10 +449,10 @@ public class MathTest {
      */
     @Test
     public void floorMod() {
-        int a = Math.floorMod(10,2);
+        int a = Math.floorMod(10, 2);
         assert a == 0;
 
-        int b = Math.floorMod(10,3);
+        int b = Math.floorMod(10, 3);
         assert b == 1;
 
         System.out.println(4 % -3);
@@ -477,7 +477,7 @@ public class MathTest {
      */
     @Test
     public void maxTest() {
-        System.out.println(Math.max(0,-0));
+        System.out.println(Math.max(0, -0));
         System.out.println(Math.max(0.0, -0.0));
     }
 
@@ -486,18 +486,17 @@ public class MathTest {
      * 前两个参数的乘积加上第三个参数的值。然后舍入一次到最接近的double。使用round to nearest even rounding mode完成舍入。
      * 相反，如果a * b + c被评估为常规浮点表达式，则涉及两个舍入误差，第一个用于乘法运算，第二个用于加法运算。
      * 特别情况：
-     *
+     * <p>
      * 如果任何参数是NaN，则结果为NaN。
      * 如果前两个参数中的一个是无穷大而另一个是零，则结果为NaN。
      * 如果前两个参数的确切乘积是无穷大的（换句话说，至少有一个参数是无穷大而另一个既不是零也不是NaN），第三个参数是相反符号的无穷大，结果是NaN。
      * 请注意， fma(a, 1.0, c)返回与（ a + c ）相同的结果。 然而， fma(a, b, +0.0) 并不总是返回相同的结果为（ a * b ），因为fma(-0.0, +0.0, +0.0)为+0.0
      * ，而（ -0.0 * +0.0 ）为-0.0 ; fma(a, b, -0.0)相当于（ a * b ）。
-     *
      */
     @Test
     public void fmaTest() {
         System.out.println(Math.fma(0.0, -0.0, -0.0));
-        System.out.println(Math.fma(-0.0, 0.0 , 0.0));
+        System.out.println(Math.fma(-0.0, 0.0, 0.0));
         System.out.println(0.0 * -0.0);
     }
 
@@ -514,7 +513,7 @@ public class MathTest {
     /**
      * 返回参数的正负数。
      * 如果参数为零，则为零;如果参数大于零，则为1.0;如果参数小于零，则为-1.0。
-     *
+     * <p>
      * 特别情况：
      * 如果参数是NaN，则结果为NaN。
      * 如果参数为正零或负零，则结果与参数相同
@@ -528,12 +527,12 @@ public class MathTest {
     /**
      * 返回double值的双曲正弦值。 x的双曲正弦定义为（ e x -e -x ）/ 2，其中e是Euler's number 。
      * 特别案例：
-     *
+     * <p>
      * 如果参数是NaN，则结果为NaN。
      * 如果参数是无穷大，则结果是无穷大，其符号与参数相同。
      * 如果参数为零，则结果为零，其参数符号相同。
      * 计算结果必须在精确结果的2.5 ulps范围内。
-     *
+     * <p>
      * 参数
      * x - 要返回双曲正弦的数字。
      * 结果
@@ -541,19 +540,19 @@ public class MathTest {
      */
     @Test
     public void sinhTest() {
-        
+
     }
 
 
     /**
      * 返回double值的双曲余弦值。 x的双曲余弦定义为（ e x + e -x ）/ 2，其中e是Euler's number 。
      * 特别案例：
-     *
+     * <p>
      * 如果参数是NaN，则结果为NaN。
      * 如果参数是无穷大的，那么结果就是正无穷大。
      * 如果参数为零，则结果为1.0 。
      * 计算结果必须在精确结果的2.5 ulps范围内。
-     *
+     * <p>
      * 参数
      * x - 要返回双曲余弦值的数字。
      * 结果
@@ -561,37 +560,37 @@ public class MathTest {
      */
     @Test
     public void cosh() {
-        
+
     }
 
     /**
      * 返回double值的双曲正切值。 x的双曲正切定义为（ e x -e -x ）/（ e x + e -x ），换句话说， sinh(x) / cosh(x) 。 请注意，精确tanh的绝对值始终小于1。
      * 特别案例：
-     *
+     * <p>
      * 如果参数是NaN，则结果为NaN。
      * 如果参数为零，则结果为零，其参数符号相同。
      * 如果参数为正无穷大，则结果为+1.0 。
      * 如果参数为负无穷大，则结果为-1.0 。
      * 计算结果必须在精确结果的2.5 ulps范围内。 任何有限输入的tanh的结果必须具有小于或等于1的绝对值。注意，一旦tanh的确切结果在±1的极限值的ulp的1/2内，正确签名Â± 1.0应该退还。
-     *
+     * <p>
      * 参数
      * x - 要返回双曲正切的数字。
      * 结果
-     * 双曲正切 x 
+     * 双曲正切 x
      */
     @Test
     public void tanh() {
-        
+
     }
 
     /**
      * 返回sqrt（ x的2次方 + y的2次方 ），没有中间溢出或下溢。
      * 特别案例：
-     *
+     * <p>
      * 如果任一参数是无穷大，则结果为正无穷大。
      * 如果任一参数是NaN且两个参数都不是无穷大，则结果为NaN。
      * 计算结果必须在精确结果的1 ulp范围内。 如果一个参数保持不变，则结果必须在另一个参数中是半单调的。
-     *
+     * <p>
      * 参数
      * x - 一个值
      * y - 一个值
@@ -600,20 +599,20 @@ public class MathTest {
      */
     @Test
     public void hypot() {
-        System.out.println(Math.hypot(2,2));
+        System.out.println(Math.hypot(2, 2));
     }
 
 
     /**
      * 返回e x -1。 请注意，对于接近0的x值， expm1(x) + 1的精确和更接近e x的真实结果，而不是exp(x) 。
      * 特别案例：
-     *
+     * <p>
      * 如果参数是NaN，则结果为NaN。
      * 如果参数是正无穷大，那么结果是正无穷大。
      * 如果参数为负无穷大，则结果为-1.0。
      * 如果参数为零，则结果为零，其参数符号相同。
      * 计算结果必须在精确结果的1 ulp范围内。 结果必须是半单调的。 任何有限输入的结果expm1必须大于或等于-1.0 。 请注意，一旦e x - 1的确切结果在极限值-1的1/2 ulp范围内，则应返回-1.0 。
-     *
+     * <p>
      * 参数
      * x - 在计算 e x -1时将 e提高到的指数。
      * 结果
@@ -628,13 +627,13 @@ public class MathTest {
     /**
      * 返回参数之和1注的自然对数，对于小值x ，结果log1p(x)更接近LN（1 +的真实结果x ），比的浮点评估log(1.0+x) 。
      * 特别案例：
-     *
+     * <p>
      * 如果参数为NaN或小于-1，则结果为NaN。
      * 如果参数是正无穷大，那么结果是正无穷大。
      * 如果参数为负数，则结果为负无穷大。
      * 如果参数为零，则结果为零，其参数符号相同。
      * 计算结果必须在精确结果的1 ulp范围内。 结果必须是半单调的。
-     *
+     * <p>
      * 参数
      * x - 一个值
      * 结果
@@ -642,7 +641,7 @@ public class MathTest {
      */
     @Test
     public void log1p() {
-        
+
     }
 
 
@@ -671,13 +670,13 @@ public class MathTest {
      */
     @Test
     public void getExponent() {
-        
+
     }
 
     /**
      * 返回第二个参数方向上第一个参数旁边的浮点数。 如果两个参数比较相等，则返回第二个参数。
      * 特别案例：
-     *
+     * <p>
      * 如果任一参数是NaN，则返回NaN。
      * 如果两个参数都是带符号的零，则返回direction不变（如果参数比较相等，则返回第二个参数的要求暗示）。
      * 如果start是± Double.MIN_VALUE且direction具有使得结果应具有较小幅度的值，则返回与start具有相同符号的零。
@@ -702,7 +701,7 @@ public class MathTest {
     /**
      * 返回正无穷大方向上与d相邻的浮点值。 此方法在语义上等效于nextAfter(d, Double.POSITIVE_INFINITY) ; 但是， nextUp实现可能比其等效的nextAfter调用运行得更快。
      * 特别案例：
-     *
+     * <p>
      * 如果参数是NaN，则结果为NaN。
      * 如果参数为正无穷大，则结果为正无穷大。
      * 如果参数为零，则结果为Double.MIN_VALUE
@@ -713,14 +712,14 @@ public class MathTest {
      */
     @Test
     public void nextUp() {
-        
+
     }
 
 
     /**
      * 返回负无穷大方向上与d相邻的浮点值。 此方法在语义上等效于nextAfter(d, Double.NEGATIVE_INFINITY) ; 但是， nextDown实现可能比其等效的nextAfter调用运行得更快。
      * 特别案例：
-     *
+     * <p>
      * 如果参数是NaN，则结果为NaN。
      * 如果参数为负无穷大，则结果为负无穷大。
      * 如果参数为零，则结果为-Double.MIN_VALUE
@@ -731,17 +730,17 @@ public class MathTest {
      */
     @Test
     public void nextDown() {
-        
+
     }
 
 
     /**
-     * @see Math#scalb(float, int) 
-     * @see Math#scalb(double, int) 
+     * @see Math#scalb(float, int)
+     * @see Math#scalb(double, int)
      */
     @Test
     public void scalb() {
-        
+
     }
 
 

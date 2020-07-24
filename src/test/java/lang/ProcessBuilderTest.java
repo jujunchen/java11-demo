@@ -40,14 +40,14 @@ public class ProcessBuilderTest {
 
     /**
      * 返回此流程构建器的工作目录。
-     *
+     * <p>
      * 随后由此对象启动的子进程的start()方法将使用此作为其工作目录。
-     *
+     * <p>
      * 返回的值可能是null - 这意味着使用当前Java进程的工作目录，通常是系统属性user.dir指定的目录，作为子进程的工作目录。
      */
     @Test
     public void directory() throws IOException {
-        ProcessBuilder processBuilder = new ProcessBuilder("java","-version");
+        ProcessBuilder processBuilder = new ProcessBuilder("java", "-version");
         processBuilder.start();
         //设置工作目录前是null
         File file = processBuilder.directory();
@@ -63,16 +63,16 @@ public class ProcessBuilderTest {
 
     /**
      * 设置此流程构建器的标准输入源。
-     *
+     * <p>
      * 随后由此对象的start()方法启动的子进程从此源获取其标准输入。
-     *
+     * <p>
      * 如果源是Redirect.PIPE （初始值），则可以使用Process.getOutputStream()返回的输出流写入子进程的标准输入。 如果源设置为任何其他值，则Process.getOutputStream()
-     *
+     * <p>
      * 将返回null output stream 。
-     *
+     * <p>
      * 参数
-     *      source - 新的标准输入源
-     *
+     * source - 新的标准输入源
+     * <p>
      * https://www.cnblogs.com/mistor/p/6129682.html
      */
     @Test

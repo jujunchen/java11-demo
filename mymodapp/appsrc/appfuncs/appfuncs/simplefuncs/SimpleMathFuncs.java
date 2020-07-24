@@ -7,8 +7,8 @@ package appfuncs.simplefuncs;
 public class SimpleMathFuncs {
 
     public static boolean isFactor(int a, int b) {
-        if((b % a) == 0) return true;
-        return false ;
+        if ((b % a) == 0) return true;
+        return false;
     }
 
     public static int lcf(int a, int b) {
@@ -17,7 +17,7 @@ public class SimpleMathFuncs {
 
         int min = a < b ? a : b;
 
-        for (int i = 2; i < min/2; i++) {
+        for (int i = 2; i < min / 2; i++) {
             if (isFactor(i, a) && isFactor(i, b))
                 return i;
         }
@@ -31,7 +31,7 @@ public class SimpleMathFuncs {
 
         int min = a < b ? a : b;
 
-        for (int i = min/2; i >= 2; i--) {
+        for (int i = min / 2; i >= 2; i--) {
             if (isFactor(i, a) && isFactor(i, b))
                 return i;
         }

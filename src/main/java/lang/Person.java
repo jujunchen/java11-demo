@@ -10,7 +10,7 @@ import java.util.Objects;
 @JavaBean(description = "Person.class")
 @Name
 @Car
-public class Person implements Animal{
+public class Person implements Animal {
     public String name;
     public int age;
     private String address;

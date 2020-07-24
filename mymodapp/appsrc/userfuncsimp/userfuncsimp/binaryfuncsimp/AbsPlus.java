@@ -4,6 +4,7 @@ import userfuncs.binaryfuncs.BinaryFunc;
 
 /**
  * 两数绝对值之和的实现
+ *
  * @author jujun chen
  * @date 2020/05/20
  */

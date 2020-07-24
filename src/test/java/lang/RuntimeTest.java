@@ -83,7 +83,7 @@ public class RuntimeTest {
         //Process process = runtime.exec("ls");
 
         //指定命名，和命令参数
-        Process process = runtime.exec(new String[]{"ls","-l"});
+        Process process = runtime.exec(new String[]{"ls", "-l"});
 
         //在指定环境配置的单独进程中执行指定的字符串命令
         //command - 指定的系统命令。
@@ -153,7 +153,7 @@ public class RuntimeTest {
     public void maxMemory() {
         System.out.println(Runtime.getRuntime().maxMemory());
     }
-    
+
     @Test
     public void runFinalization() throws InterruptedException {
 
@@ -175,9 +175,8 @@ public class RuntimeTest {
         //会执行finalize方法
 //        System.gc();
     }
-    
-    
-    
+
+
     @Test
     public void load() {
         //加载filename参数指定的本机库。 filename参数必须是绝对路径名    

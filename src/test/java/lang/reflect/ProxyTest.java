@@ -12,7 +12,7 @@ public class ProxyTest {
 
     /**
      * 返回指定接口的代理实例
-     *
+     * <p>
      * 如果违法一下规定，则抛出IllegalArgumentException
      * 给定interfaces数组中的所有类对象必须表示接口，而不是类或基本类型。
      * interfaces数组中两个元素不可以引用相同的类对象。
@@ -44,7 +44,7 @@ public class ProxyTest {
      */
     @Test
     public void getInvocationHandler() {
-        
+
     }
 
     //todo 目前报错

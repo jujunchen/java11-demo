@@ -47,7 +47,7 @@ public class EnumTest {
 
     /**
      * 通过枚举常量的序号来比较
-     * 
+     * <p>
      * 返回负整数，零或正整数，对应对象小于，等于或大于指定对象
      */
     @Test
@@ -58,9 +58,9 @@ public class EnumTest {
 
     /**
      * 返回与此枚举常量的枚举类型对应的Class对象。
-     *
+     * <p>
      * 当且仅当e1.getDeclaringClass（）== e2.getDeclaringClass（）时，两个枚举常量e1和e2具有相同的枚举类型。
-     *
+     * <p>
      * （此方法返回的值可能与Object.getClass()方法返回的值不同，对于具有常量特定类主体的枚举常量。）
      */
     @Test
@@ -75,7 +75,7 @@ public class EnumTest {
      */
     @Test
     public void valueOf() {
-            assert Status.valueOf(Status.class, "CLOSE").equals(Status.CLOSE);
+        assert Status.valueOf(Status.class, "CLOSE").equals(Status.CLOSE);
     }
 
 }

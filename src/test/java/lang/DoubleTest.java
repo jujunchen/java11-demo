@@ -22,7 +22,7 @@ public class DoubleTest {
 
     /**
      * 返回double参数的十六进制字符串
-     *
+     * <p>
      * 如果参数为NaN，则结果为字符串“ NaN ”。
      * 否则，结果是一个表示参数的符号和大小的字符串。 如果符号为负，则结果的第一个字符为' - '（ '\u002D' ）; 如果符号为正，则结果中不会出现符号字符。 至于幅度m ：
      * 如果m是无穷大，则由字符串"Infinity"表示; 因此，正无穷大产生结果"Infinity" ，负无穷大产生结果"-Infinity" 。
@@ -39,7 +39,7 @@ public class DoubleTest {
         double d1 = 3.0;
         System.out.println(Double.toHexString(d1));
     }
-    
+
     @Test
     public void valueOf() {
         /*
@@ -67,19 +67,18 @@ public class DoubleTest {
     }
 
 
-
     @Test
     public void isNaN() {
         /*
          * 如果指定的号码不是一个正确的数字，返回true
          */
-        Double d = Double.valueOf(0.0/0.0);
+        Double d = Double.valueOf(0.0 / 0.0);
         assert Double.isNaN(d);
 
         /*
         如果此Double值不是一个正确的数字，返回true
          */
-        Double d2 = Double.valueOf(0.0/0.0);
+        Double d2 = Double.valueOf(0.0 / 0.0);
         assert d2.isNaN();
     }
 
@@ -93,7 +92,7 @@ public class DoubleTest {
         assert !Double.isInfinite(d);
         assert !d.isInfinite();
 
-        Double d1 = Double.valueOf(-1.0/0.0);
+        Double d1 = Double.valueOf(-1.0 / 0.0);
         assert Double.isInfinite(d1);
         assert d1.isInfinite();
     }
@@ -114,7 +113,7 @@ public class DoubleTest {
         assert !Double.isFinite(d2);
 
         //无穷大
-        Double d3 = Double.valueOf(-1.0/0.0);
+        Double d3 = Double.valueOf(-1.0 / 0.0);
         assert !Double.isFinite(d3);
     }
 
@@ -177,9 +176,9 @@ public class DoubleTest {
 
     /**
      * 返回此Double对象的哈希码。 结果是由该Double对象表示的原始double值的long整数位表示的两半的异或，完全由方法doubleToLongBits(double)产生。 也就是说，哈希码是表达式的值：
-     *      (int)(v^(v>>>32))
+     * (int)(v^(v>>>32))
      * 其中v的定义是：
-     *      long v = Double.doubleToLongBits(this.doubleValue());
+     * long v = Double.doubleToLongBits(this.doubleValue());
      */
     @Test
     public void hashCode1() {
@@ -197,11 +196,11 @@ public class DoubleTest {
     /**
      * 将此对象与指定的对象进行比较。 结果为true当且仅当参数不是null且是Double对象时，该对象表示与此对象表示的double具有相同值的double 。
      * 为此目的，当且仅当方法doubleToLongBits(double)在应用于每个时返回相同的long值时，才认为两个double值相同。
-     *
+     * <p>
      * 请注意，在大多数情况下，类的两个实例Double ， d1和d2 ，d1.equals(d2)为true当且仅当d1.doubleValue() == d2.doubleValue()也为true 。
-     *
+     * <p>
      * 但是，有两个例外：
-     *
+     * <p>
      * 如果d1和d2均表示Double.NaN ，则equals方法返回true ，但Double.NaN==Double.NaN的值为false 。
      * 如果d1代表+0.0而d2代表-0.0 ，反之亦然， equal测试的值为false ，即使+0.0==-0.0的值为true 。
      * 此定义允许哈希表正常运行。
@@ -218,13 +217,13 @@ public class DoubleTest {
 
     /**
      * 以数字方式比较两个Double对象。
-     *
+     * <p>
      * 当应用于原始double值时，此方法执行的比较有两种方式与Java语言数值比较运算符（ <, <=, ==, >=, > ）执行的比较不同：
-     *
+     * <p>
      * 此方法认为Double.NaN等于其自身且大于所有其他double值（包括Double.POSITIVE_INFINITY ）。
-     *
+     * <p>
      * 0.0d通过该方法被认为是大于-0.0d 。
-     *
+     * <p>
      * 这确保了此方法强加的Double对象的自然顺序 与equals一致
      */
     @Test

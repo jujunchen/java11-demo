@@ -10,8 +10,8 @@ import java.text.ChoiceFormat;
  */
 public class ChoiceFormatTest {
 
-    double[] limits = {1,2,3,4,5,6,7};
-    String[] dayOfWeekNames = {"Sun","Mon","Tue","Wed","Thur","Fri","Sat"};
+    double[] limits = {1, 2, 3, 4, 5, 6, 7};
+    String[] dayOfWeekNames = {"Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"};
     ChoiceFormat form = new ChoiceFormat(limits, dayOfWeekNames);
 
     @Test

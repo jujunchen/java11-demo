@@ -16,7 +16,7 @@ public class ThreadGroupTest {
     @Test
     public void getMaxPriority() throws InterruptedException {
         System.out.println(threadGroup.getMaxPriority());
-        Thread thread = new Thread(threadGroup,() -> System.out.println("This is a thead"));
+        Thread thread = new Thread(threadGroup, () -> System.out.println("This is a thead"));
         //只能1-10
 //        thread.setPriority(20);
         System.out.println(threadGroup.getMaxPriority());
@@ -53,8 +53,10 @@ public class ThreadGroupTest {
     public void enumerate() {
 
         /*
-        将此线程组中的每个活动线程复制到指定的数组中。 如果recurse是true ，则此方法以递归方式枚举此线程组的所有子组，并且还包括对这些子组中每个活动线程的引用。 如果数组太短而无法容纳所有线程，则会以静默方式忽略额外的线程。
-        应用程序可能会使用activeCount方法来估计数组应该有多大，但是如果数组太短而无法容纳所有线程，则会以静默方式忽略额外的线程。 如果获取此线程组中的每个活动线程至关重要，则调用者应验证返回的int值是否严格小于list的长度。
+        将此线程组中的每个活动线程复制到指定的数组中。 如果recurse是true ，则此方法以递归方式枚举此线程组的所有子组，并且还包括对这些子组中每个活动线程的引用。
+        如果数组太短而无法容纳所有线程，则会以静默方式忽略额外的线程。
+        应用程序可能会使用activeCount方法来估计数组应该有多大，但是如果数组太短而无法容纳所有线程，则会以静默方式忽略额外的线程。
+        如果获取此线程组中的每个活动线程至关重要，则调用者应验证返回的int值是否严格小于list的长度。
 
         由于此方法存在固有的竞争条件，因此建议仅将该方法用于调试和监视目的。
 
@@ -68,7 +70,7 @@ public class ThreadGroupTest {
 
     @Test
     public void activeGroupCount() {
-        Thread thread = new Thread(threadGroup,() -> {
+        Thread thread = new Thread(threadGroup, () -> {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {

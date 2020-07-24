@@ -78,11 +78,11 @@ public class ClassTest {
     /**
      * 创建Class对象的实例
      * 会执行无参构造器
-     *
+     * <p>
      * 在jdk9中过期，使用clazz.getDeclaredConstructor().newInstance()替换
      */
     @Test
-    public void newInstance() throws Exception{
+    public void newInstance() throws Exception {
 
         Class chinesePeople = Class.forName("lang.ChinesePeople");
         ChinesePeople chinesePeople2 = (ChinesePeople) chinesePeople.newInstance();
@@ -105,7 +105,7 @@ public class ClassTest {
     public void isAssignableFrom() throws ClassNotFoundException {
 
         Class chinesePeople = Class.forName("lang.ChinesePeople");
-        assert  chinesePeople.isAssignableFrom(ChinesePeople.class);
+        assert chinesePeople.isAssignableFrom(ChinesePeople.class);
         assert Person.class.isAssignableFrom(chinesePeople);
         assert !chinesePeople.isAssignableFrom(Person.class);
     }
@@ -159,9 +159,9 @@ public class ClassTest {
     /**
      * 返回此类对象表示的实体名称（类，接口，数组类，基本类型或void）
      * 如果此类对象表示不是数组类型的引用类型，则返回该类的二进制名称，如The Java™ Language Specification所指定。
-     *
+     * <p>
      * 如果此类对象表示基本类型或void，则返回的名称是String等于与基本类型或void对应的Java语言关键字。
-     *
+     * <p>
      * 如果此类对象表示一个数组类，则该名称的内部形式由元素类型的名称组成，前面是一个或多个表示数组嵌套深度的“ [ ”字符。
      */
     @Test
@@ -260,12 +260,12 @@ public class ClassTest {
     /**
      * 返回完全限定的包名称。
      * 如果此类是顶级类，则此方法返回该类所属的包的完全限定名称，如果该类位于未命名的包中，则返回空字符串。
-     *
+     * <p>
      * 如果该类是一个成员的类，则此方法等效于调用getPackageName()上enclosing class 。
-     *
+     * <p>
      * 如果该类是local class或anonymous class ，则此方法等效于调用getPackageName()上declaring class的的enclosing method或enclosing
      * constructor 。
-     *
+     * <p>
      * 如果此类表示数组类型，则此方法返回元素类型的包名称。 如果此类表示基本类型或void，则返回包名“ java.lang ”。
      */
     @Test
@@ -279,11 +279,11 @@ public class ClassTest {
 
     /**
      * 返回此类的接口
-     *
+     * <p>
      * 如果此对象表示类，则返回值是一个数组，其中包含表示该类直接实现的所有接口的对象。
-     *
+     * <p>
      * 数组中接口对象的顺序对应于此对象所表示的类的声明的implements子句中的接口名称的顺序。 例如，鉴于声明：
-     *
+     * <p>
      * class Shimmer implements FloorWax, DessertTopping { ... }
      * 假设的值s是实例Shimmer ; 表达式的值：
      * s.getClass().getInterfaces()[0]
@@ -291,11 +291,11 @@ public class ClassTest {
      * s.getClass().getInterfaces()[1]
      * 是类对象，表示接口DessertTopping 。
      * 如果此对象表示接口，则该数组包含表示由接口直接扩展的所有接口的对象。 数组中接口对象的顺序对应于此对象表示的接口声明的extends子句中接口名称的顺序。
-     *
+     * <p>
      * 如果此对象表示不实现接口的类或接口，则该方法返回长度为0的数组。
-     *
+     * <p>
      * 如果此对象表示基本类型或void，则该方法返回长度为0的数组。
-     *
+     * <p>
      * 如果此类对象表示阵列类型， Cloneable顺序返回接口Cloneable和java.io.Serializable 。
      */
     @Test
@@ -320,7 +320,7 @@ public class ClassTest {
 
     /**
      * 返回表示数组的组件类型的类 。
-     *
+     * <p>
      * 如果此类不表示数组类，则此方法返回null
      */
     @Test
@@ -365,7 +365,8 @@ public class ClassTest {
     @Test
     public void getEnclosingMethod() {
 
-        Runnable runnable = ()->{};
+        Runnable runnable = () -> {
+        };
         Method method = runnable.getClass().getEnclosingMethod();
         System.out.println(method.getName());
     }
@@ -380,8 +381,10 @@ public class ClassTest {
 
         class OuterClass {
             public Object test;
+
             public OuterClass() {
-                class InnerClass {}
+                class InnerClass {
+                }
                 test = new InnerClass();
             }
         }
@@ -409,7 +412,8 @@ public class ClassTest {
     @Test
     public void getEnclosingClass() {
 
-        Runnable runnable = ()->{};
+        Runnable runnable = () -> {
+        };
         Class cls = runnable.getClass().getEnclosingClass();
         assert cls == null;
         Class cls2 = ChinesePeople.ZjPeople.class.getEnclosingClass();
@@ -446,14 +450,17 @@ public class ClassTest {
     @Test
     public void getCanonicalName() {
 
-        Runnable runnable = () -> {};
+        Runnable runnable = () -> {
+        };
 
         System.out.println(runnable.getClass().getCanonicalName());
 
         class OuterClass {
             public Object test;
+
             public OuterClass() {
-                class InnerClass {}
+                class InnerClass {
+                }
                 test = new InnerClass();
             }
         }
@@ -509,7 +516,8 @@ public class ClassTest {
     public void getClasses() {
 
         class OuterClass {
-             class InnerClass {}
+            class InnerClass {
+            }
         }
         System.out.println(Arrays.toString(ChinesePeople.class.getClasses()));
         System.out.println(Arrays.toString(ChinesePeople.ZjPeople.class.getClasses()));
@@ -519,13 +527,13 @@ public class ClassTest {
     /**
      * 返回一个包含字段对象的数组， 字段对象反映此类对象所表示的类或接口的所有可访问公共字段。
      * 如果此类对象表示没有可访问的公共字段的类或接口，则此方法返回长度为0的数组。
-     *
+     * <p>
      * 如果此类对象表示一个类，则此方法返回该类及其所有超类和超接口的公共字段。
-     *
+     * <p>
      * 如果此类对象表示接口，则此方法返回接口及其所有超接口的字段。
-     *
+     * <p>
      * 如果此类对象表示数组类型，基本类型或void，则此方法返回长度为0的数组。
-     *
+     * <p>
      * 返回数组中的元素未排序，并且不按任何特定顺序排列。
      */
     @Test
@@ -536,7 +544,7 @@ public class ClassTest {
 
     /**
      * 返回一个包含方法对象的数组， 方法对象反映此类对象所表示的类或接口的所有公共方法，
-     *
+     * <p>
      * 包括由类或接口声明的那些以及从超类和超接口继承的那些。
      */
     @Test
@@ -547,7 +555,7 @@ public class ClassTest {
 
     /**
      * 返回一个包含构造器对象的数组， 构造器对象反映了此类对象所表示的类的所有公共构造函数。
-     *
+     * <p>
      * 如果类没有公共构造函数，或者类是数组类，或者类反映了基本类型或void，则返回长度为0的数组。
      */
     @Test
@@ -560,9 +568,9 @@ public class ClassTest {
     /**
      * 返回字段对象，该对象反映此类对象表示的类或接口的指定公共成员字段。 name参数是String指定所需字段的简单名称。
      * 要反映的字段由下面的算法确定。 设C为此对象表示的类或接口：
-     *  如果C声明一个具有指定名称的公共字段，那就是要反映的字段。
-     *  如果在上面的步骤1中没有找到字段，则该算法递归地应用于C的每个直接超接口。直接超接口按它们被声明的顺序搜索。
-     *  如果在上面的步骤1和2中没有找到字段，并且C具有超类S，则在S上递归调用该算法。如果C没有超类，则抛出NoSuchFieldException 。
+     * 如果C声明一个具有指定名称的公共字段，那就是要反映的字段。
+     * 如果在上面的步骤1中没有找到字段，则该算法递归地应用于C的每个直接超接口。直接超接口按它们被声明的顺序搜索。
+     * 如果在上面的步骤1和2中没有找到字段，并且C具有超类S，则在S上递归调用该算法。如果C没有超类，则抛出NoSuchFieldException 。
      * 如果此类对象表示数组类型，则此方法找不到数组类型的length字段。
      */
     @Test
@@ -616,13 +624,13 @@ public class ClassTest {
 
     /**
      * 返回字段对象的数组， 字段对象反映由此类对象表示的类或接口声明的所有字段。
-     *
+     * <p>
      * 这包括公共，受保护，默认（包）访问和私有字段，但不包括继承的字段。
-     *
+     * <p>
      * 如果此类对象表示没有声明字段的类或接口，则此方法返回长度为0的数组。
-     *
+     * <p>
      * 如果此类对象表示数组类型，基本类型或void，则此方法返回长度为0的数组。
-     *
+     * <p>
      * 返回数组中的元素未排序，并且不按任何特定顺序排列。
      */
     @Test
@@ -634,15 +642,15 @@ public class ClassTest {
 
     /**
      * 返回一个包含方法对象的数组， 方法对象反映此类对象表示的类或接口的所有已声明方法，包括公共，受保护，默认（包）访问和私有方法，但不包括继承的方法。
-     *
+     * <p>
      * 如果此类对象表示具有多个具有相同名称和参数类型但返回类型不同的声明方法的类型，则返回的数组对于每个此类方法都有一个方法对象。
-     *
+     * <p>
      * 如果此类对象表示具有类初始化方法的类型<clinit> ，则返回的阵列不具有相应的方法对象。
-     *
+     * <p>
      * 如果此类对象表示没有声明方法的类或接口，则返回的数组的长度为0。
-     *
+     * <p>
      * 如果此类对象表示数组类型，基本类型或void，则返回的数组的长度为0。
-     *
+     * <p>
      * 返回数组中的元素未排序，并且不按任何特定顺序排列。
      */
     @Test
@@ -654,13 +662,13 @@ public class ClassTest {
 
     /**
      * 返回构造器对象的数组， 构造器对象反映由此类对象表示的类声明的所有构造函数。
-     *
+     * <p>
      * 这些是公共，受保护，默认（包）访问和私有构造函数。
-     *
+     * <p>
      * 返回的数组中的元素没有排序，也没有任何特定的顺序。
-     *
+     * <p>
      * 如果类具有默认构造函数，则它包含在返回的数组中。
-     *
+     * <p>
      * 如果此类对象表示接口，基本类型，数组类或void，则此方法返回长度为0的数组。
      */
     @Test
@@ -672,9 +680,9 @@ public class ClassTest {
 
     /**
      * 返回字段对象，该对象反映此类对象表示的类或接口的指定声明字段。不论是否公开。
-     *
+     * <p>
      * name参数是String ，它指定所需字段的简单名称。
-     *
+     * <p>
      * 如果此类对象表示数组类型，则此方法找不到数组类型的length字段。
      */
     @Test
@@ -689,15 +697,15 @@ public class ClassTest {
 
     /**
      * 返回方法对象，该对象反映此类对象所表示的类或接口的指定声明方法。
-     *
+     * <p>
      * name参数是String ，它指定所需方法的简单名称， parameterTypes参数是类对象的数组，
-     *
+     * <p>
      * 类对象按声明的顺序标识方法的形式参数类型。
-     *
+     * <p>
      * 如果在类中声明了多个具有相同参数类型的方法，并且其中一个方法的返回类型比任何其他方法更具体，则返回该方法; 否则任意选择其中一种方法。
-     *
+     * <p>
      * 如果名称为“<init>”或“<clinit>”，则引发NoSuchMethodException 。
-     *
+     * <p>
      * 如果此类对象表示数组类型，则此方法找不到clone()方法。
      */
     @Test
@@ -754,7 +762,7 @@ public class ClassTest {
     /**
      * 返回ProtectionDomain 。
      * 如果安装了安全管理器，则此方法首先使用RuntimePermission("getProtectionDomain")权限调用安全管理器的checkPermission方法，以确保可以获取ProtectionDomain 。
-     *
+     * <p>
      * 当类装载器将类型装入Java虚拟机时，它们将为每个类型指派一个保护域。
      * 保护域定义了授予一段特定代码的所有权限。（一个保护域对应策略文件中的一个或多个Grant子句。）
      * 装载入Java虚拟机的每一个类型都属于一个且仅属于一个保护域
@@ -828,7 +836,7 @@ public class ClassTest {
         JavaBean javaBean = ChinesePeople.class.getAnnotation(JavaBean.class);
         assert javaBean == null;
         Car car = ChinesePeople.class.getAnnotation(Car.class);
-        assert  car != null;
+        assert car != null;
     }
 
 
@@ -914,19 +922,19 @@ public class ClassTest {
 
     /**
      * 获取该类的接口,返回AnnotatedType类型数组
-     *
+     * <p>
      * 如果此类对象表示类，则返回值是一个数组，其中包含表示接口类型用于指定类实现的接口的对象。 数组中对象的顺序对应于此类对象的声明的“implements”子句中使用的接口类型的顺序。
-     *
+     * <p>
      * 如果此类对象表示接口，则返回值是一个数组，其中包含表示接口类型用途的对象，以指定由接口直接扩展的接口。 数组中对象的顺序对应于此类对象的声明的“extends”子句中使用的接口类型的顺序。
-     *
+     * <p>
      * 如果此类对象表示其声明未明确指示任何带注释的超接口的类或接口，则返回值为长度为0的数组。
-     *
+     * <p>
      * 如果此类对象表示Object类，数组类型，基本类型或void，则返回值是长度为0的数组。
      */
     @Test
     public void getAnnotatedInterfaces() {
         AnnotatedType[] annotatedTypes = ChinesePeople.class.getAnnotatedInterfaces();
-        assert  annotatedTypes.length == 0;
+        assert annotatedTypes.length == 0;
 
         AnnotatedType[] annotatedTypes1 = Person.class.getAnnotatedInterfaces();
         assert annotatedTypes1.length == 1;

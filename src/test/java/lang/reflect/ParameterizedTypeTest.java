@@ -22,7 +22,7 @@ public class ParameterizedTypeTest {
      */
     @Test
     public void getRawType() {
-        
+
     }
 
     /**
@@ -30,6 +30,6 @@ public class ParameterizedTypeTest {
      */
     @Test
     public void getOwnerType() {
-        
+
     }
 }

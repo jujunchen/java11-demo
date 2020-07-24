@@ -16,13 +16,13 @@ public class BigDecimalTest {
 
     @Test
     public void construct() {
-        BigDecimal bigDecimal = new BigDecimal(new char[]{'1','2','.','3'}, 1, 3);
+        BigDecimal bigDecimal = new BigDecimal(new char[]{'1', '2', '.', '3'}, 1, 3);
         System.out.println(bigDecimal.toString());
 
-        BigDecimal bigDecimal1 = new BigDecimal(new char[]{'1','2','.','5'}, 1, 3);
+        BigDecimal bigDecimal1 = new BigDecimal(new char[]{'1', '2', '.', '5'}, 1, 3);
         System.out.println(bigDecimal1.toString());
 
-        BigDecimal bigDecimal2 = new BigDecimal(new char[]{'1','2','.','5'}, 1, 3, MathContext.DECIMAL32);
+        BigDecimal bigDecimal2 = new BigDecimal(new char[]{'1', '2', '.', '5'}, 1, 3, MathContext.DECIMAL32);
         System.out.println(bigDecimal2.toString());
 
         //如果整数部分大于0，位数包括整数部分，如果整数部分小于0，只包括小数部分
@@ -43,17 +43,17 @@ public class BigDecimalTest {
         System.out.println(bigDecimal7);
         System.out.println(bigDecimal10);
 
-        BigDecimal bigDecimal8 = new BigDecimal(new BigInteger(String.valueOf(20)),1);
+        BigDecimal bigDecimal8 = new BigDecimal(new BigInteger(String.valueOf(20)), 1);
         System.out.println(bigDecimal8);
 
-        BigDecimal bigDecimal9 = new BigDecimal(new BigInteger("12556"),3, new MathContext(2));
+        BigDecimal bigDecimal9 = new BigDecimal(new BigInteger("12556"), 3, new MathContext(2));
         System.out.println(bigDecimal9);
     }
 
 
     @Test
     public void valueOf() {
-        BigDecimal bigDecimal = BigDecimal.valueOf(2,2);
+        BigDecimal bigDecimal = BigDecimal.valueOf(2, 2);
         //0.02
         System.out.println(bigDecimal);
     }
@@ -95,8 +95,8 @@ public class BigDecimalTest {
         System.out.println(bigDecimal6);
         System.out.println(bigDecimal7);
     }
-    
-    
+
+
     @Test
     public void divideToIntegralValue() {
         BigDecimal bigDecimal = new BigDecimal("10");
@@ -104,7 +104,7 @@ public class BigDecimalTest {
         //3
         BigDecimal bigDecimal2 = bigDecimal.divideToIntegralValue(bigDecimal1);
         //3，舍入部分不会影响小数位数
-        BigDecimal bigDecimal3 = bigDecimal.divideToIntegralValue(bigDecimal1,new MathContext(1));
+        BigDecimal bigDecimal3 = bigDecimal.divideToIntegralValue(bigDecimal1, new MathContext(1));
         System.out.println(bigDecimal2);
         System.out.println(bigDecimal3);
     }
@@ -147,7 +147,7 @@ public class BigDecimalTest {
         System.out.println(bigDecimal.pow(2));
 
         //舍入模式
-        System.out.println(bigDecimal.pow(-2,new MathContext(2)));
+        System.out.println(bigDecimal.pow(-2, new MathContext(2)));
     }
 
     /**
@@ -189,7 +189,7 @@ public class BigDecimalTest {
     }
 
     /**
-     * 如果为零或正数，则比例是小数点右侧的位数。 
+     * 如果为零或正数，则比例是小数点右侧的位数。
      * 如果是负数，则将数字的未缩放值乘以10的n次方
      */
     @Test

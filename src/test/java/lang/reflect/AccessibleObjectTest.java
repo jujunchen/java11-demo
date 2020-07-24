@@ -19,6 +19,7 @@ public class AccessibleObjectTest {
 
     /**
      * 设置为ture用于方法反射对象的私有属性
+     *
      * @throws IllegalAccessException
      * @throws NoSuchFieldException
      */
@@ -44,6 +45,7 @@ public class AccessibleObjectTest {
 
     /**
      * 尝试设置反射对象，如果设置成功返回true
+     *
      * @throws NoSuchFieldException
      * @throws IllegalAccessException
      */
@@ -62,6 +64,7 @@ public class AccessibleObjectTest {
 
     /**
      * 测试反射对象能否设置accessible
+     *
      * @throws NoSuchFieldException
      */
     @Test

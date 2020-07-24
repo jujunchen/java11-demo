@@ -4,6 +4,7 @@ import org.junit.Test;
 
 /**
  * https://blog.csdn.net/yvonne8_5/article/details/50956016
+ *
  * @author jujun chen
  * @date 2020/03/26
  */
@@ -15,8 +16,8 @@ public class IntegerTest {
      */
     @Test
     public void toString1() {
-        System.out.println(Integer.toString(0x21,10));
-        System.out.println(Integer.toString(-0x21,10));
+        System.out.println(Integer.toString(0x21, 10));
+        System.out.println(Integer.toString(-0x21, 10));
     }
 
     /**
@@ -24,56 +25,56 @@ public class IntegerTest {
      */
     @Test
     public void toUnsignedString() {
-        System.out.println(Integer.toUnsignedString(0x21,10));
-        System.out.println(Integer.toUnsignedString(-0x21,10));
+        System.out.println(Integer.toUnsignedString(0x21, 10));
+        System.out.println(Integer.toUnsignedString(-0x21, 10));
     }
 
     /**
      * 返回整数参数的字符串表示形式，作为基数为16进制无符号整数。
-     *
+     * <p>
      * 如果参数为负，则无符号整数值是参数加2的32次方 ; 否则，它等于参数。
-     *
+     * <p>
      * 此值将转换为十六进制（基数为16）的ASCII数字字符串，没有额外的前导0 。
-     *
+     * <p>
      * 可以通过调用Integer.parseUnsignedInt(s, 16)从返回的字符串s恢复参数的值。
-     *
+     * <p>
      * 如果无符号幅度为零，则由单个零字符'0' （ '\u0030' ）表示; 否则，无符号幅度表示的第一个字符将不是零字符
      */
     @Test
     public void toHexString() {
         System.out.println(Integer.toHexString(33));
         System.out.println(Integer.toHexString(-33));
-        System.out.println(Integer.parseUnsignedInt("21",16));
+        System.out.println(Integer.parseUnsignedInt("21", 16));
     }
 
     /**
      * 返回整数参数的字符串表示形式，作为基数为8进制无符号整数。
-     *
+     * <p>
      * 如果参数为负，则无符号整数值是参数加2的32次方 ; 否则，它等于参数。
-     *
+     * <p>
      * 此值将转换为八进制（基数为8）的ASCII数字字符串，没有额外的前导0 。
-     *
+     * <p>
      * 可以通过调用Integer.parseUnsignedInt(s, 8)从返回的字符串s恢复参数的值。
-     *
+     * <p>
      * 如果无符号幅度为零，则由单个零字符'0'（ '\u0030' ）表示; 否则，无符号幅度表示的第一个字符将不是零字符。
      */
     @Test
     public void toOctalString() {
         System.out.println(Integer.toOctalString(33));
-        System.out.println(Integer.parseUnsignedInt("41",8));
+        System.out.println(Integer.parseUnsignedInt("41", 8));
     }
 
     /**
      * 返回整数参数的字符串表示形式，作为基于2进制中的无符号整数。
-     *
+     * <p>
      * 如果参数为负，则无符号整数值是参数加2的32次方  ; 否则它等于参数。
-     *
+     * <p>
      * 此值将转换为二进制（基数2）中的ASCII数字字符串，没有额外的前导0 。
-     *
+     * <p>
      * 可以通过调用Integer.parseUnsignedInt(s, 2)从返回的字符串s恢复参数的值。
-     *
+     * <p>
      * 如果无符号幅度为零，则由单个零字符'0' （ '\u0030' ）表示; 否则，无符号幅度表示的第一个字符将不是零字符。
-     *
+     * <p>
      * 字符'0' （ '\u0030' ）和'1' （ '\u0031' ）用作二进制数字。
      */
     @Test
@@ -81,18 +82,19 @@ public class IntegerTest {
         System.out.println(Integer.toBinaryString(33));
         System.out.println(Integer.toBinaryString(-33));
     }
-    
+
 
     @Test
     public void parseInt() {
         /*
          * 将字符串参数解析为第二个参数指定基数的有符号整数。
          *
-         * 字符串中的字符必须全部是指定基数的数字（由Character.digit(char, int)是否返回非负值确定），但第一个字符可能是ASCII减号'-' （ '\u002D' ）以指示负值或ASCII加号'+' （ '\u002B' ）表示正值。
+         * 字符串中的字符必须全部是指定基数的数字（由Character.digit(char, int)是否返回非负值确定），但第一个字符可能是ASCII减号'-' （ '\u002D' ）以指示负值或ASCII加号'+'
+         *  （ '\u002B' ）表示正值。
          *
          * 返回结果整数值。
          */
-        System.out.println(Integer.parseInt("21",16));
+        System.out.println(Integer.parseInt("21", 16));
 
         /*
          * 将字符串参数解析为带符号的十进制整数。字符串中的字符必须全部为十进制数字
@@ -112,7 +114,7 @@ public class IntegerTest {
         结果
             签名的 int由指定基数中的子 int表示。
          */
-        System.out.println(Integer.parseInt("abc",1,3,16));
+        System.out.println(Integer.parseInt("abc", 1, 3, 16));
 
     }
 
@@ -122,7 +124,7 @@ public class IntegerTest {
      */
     @Test
     public void parseUnsignedInt() {
-        
+
     }
 
 
@@ -135,7 +137,7 @@ public class IntegerTest {
          *
          * new Integer(Integer.parseInt(s, radix))
          */
-        Integer integer = Integer.valueOf("21",16);
+        Integer integer = Integer.valueOf("21", 16);
 
         /*
         返回一个Integer，指定的值String 。
@@ -160,16 +162,16 @@ public class IntegerTest {
      * 确定具有指定名称的系统属性的整数值。
      * 第一个参数被视为系统属性的名称。 可以通过System.getProperty(java.lang.String)方法访问系统属性。
      * 然后，使用decode支持的语法将此属性的字符串值解释为整数值，并返回表示此值的Integer对象。
-     *
+     * <p>
      * 如果没有具有指定名称的属性，如果指定的名称为空或null ，或者属性没有正确的数字格式，则返回null 。
-     *
+     * <p>
      * 换句话说，此方法返回一个等于值的Integer对象：
-     *
+     * <p>
      * getInteger(nm, null)
      * 参数
-     *      nm - 属性名称。
+     * nm - 属性名称。
      * 结果
-     *      Integer类型的值。
+     * Integer类型的值。
      */
     @Test
     public void getInteger() {
@@ -179,7 +181,7 @@ public class IntegerTest {
 
     /**
      * 将String解码为Integer 。
-     *
+     * <p>
      * 接受以下语法给出的十进制，十六进制和八进制数：
      * DecodableString:
      * Signopt DecimalNumeral
@@ -203,50 +205,50 @@ public class IntegerTest {
     /**
      * 比较两个 int值，以数值方式将值视为无符号。
      * 参数
-     *      x - 第一个 int进行比较
-     *      y - 第二个 int进行比较
+     * x - 第一个 int进行比较
+     * y - 第二个 int进行比较
      * 结果
-     *      值0如果x == y ; 如果x < y为无符号值，则值小于0 ; 如果x > y为无符号值，则值大于0
+     * 值0如果x == y ; 如果x < y为无符号值，则值小于0 ; 如果x > y为无符号值，则值大于0
      */
     @Test
     public void compareUnsigned() {
-        System.out.println(Integer.compareUnsigned(-10,10));
+        System.out.println(Integer.compareUnsigned(-10, 10));
     }
 
 
     /**
      * 返回将第一个参数除以第二个参数的无符号商，其中每个参数和结果都被解释为无符号值。
-     *
+     * <p>
      * 注意，在二进制补码算法中，如果两个操作数被认为是有符号的或两者都是无符号的，
-     *
+     * <p>
      * 则加，减和乘法的其他三个基本算术运算是逐位相同的。 因此，未提供单独的addUnsigned等方法。
-     *
+     * <p>
      * 参数
-     *      dividend - 要划分的值
-     *      divisor - 进行分割的值
+     * dividend - 要划分的值
+     * divisor - 进行分割的值
      * 结果
-     *      第一个参数除以第二个参数的无符号商
+     * 第一个参数除以第二个参数的无符号商
      */
     @Test
     public void divideUnsigned() {
         //转换为无符号的long类型的数值，再相除
-        System.out.println(Integer.divideUnsigned(10,2));
-        System.out.println(Integer.divideUnsigned(10,-2));
+        System.out.println(Integer.divideUnsigned(10, 2));
+        System.out.println(Integer.divideUnsigned(10, -2));
     }
 
 
     /**
      * 返回将第一个参数除以第二个参数的无符号余数，其中每个参数和结果都被解释为无符号值。
      * 参数
-     *      dividend - 要划分的值
-     *      divisor - 进行分割的价值
+     * dividend - 要划分的值
+     * divisor - 进行分割的价值
      * 结果
-     *      返回将第一个参数除以第二个参数的无符号余数
+     * 返回将第一个参数除以第二个参数的无符号余数
      */
     @Test
     public void remainderUnsigned() {
-        System.out.println(Integer.remainderUnsigned(10,2));
-        System.out.println(Integer.remainderUnsigned(3,10));
+        System.out.println(Integer.remainderUnsigned(10, 2));
+        System.out.println(Integer.remainderUnsigned(3, 10));
     }
 
     @Test
@@ -257,18 +259,19 @@ public class IntegerTest {
     }
 
     //https://www.jianshu.com/p/2c1be41f6e59
+
     /**
      * 返回无符号整型i的最高非零位前面的0的个数
      */
     @Test
     public void numberOfLeadingZeros() {
-        
+
     }
 
 
     /**
      * 返回参数的正负数
-     *
+     * <p>
      * 如果指定的值是负的，返回值是-1; 如果指定的值是零，返回0; 如果指定的值是正的，返回1
      */
     @Test

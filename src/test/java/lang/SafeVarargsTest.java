@@ -14,7 +14,7 @@ public class SafeVarargsTest<T> {
 
     @SuppressWarnings("unchecked")
 //    @SafeVarargs //不能使用，方法未声明为static 或final
-    public  void loopArgs(T... args) {
+    public void loopArgs(T... args) {
         for (T arg : args) {
             System.out.println(arg);
         }
@@ -36,5 +36,5 @@ public class SafeVarargsTest<T> {
 
     }
 
-    
+
 }
