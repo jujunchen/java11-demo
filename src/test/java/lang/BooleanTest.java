@@ -28,6 +28,12 @@ public class BooleanTest {
         System.out.println(Boolean.parseBoolean("yes"));
     }
 
+    /**
+     * 输出：
+     * true
+     * false
+     */
+
 
     /**
      * 返回表示指定的boolean值的Boolean实例。
@@ -40,17 +46,25 @@ public class BooleanTest {
         System.out.println(B);
     }
 
+    /**
+     * 输出：
+     * true
+     */
 
     /**
      * 以 Boolean元的形式返回此 Boolean对象的值。
      * 结果
-     * 原始值 boolean此对象的值
+     * boolean对象的原始值
      */
     @Test
     public void booleanValue() {
         Boolean B = Boolean.valueOf("TRUE");
         System.out.println(B.booleanValue());
     }
+    /**
+     * 输出：
+     * true
+     */
 
     /**
      * 返回true当且仅当存在由参数命名的系统属性，等于，忽略大小写，字符串"true" 。
@@ -70,6 +84,10 @@ public class BooleanTest {
         ;
     }
 
+    /**
+     * 输出：
+     * false
+     */
 
     /**
      * 返回将逻辑AND运算符应用于指定的 boolean操作数的结果。
@@ -82,7 +100,13 @@ public class BooleanTest {
     @Test
     public void logicalAnd() {
         System.out.println(Boolean.logicalAnd(true, false));
+        System.out.println(Boolean.logicalAnd(true, true));
     }
+    /**
+     * 输出：
+     * false
+     * true
+     */
 
 
     /**
@@ -92,6 +116,10 @@ public class BooleanTest {
     public void logicalOr() {
         System.out.println(Boolean.logicalOr(true, false));
     }
+    /**
+     * 输出：
+     * true
+     */
 
 
     /**
@@ -102,4 +130,9 @@ public class BooleanTest {
         System.out.println(Boolean.logicalXor(true, false));
         System.out.println(Boolean.logicalXor(false, false));
     }
+    /**
+     * 输出：
+     * true
+     * false
+     */
 }

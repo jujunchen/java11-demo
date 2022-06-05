@@ -9,14 +9,18 @@ import org.junit.Test;
 public class ByteTest {
 
     /**
-     * 返回表示指定的byte的新String对象。
+     * 返回表示指定的byte的新String对象，转换为10进制。
      */
     @Test
     public void toString1() {
-        byte b = 1;
+        byte b = 0x7f;
         System.out.println(Byte.toString(b));
     }
 
+    /**
+     * 输出：
+     * 110
+     */
 
     @Test
     public void valueOf() {
@@ -29,26 +33,28 @@ public class ByteTest {
          */
         byte b = 1;
         Byte B = Byte.valueOf(b);
+        Byte C = Byte.valueOf(b);
+        System.out.println("B==C:" + (B == C));
+        /**
+         * 输出
+         * B==C:true
+         */
 
         /*
-        返回Byte对象，当使用第二个参数给出的基数进行解析时，该对象保存从指定的String提取的值。
-
-        第一个参数被解释为表示由第二个参数指定的基数中的带符号byte ，
-
+        第二个参数表示第一个参数所表示的进制
         就像该参数被赋予parseByte(java.lang.String, int)方法一样。
-
-        结果是Byte对象，表示字符串指定的byte值。
+        结果是Byte对象，表示字符串指定的byte值，该值从缓存中读取，输出10进制。
          */
         String s1 = "123";
         Byte B1 = Byte.valueOf(s1, 10);
         Byte B2 = Byte.valueOf(s1, 8);
-        assert B1 == 123;
-        assert B2 == 83;
+        assert B1 == 123; //true
+        assert B2 == 83; //true
     }
 
 
     /**
-     * 将字符串参数解析为第二个参数指定的基数中的带符号byte 。
+     * 将字符串参数解析为第二个参数指定基数的带符号byte 。
      * <p>
      * 字符串中的字符必须是数字指定基数的，（如通过确定是否Character.digit(char, int)
      * 返回一个非负的值）不同之处在于第一个字符可以是ASCII减号'-' （ '\u002D' ），以指示一个负值或ASCII加号'+' （ '\u002B' ）表示正值。
@@ -79,6 +85,14 @@ public class ByteTest {
 
         //将字符串参数解析为带符号的十进制byte
         System.out.println(Byte.parseByte(s1));
+
+        /**
+         * 输出：
+         * 123
+         * 83
+         * -26
+         * 123
+         */
     }
 
     /**
@@ -88,16 +102,22 @@ public class ByteTest {
     public void decode() {
         //10进制
         Byte code = Byte.decode("10");
-        assert code == 10;
+        assert code == 10; //true
         //16进制
         Byte code1 = Byte.decode("0x10");
-        assert code1 == 16;
+        assert code1 == 16;//true
         //16进制
         Byte code2 = Byte.decode("#10");
-        assert code2 == 16;
+        assert code2 == 16;//true
         //8进制
         Byte code3 = Byte.decode("010");
-        assert code3 == 8;
+        assert code3 == 8;//true
+
+        Byte code4 = Byte.decode("-0x10");
+        assert code4 == -16;//true
+
+        //抛出异常,java.lang.NumberFormatException: Sign character in wrong position
+        //Byte code5 = Byte.decode("0x-10");
     }
 
     /**
@@ -107,7 +127,6 @@ public class ByteTest {
     public void byteValue() {
         Byte B = Byte.valueOf("123");
         byte b = B.byteValue();
-        byte b1 = B;
     }
 
     /**
@@ -156,7 +175,7 @@ public class ByteTest {
     @Test
     public void doubleValue() {
         Byte B = Byte.valueOf("123");
-        Double db = B.doubleValue();
+        double db = B.doubleValue();
     }
 
 
@@ -173,7 +192,12 @@ public class ByteTest {
          */
         byte b = 123;
         System.out.println(Byte.hashCode(b));
-        ;
+
+        /**
+         * 输出：
+         * 123
+         * 123
+         */
     }
 
 
@@ -190,6 +214,15 @@ public class ByteTest {
 
         System.out.println(B1.equals(B2));
         System.out.println(B1.equals(B3));
+        System.out.println(B1 == B2);
+        System.out.println(B1 == B3);
+        /**
+         * 输出：
+         * true
+         * true
+         * true
+         * false
+         */
     }
 
     /**
@@ -203,7 +236,8 @@ public class ByteTest {
     public void compareTo() {
         Byte B1 = Byte.valueOf("123");
         Byte B2 = Byte.valueOf("12");
-        assert B1.compareTo(B2) > 0;
+        assert B1.compareTo(B2) > 0; //true
+        assert B2.compareTo(B1) <0; //true
     }
 
     /**
@@ -218,7 +252,7 @@ public class ByteTest {
     public void compare() {
         Byte B1 = Byte.valueOf("123");
         Byte B2 = Byte.valueOf("12");
-        assert Byte.compare(B1, B2) > 0;
+        assert Byte.compare(B1, B2) > 0; //true
     }
 
     /**
@@ -230,7 +264,7 @@ public class ByteTest {
     public void compareUnsigned() {
         Byte B1 = Byte.valueOf("-123");
         Byte B2 = Byte.valueOf("12");
-        assert Byte.compareUnsigned(B1, B2) > 0;
+        assert Byte.compareUnsigned(B1, B2) > 0; //true
     }
 
     /**
@@ -246,6 +280,12 @@ public class ByteTest {
         System.out.println(Byte.toUnsignedInt(B1));
         Byte B2 = Byte.valueOf("123");
         System.out.println(Byte.toUnsignedInt(B2));
+
+        /**
+         * 输出：
+         * 133
+         * 123
+         */
     }
 
     /**
@@ -257,7 +297,9 @@ public class ByteTest {
      */
     @Test
     public void toUnsignedLong() {
-
+        Byte B1 = Byte.valueOf("-123");
+        long b1 = Byte.toUnsignedLong(B1);
+        System.out.println(b1);
     }
 
 }
