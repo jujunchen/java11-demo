@@ -43,7 +43,7 @@ public class CharacterTest {
         Character character = Character.valueOf('A');
         int hashcode = character.hashCode();
         char a = character.charValue();
-        assert hashcode == a;
+        assert hashcode == a; //true
     }
 
 
@@ -60,13 +60,14 @@ public class CharacterTest {
          */
         System.out.println(Character.toString('A'));
 
+        //Unicode 和ASCII相关编码介绍：https://m.php.cn/faq/483053.html
+        //Code Point介绍：http://www.unicode.org/glossary/#code_point
         /*
         返回表示指定字符（Unicode代码点）的String对象。 结果是一个长度为1或2的字符串，仅由指定的codePoint
          */
-        //字符强转成int 就为ascii码，codePoint可以理解为是ascii码
         int codePoint = (int) '哈';
-        System.out.println(codePoint);
-        System.out.println(Character.toString(codePoint));
+        System.out.println(codePoint); //21704 16进制为54C8，unicode为\u54c8
+        System.out.println(Character.toString(codePoint)); //哈
     }
 
 
@@ -99,9 +100,16 @@ public class CharacterTest {
     @Test
     public void isBmpCodePoint() {
         int codePoint = (int) '芏';
+        System.out.println(codePoint);
         System.out.println(Character.isBmpCodePoint(codePoint));
         System.out.println(Character.isBmpCodePoint(65535));
         System.out.println(Character.isBmpCodePoint(65536));
+        /**
+         * 33423
+         * true
+         * true
+         * false
+         */
     }
 
     /**
@@ -111,6 +119,11 @@ public class CharacterTest {
     public void isSupplementaryCodePoint() {
         System.out.println(Character.isSupplementaryCodePoint(65533));
         System.out.println(Character.isSupplementaryCodePoint(65536));
+
+        /**
+         * false
+         * true
+         */
     }
 
 
@@ -124,7 +137,7 @@ public class CharacterTest {
      */
     @Test
     public void isHighSurrogate() {
-        System.out.println(Character.isHighSurrogate('\uD800'));
+        System.out.println(Character.isHighSurrogate('\uD800')); //true
     }
 
     /**
@@ -138,7 +151,7 @@ public class CharacterTest {
      */
     @Test
     public void isLowSurrogate() {
-        System.out.println(Character.isLowSurrogate('\uDC00'));
+        System.out.println(Character.isLowSurrogate('\uDC00')); //true
     }
 
     /**
@@ -152,7 +165,7 @@ public class CharacterTest {
      */
     @Test
     public void isSurrogate() {
-        System.out.println(Character.isLowSurrogate('\u1FFF'));
+        System.out.println(Character.isSurrogate('\u1FFF')); //false
     }
 
 
@@ -163,7 +176,7 @@ public class CharacterTest {
      */
     @Test
     public void isSurrogatePair() {
-        System.out.println(Character.isSurrogatePair('\uDBFF', '\uDC00'));
+        System.out.println(Character.isSurrogatePair('\uDBFF', '\uDC00')); //true
     }
 
     /**
@@ -182,6 +195,10 @@ public class CharacterTest {
     public void charCount() {
         System.out.println(Character.isValidCodePoint('\uDC00'));
         System.out.println(Character.charCount('\uDC00'));
+        /**
+         * true
+         * 1
+         */
     }
 
     /**
@@ -193,6 +210,10 @@ public class CharacterTest {
     public void toCodePoint() {
         System.out.println(Character.toCodePoint('\uDBFF', '\uDC00'));
         System.out.println(Character.toString(1113088));
+        /**
+         * 1113088
+         * 􏰀
+         */
     }
 
 
@@ -204,10 +225,15 @@ public class CharacterTest {
      */
     @Test
     public void codePointAt() {
-        System.out.println(Character.codePointAt("abc", 1));
-
+        System.out.println(Character.codePointAt("abc", 0));
+        System.out.println(Character.codePointAt("abc", 2));
         //数组 char
         System.out.println(Character.codePointAt(new char[]{'a'}, 0));
+        /**
+         * 97
+         * 99
+         * 97
+         */
     }
 
 
@@ -231,8 +257,12 @@ public class CharacterTest {
 
         /*
         返回char数组的给定索引之前的代码点，其中只能使用index大于或等于start数组元素，其他相同
+        参形：
+        a - char数组 index – 应返回的代码点之后的索引 start – char数组中第一个数组元素的索引
+        返回值：
+        给定索引之前的 Unicode 代码点值
          */
-        System.out.println(Character.codePointBefore(new char[]{'a', 'b', 'c'}, 3, 0));
+        System.out.println(Character.codePointBefore(new char[]{'a', 'b', 'c'}, 2, 0));
     }
 
 
@@ -252,6 +282,10 @@ public class CharacterTest {
     public void highSurrogate() {
         System.out.println(Character.isSupplementaryCodePoint(65536));
         System.out.println(Character.highSurrogate(65536));
+        /**
+         * true
+         * ?
+         */
     }
 
 
