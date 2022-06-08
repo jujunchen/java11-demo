@@ -18,6 +18,10 @@ public class DoubleTest {
 
         Double d1 = Double.valueOf(0.0);
         System.out.println(d1.toString());
+        /**
+         * 0.0
+         * 0.0
+         */
     }
 
     /**
@@ -38,6 +42,10 @@ public class DoubleTest {
         System.out.println(Double.toHexString(d));
         double d1 = 3.0;
         System.out.println(Double.toHexString(d1));
+        /**
+         * 0x0.0p0
+         * 0x1.8p1
+         */
     }
 
     @Test
@@ -54,6 +62,8 @@ public class DoubleTest {
         如果不需要新的Double实例，则通常应优先使用此方法，而不是构造函数Double(double) ,不像 byte有使用缓存，Double在这里并没有使用缓存
          */
         Double d1 = Double.valueOf(0.1);
+
+        //123.0
     }
 
 
@@ -63,7 +73,7 @@ public class DoubleTest {
     @Test
     public void parseDouble() {
         double d = Double.parseDouble(" 123 ");
-        assert d == 123.0;
+        assert d == 123.0; //true
     }
 
 
@@ -73,13 +83,16 @@ public class DoubleTest {
          * 如果指定的号码不是一个正确的数字，返回true
          */
         Double d = Double.valueOf(0.0 / 0.0);
-        assert Double.isNaN(d);
+        assert Double.isNaN(d); //true
 
         /*
         如果此Double值不是一个正确的数字，返回true
          */
         Double d2 = Double.valueOf(0.0 / 0.0);
-        assert d2.isNaN();
+        assert d2.isNaN(); //true
+
+        Double d3 = 3.0;
+        assert  d3.isNaN() == false; //false
     }
 
 
@@ -153,6 +166,7 @@ public class DoubleTest {
     public void longValue() {
         Double d = Double.valueOf(123.123);
         long l = d.longValue();
+        System.out.println(l); //123
     }
 
     /**
@@ -212,6 +226,20 @@ public class DoubleTest {
         System.out.println(d1.equals(d2));
         System.out.println(d1 == d2);
         System.out.println(d1 == 1.0);
+        System.out.println(Double.NaN==Double.NaN);
+        Double d3 = Double.NaN;
+        Double d4= Double.NaN;
+        System.out.println(d3 == d4);
+        System.out.println(d3.equals(d4));
+
+        /**
+         * true
+         * false
+         * true
+         * false
+         * false
+         * true
+         */
     }
 
 
