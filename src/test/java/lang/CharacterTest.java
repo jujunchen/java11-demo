@@ -304,6 +304,11 @@ public class CharacterTest {
         System.out.println(Character.isSupplementaryCodePoint(65536));
         System.out.println(Character.lowSurrogate(65536));
         System.out.println(Character.isLowSurrogate(Character.lowSurrogate(65536)));
+        /**
+         * true
+         * ?
+         * true
+         */
     }
 
 
@@ -334,6 +339,12 @@ public class CharacterTest {
          */
         System.out.println(Arrays.toString(Character.toChars(65536)));
         System.out.println(Arrays.toString(Character.toChars(33423)));
+
+        /**
+         * 2
+         * [?, ?]
+         * [芏]
+         */
     }
 
 
@@ -365,6 +376,11 @@ public class CharacterTest {
             指定子数组中的Unicode代码点数
          */
         System.out.println(Character.codePointCount(new char[]{'a', 'b', 'c'}, 0, 3));
+
+        /**
+         * 2
+         * 3
+         */
     }
 
 
@@ -394,7 +410,12 @@ public class CharacterTest {
         结果
             数组中的索引
          */
-        System.out.println(Character.offsetByCodePoints(new char[]{'a', 'b', 'c', 'd'}, 0, 4, 0, 1));
+        System.out.println(Character.offsetByCodePoints(new char[]{'a', 'b', 'c', 'd'}, 0, 4, 0, 2));
+
+        /**
+         * 1
+         * 2
+         */
     }
 
 
@@ -409,6 +430,11 @@ public class CharacterTest {
         确定指定的字符（Unicode代码点）是否为小写字符。
          */
         System.out.println(Character.isLowerCase(97));
+
+        /**
+         * false
+         * true
+         */
     }
 
     @Test
@@ -426,7 +452,12 @@ public class CharacterTest {
         确定指定的字符是否为标题字符。
         字符是否为标题字符，如果它的一般类别类型，通过提供Character.getType(ch) ，是TITLECASE_LETTER 。
          */
-        System.out.println(Character.isTitleCase('L'));
+        System.out.println(Character.getType('J'));
+        System.out.println(Character.isTitleCase('Z'));
+        /**
+         * 1
+         * false
+         */
     }
 
 
@@ -442,13 +473,17 @@ public class CharacterTest {
          * 确定指定的字符（Unicode代码点）是否为数字
          */
         System.out.println(Character.isDigit(97));
+        /**
+         * true
+         * false
+         */
     }
 
 
     @Test
     public void isDefined() {
         /*
-        确定是否在Unicode中定义了字符。
+        确定是否为Unicode中定义的字符。
         如果至少满足下列条件之一，则定义字符：
         它在UnicodeData文件中有一个条目。
         它具有UnicodeData文件定义的范围中的值。
@@ -465,7 +500,7 @@ public class CharacterTest {
     @Test
     public void isLetter() {
         /*
-        确定指定的字符是否为字母
+        确定指定的字符是否为letter
 
         如果字符的一般类别类型（由Character.getType(ch)提供）是以下任何一种字符，则该字符被视为字母：
         UPPERCASE_LETTER
@@ -487,7 +522,7 @@ public class CharacterTest {
     @Test
     public void isLetterOrDigit() {
         /*
-        确定指定的字符是字母或者数字
+        确定指定的字符是Letter或者数字
          */
         System.out.println(Character.isLetterOrDigit('A'));
         System.out.println(Character.isLetterOrDigit('1'));
@@ -498,7 +533,78 @@ public class CharacterTest {
         确定指定的字符（Unicode代码点）是字母还是数字
          */
         System.out.println(Character.isLetterOrDigit(97));
+        /**
+         * true
+         * true
+         * false
+         * true
+         * true
+         */
     }
+
+    /**
+     * 注释格式为：“Unicode规范中的种类”
+     *     //“Cn”
+     *     public static final byte UNASSIGNED = 0;
+     *     //“Lu”——大写字母
+     *     public static final byte UPPERCASE_LETTER = 1;
+     *     //“Ll”——小写字母
+     *     public static final byte LOWERCASE_LETTER = 2;
+     *     //“Lt”
+     *     public static final byte TITLECASE_LETTER = 3;
+     *     //“Lm”
+     *     public static final byte MODIFIER_LETTER = 4;
+     *     //“Lo”——各种文字，汉字属于此类
+     *     public static final byte OTHER_LETTER = 5;
+     *     //“Mn”——该类字符不会占用一个空格的空间，而是作用在之前或之后的字符上。如删除线、下划线等
+     *     public static final byte NON_SPACING_MARK = 6;
+     *     //“Me”——闭合字符，如' ⃟'、' ⃠'
+     *     public static final byte ENCLOSING_MARK = 7;
+     *     //“Mc”——
+     *     public static final byte COMBINING_SPACING_MARK = 8;
+     *     //“Nd”——数字字符，如阿拉伯数字
+     *     public static final byte DECIMAL_DIGIT_NUMBER = 9;
+     *     //“Nl”——字母数字，如罗马数字
+     *     public static final byte LETTER_NUMBER = 10;
+     *     //“No”——其他的特殊数字，如：'①'、'⑴'、'⒈'、'㈠'
+     *     public static final byte OTHER_NUMBER = 11;
+     *     //“Zs”
+     *     public static final byte SPACE_SEPARATOR = 12;
+     *     //“Zl”
+     *     public static final byte LINE_SEPARATOR = 13;
+     *     //“Zp”
+     *     public static final byte PARAGRAPH_SEPARATOR = 14;
+     *     //“Cc”
+     *     public static final byte CONTROL = 15;
+     *     //“Cf”
+     *     public static final byte FORMAT = 16;
+     *     //“Co”
+     *     public static final byte PRIVATE_USE = 18;
+     *     //“Cs”
+     *     public static final byte SURROGATE = 19;
+     *     //“Pd”——连接符，如'-'
+     *     public static final byte DASH_PUNCTUATION = 20;
+     *     //“Ps”——成对标点符号的开始符号，如'('、'【'、'{'、'《'
+     *     public static final byte START_PUNCTUATION = 21;
+     *     //“Pe”——成对标点符号的结束符号，如')'、'】'、'}'、'》'
+     *     public static final byte END_PUNCTUATION = 22;
+     *     //“Pc”
+     *     public static final byte CONNECTOR_PUNCTUATION = 23;
+     *     //“Po”——其他标点符号，如'!'、'?'、'！'、'？'
+     *     public static final byte OTHER_PUNCTUATION = 24;
+     *     //“Sm”——数学符号，如'+'、'='、'>'
+     *     public static final byte MATH_SYMBOL = 25;
+     *     //“Sc”——货币符号，如'$'、'￥'
+     *     public static final byte CURRENCY_SYMBOL = 26;
+     *     //“Sk”——修饰符，如'^'
+     *     public static final byte MODIFIER_SYMBOL = 27;
+     *     //“So”——其他符号，如'⒜'
+     *     public static final byte OTHER_SYMBOL = 28;
+     *     //“Pi”——引用符号的开始符号，如'“'、'‘'
+     *     public static final byte INITIAL_QUOTE_PUNCTUATION = 29;
+     *     //“Pf”——引用符号的结束符号，如'”'、'’'
+     *     public static final byte FINAL_QUOTE_PUNCTUATION = 30;
+     */
 
 
     @Test
@@ -516,7 +622,15 @@ public class CharacterTest {
         或者它具有由Unicode标准定义的贡献属性Other_Alphabetic。
          */
         System.out.println(Character.isAlphabetic(123));
-        System.out.println(Character.isAlphabetic(97));
+        System.out.println(Character.toString(123));//{
+        System.out.println(Character.isAlphabetic(97));//A
+        System.out.println(Character.isAlphabetic(21704));//哈
+        /**
+         * false
+         * {
+         * true
+         * true
+         */
     }
 
 
@@ -527,6 +641,10 @@ public class CharacterTest {
     public void isIdeographic() {
         System.out.println(Character.isIdeographic('哈'));
         System.out.println(Character.isIdeographic('a'));
+        /**
+         * true
+         * false
+         */
     }
 
 
@@ -542,8 +660,15 @@ public class CharacterTest {
     @Test
     public void isJavaIdentifierStart() {
         System.out.println(Character.isJavaIdentifierStart('?'));
+        System.out.println(Character.isJavaIdentifierStart('_'));
 
         System.out.println(Character.isJavaIdentifierStart(97));
+
+        /**
+         * false
+         * true
+         * true
+         */
     }
 
 
@@ -556,6 +681,10 @@ public class CharacterTest {
         System.out.println(Character.isJavaIdentifierPart('?'));
 
         System.out.println(Character.isJavaIdentifierPart(97));
+        /**
+         * false
+         * true
+         */
     }
 
 
@@ -573,6 +702,12 @@ public class CharacterTest {
 
         //代码点
         System.out.println(Character.isUnicodeIdentifierStart(97));
+
+        /**
+         * true
+         * false
+         * true
+         */
     }
 
 
@@ -581,7 +716,15 @@ public class CharacterTest {
      */
     @Test
     public void isUnicodeIdentifierPart() {
-        //支持，字符串，和代码点
+        //支持，字符，和代码点
+        System.out.println(Character.isUnicodeIdentifierPart('哈'));
+        System.out.println(Character.isUnicodeIdentifierPart('-'));
+        System.out.println(Character.isUnicodeIdentifierPart(97));
+        /**
+         * true
+         * false
+         * true
+         */
     }
 
 
@@ -600,7 +743,7 @@ public class CharacterTest {
      */
     @Test
     public void isIdentifierIgnorable() {
-        System.out.println(Character.isIdentifierIgnorable('\u0000'));
+        System.out.println(Character.isIdentifierIgnorable('\u0000'));  //true
         //也支持代码点
     }
 
@@ -629,6 +772,11 @@ public class CharacterTest {
         System.out.println(Character.isLowerCase(Character.toLowerCase('_')));
 
         //也支持使用代码点
+
+        /**
+         * a
+         * false
+         */
     }
 
 
@@ -672,6 +820,7 @@ public class CharacterTest {
             相当于该字符的标题词，如果有的话; 否则，角色本身。
          */
         System.out.println(Character.toTitleCase('a'));
+        System.out.println(Character.isTitleCase(Character.toTitleCase('a')));
 
         //支持使用代码点
     }
@@ -689,8 +838,8 @@ public class CharacterTest {
         该字符是全'\uFF21'写拉丁字母A（ '\uFF21' ）到Z（ '\uFF3A' ）之一，其代码小于radix + '\uFF21' - 10 。 在这种情况下，返回ch - '\uFF21' + 10 。
         该字符是全宽小写拉丁字母a（ '\uFF41' ）到z（ '\uFF5A' ）之一，其代码小于radix + '\uFF41' - 10 。 在这种情况下，返回ch - '\uFF41' + 10 。
          */
-        System.out.println(Character.digit('A', 16));
-        System.out.println(Character.digit('A', 10));
+        System.out.println(Character.digit('A', 16)); //10
+        System.out.println(Character.digit('A', 10)); //-1
 
         //也支持使用代码点
     }
@@ -712,7 +861,7 @@ public class CharacterTest {
      */
     @Test
     public void getNumericValue() {
-        System.out.println(Character.getNumericValue('A'));
+        System.out.println(Character.getNumericValue('A')); //10
         //支持使用代码点
     }
 
@@ -734,6 +883,11 @@ public class CharacterTest {
         System.out.println(Character.isSpaceChar(' '));
         System.out.println(Character.isSpaceChar('\ue00f'));
         //支持使用代码点
+
+        /**
+         * true
+         * false
+         */
     }
 
 
@@ -773,7 +927,7 @@ public class CharacterTest {
      */
     @Test
     public void isISOControl() {
-        System.out.println(Character.isISOControl('\u001F'));
+        System.out.println(Character.isISOControl('\u001F')); //true
         //支持使用代码点
     }
 
@@ -791,7 +945,7 @@ public class CharacterTest {
      */
     @Test
     public void getType() {
-        System.out.println(Character.getType(97));
+        System.out.println(Character.getType('a'));
         //支持使用代码点
     }
 
@@ -817,6 +971,10 @@ public class CharacterTest {
         System.out.println(Character.forDigit(1, 10));
         //16进制
         System.out.println(Character.forDigit(11, 16));
+        /**
+         * 1
+         * b
+         */
     }
 
 
@@ -834,7 +992,7 @@ public class CharacterTest {
      */
     @Test
     public void getDirectionality() {
-        System.out.println(Character.getDirectionality('?'));
+        System.out.println(Character.getDirectionality('?')); //13
         //支持使用代码点
     }
 
@@ -897,7 +1055,7 @@ public class CharacterTest {
      */
     @Test
     public void reverseBytes() {
-        System.out.println(Character.reverseBytes('?'));
+        System.out.println(Character.reverseBytes('?')); //㼀
     }
 
 
