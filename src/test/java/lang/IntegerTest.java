@@ -12,21 +12,32 @@ public class IntegerTest {
 
 
     /**
-     * 返回第二个参数指定的基数中第一个参数的字符串表示形式
+     * 将第一个参数转换为第二个参数指定的进制，输出字符串
      */
     @Test
     public void toString1() {
         System.out.println(Integer.toString(0x21, 10));
         System.out.println(Integer.toString(-0x21, 10));
+        /**
+         * 33
+         * -33
+         */
     }
 
     /**
      * 返回第一个参数的字符串表示形式，作为第二个参数指定的基数中的无符号整数值
+     *
+     * 正值，映射为等值的Long型，负值为输入的值加上2<sup>32</sup>
      */
     @Test
     public void toUnsignedString() {
         System.out.println(Integer.toUnsignedString(0x21, 10));
         System.out.println(Integer.toUnsignedString(-0x21, 10));
+
+        /**
+         * 33
+         * 4294967263
+         */
     }
 
     /**
@@ -45,6 +56,11 @@ public class IntegerTest {
         System.out.println(Integer.toHexString(33));
         System.out.println(Integer.toHexString(-33));
         System.out.println(Integer.parseUnsignedInt("21", 16));
+        /**
+         * 21
+         * ffffffdf
+         * 33
+         */
     }
 
     /**
@@ -116,6 +132,12 @@ public class IntegerTest {
          */
         System.out.println(Integer.parseInt("abc", 1, 3, 16));
 
+        /**
+         * 33
+         * 21
+         * 188
+         */
+
     }
 
     /**
@@ -137,7 +159,7 @@ public class IntegerTest {
          *
          * new Integer(Integer.parseInt(s, radix))
          */
-        Integer integer = Integer.valueOf("21", 16);
+        Integer integer = Integer.valueOf("21", 16); //33
 
         /*
         返回一个Integer，指定的值String 。
@@ -163,7 +185,7 @@ public class IntegerTest {
      * 第一个参数被视为系统属性的名称。 可以通过System.getProperty(java.lang.String)方法访问系统属性。
      * 然后，使用decode支持的语法将此属性的字符串值解释为整数值，并返回表示此值的Integer对象。
      * <p>
-     * 如果没有具有指定名称的属性，如果指定的名称为空或null ，或者属性没有正确的数字格式，则返回null 。
+     * 如果没有具有指定名称的属性，如果指定的名称为空或null ，或者属性没有正确的数字格式，则返回第二个参数提供的默认值 。
      * <p>
      * 换句话说，此方法返回一个等于值的Integer对象：
      * <p>
@@ -175,8 +197,8 @@ public class IntegerTest {
      */
     @Test
     public void getInteger() {
-        Integer integer = Integer.getInteger("classpath", 123);
-        System.out.println(integer);
+        Integer integer = Integer.getInteger("path", 123);
+        System.out.println(integer); //123
     }
 
     /**
@@ -212,7 +234,7 @@ public class IntegerTest {
      */
     @Test
     public void compareUnsigned() {
-        System.out.println(Integer.compareUnsigned(-10, 10));
+        System.out.println(Integer.compareUnsigned(-10, 10)); //1
     }
 
 
@@ -231,9 +253,10 @@ public class IntegerTest {
      */
     @Test
     public void divideUnsigned() {
+
+        System.out.println(Integer.divideUnsigned(10, 2)); //5
         //转换为无符号的long类型的数值，再相除
-        System.out.println(Integer.divideUnsigned(10, 2));
-        System.out.println(Integer.divideUnsigned(10, -2));
+        System.out.println(Integer.divideUnsigned(10, -2)); //0
     }
 
 
@@ -247,14 +270,23 @@ public class IntegerTest {
      */
     @Test
     public void remainderUnsigned() {
-        System.out.println(Integer.remainderUnsigned(10, 2));
-        System.out.println(Integer.remainderUnsigned(3, 10));
+        System.out.println(Integer.remainderUnsigned(10, 2)); //0
+        System.out.println(Integer.remainderUnsigned(3, 10)); //3
+        System.out.println(Integer.remainderUnsigned(10, -2)); //10
+        System.out.println(10%-2); //0
     }
 
+    /**
+     * 返回一个int值，最多只有一个一位，位于指定int值中最低位（“最右边”）一位的位置。如果指定的值在其二进制补码表示中没有一位，即等于零，则返回零。
+     * 参形：
+     * i – 要计算其最低一位的值
+     * 返回值：
+     * 具有单个一位的int值，位于指定值中最低位的位置，如果指定值本身等于 0，则为 0。
+     */
     @Test
     public void lowestOneBit() {
         //负数补码 = 原码 取反 +1
-        //所以负数最低位的1之前的所以二进制数会因为 a & -a = 0，全部消去，只留下最低位的1
+        //所以负数最低位的1之前的所有二进制数会因为 a & -a = 0，全部消去，只留下最低位的1
         System.out.println(Integer.lowestOneBit(1213));
     }
 
@@ -276,9 +308,9 @@ public class IntegerTest {
      */
     @Test
     public void signumTest() {
-        System.out.println(Integer.signum(1));
-        System.out.println(Integer.signum(-1));
-        System.out.println(Integer.signum(-0));
+        System.out.println(Integer.signum(3)); //1
+        System.out.println(Integer.signum(-1)); //-1
+        System.out.println(Integer.signum(-0));//0
     }
 
 }

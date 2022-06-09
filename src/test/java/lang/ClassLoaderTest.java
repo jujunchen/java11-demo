@@ -2,6 +2,12 @@ package lang;
 
 import org.junit.Test;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Enumeration;
+import java.util.stream.Stream;
+
 /**
  * @author jujun chen
  * @date 2020/03/23
@@ -14,7 +20,9 @@ public class ClassLoaderTest {
     @Test
     public void getName() {
         ClassLoader classLoader = this.getClass().getClassLoader();
-        System.out.println(classLoader.getName());
+        //jdk9后，名字更名
+        System.out.println(classLoader.getName()); //app
+        System.out.println(classLoader.getParent().getName());//platform
     }
 
 
@@ -42,7 +50,7 @@ public class ClassLoaderTest {
         ClassLoader classLoader = this.getClass().getClassLoader();
         ClassLoader parentClassLoader = classLoader.getParent();
         System.out.println(parentClassLoader.getName());
-        //返回null
+        //返回null，BootStrapClassLoader并不是Java类
         ClassLoader parentClassLoader2 = parentClassLoader.getParent();
 //        System.out.println(parentClassLoader2.getName());
     }
@@ -69,6 +77,15 @@ public class ClassLoaderTest {
         ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
         //输出app
         System.out.println(systemClassLoader.getName());
+    }
+
+    /**
+     * 返回平台类加载器
+     */
+    @Test
+    public void getPlatformClassLoader() {
+        ClassLoader platformClassLoader = ClassLoader.getPlatformClassLoader();
+        System.out.println(platformClassLoader.getName());
     }
 
     /**
@@ -121,7 +138,9 @@ public class ClassLoaderTest {
 
 
     /**
-     * 为此类加载器中指定的顶级类及其中包含的任何嵌套类设置所需的断言状态。 此设置优先于类加载器的默认断言状态，并优先于任何适用的每个包默认值。 如果已经初始化了命名类，则此方法无效。 （初始化一个类后，其断言状态不会改变。）
+     * 为此类加载器中指定的顶级类及其中包含的任何嵌套类设置所需的断言状态。
+     * 此设置优先于类加载器的默认断言状态，并优先于任何适用的每个包默认值。
+     * 如果已经初始化了命名类，则此方法无效。 （初始化一个类后，其断言状态不会改变。）
      * 如果指定的类不是顶级类，则此调用将不会影响任何类的实际断言状态。
      * <p>
      * 参数
@@ -150,5 +169,57 @@ public class ClassLoaderTest {
         classLoader.clearAssertionStatus();
         System.out.println(cls.desiredAssertionStatus());
     }
+
+    /**
+     *查找具有给定名称的资源。资源是可以由类代码以独立于代码位置的方式访问的一些数据（图像、音频、文本等）。
+     */
+    @Test
+    public void getResource() throws IOException {
+        //测试Bean
+        ChinesePeople chinesePeople = new ChinesePeople();
+        System.out.println(chinesePeople.getClass().getResource(""));
+        System.out.println(chinesePeople.getClass().getClassLoader().getResource(""));
+        /**
+         * file:/D:/javaprojects/java11-example/target/test-classes/lang/
+         * file:/D:/javaprojects/java11-example/target/test-classes/
+         */
+        //资源类型为URL的enumeration
+        Enumeration<URL> enumeration = chinesePeople.getClass().getClassLoader().getResources("");
+        //返回流
+        Stream<URL> stream = chinesePeople.getClass().getClassLoader().resources("ChinesePeople.class");
+    }
+
+    /**
+     * 返回classLoader是否注册为具有并行能力
+     *
+     */
+    @Test
+    public void isRegisteredAsParallelCapable(){
+        boolean b = this.getClass().getClassLoader().isRegisteredAsParallelCapable();
+        System.out.println(b);
+    }
+
+
+    /**
+     * 从用于加载类的搜索路径中查找指定名称的资源。此方法通过系统类加载器定位资源（请参阅getSystemClassLoader() ）。
+     */
+    @Test
+    public void getSystemResource() {
+        URL url = this.getClass().getClassLoader().getSystemResource("");
+        System.out.println(url);
+        //还可以返回Enumeration<URL>
+
+    }
+
+    /**
+     * 返回用于读取指定资源的输入流
+     */
+    @Test
+    public void getResourceAsStream() {
+        InputStream getResourceAsStream = this.getClass().getClassLoader().getResourceAsStream("");
+
+        //getSystemResourceAsStream
+    }
+
 
 }

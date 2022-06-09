@@ -50,8 +50,8 @@ public class CharSequenceTest {
     @Test
     public void subSequence() {
         CharSequence charSequence = "abc";
-        System.out.println(charSequence.subSequence(0, 1));
-        System.out.println(charSequence.subSequence(1, 1));
+        System.out.println(charSequence.subSequence(0, 1)); //a
+        System.out.println(charSequence.subSequence(1, 1)); //空白
     }
 
     /**
@@ -61,7 +61,6 @@ public class CharSequenceTest {
     public void chars() {
         CharSequence charSequence = "abc";
         System.out.println(charSequence.chars().findFirst().equals("a"));
-        ;
     }
 
     /**
@@ -72,7 +71,7 @@ public class CharSequenceTest {
         CharSequence charSequence = "abc";
         //代码点97 98 99
         IntStream intStream = charSequence.codePoints();
-        System.out.println(intStream.findFirst());
+        System.out.println(intStream.findFirst().getAsInt()); //97
     }
 
     /**
