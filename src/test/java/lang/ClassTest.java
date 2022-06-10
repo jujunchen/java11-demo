@@ -34,7 +34,7 @@ public class ClassTest {
          * 返回描述Class的字符串，包括修饰符，和类型参数的信息
          * @since 1.8
          */
-        System.out.println(Person.class.toGenericString());
+        System.out.println(this.getClass().toGenericString()); //public class lang.ClassTest
     }
 
     @Test
