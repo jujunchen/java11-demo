@@ -87,26 +87,86 @@ public class ClassTest {
         Class chinesePeople = Class.forName("lang.ChinesePeople");
         ChinesePeople chinesePeople2 = (ChinesePeople) chinesePeople.newInstance();
         ChinesePeople chinesePeople3 = (ChinesePeople) chinesePeople.getDeclaredConstructor().newInstance();
-    }
-
-    @Test
-    public void isInstance() throws ClassNotFoundException {
-        //指定的对象实例是否与该类对象兼容，是否可以转换
-        Class chinesePeople = Class.forName("lang.ChinesePeople");
-//        assert chinesePeople.isInstance(Person.class);
-//        assert ChinesePeople.class.isInstance(Person.class);
-//        assert new Integer[0].getClass().isInstance(new Long[0].getClass());
+        /**
+         * 加载类
+         * 实例化类，我是中国人
+         * 实例化类，我是中国人
+         */
     }
 
     /**
-     * 确定此类对象表示的类或接口是否与指定的类或接口相同，是超类或者超接口
+     * 确定给定的Object是否与该Class表示的对象赋值兼容。
+     *
+     * 此方法是 Java 语言instanceof运算符的动态等效方法。
+     *
+     * 如果指定的Object参数为非 null 并且可以强制转换为此Class对象表示的引用类型而不引发ClassCastException. ，
+     * 则该方法返回true 。否则返回false 。
+     *
+     * 具体来说，如果此Class对象表示已声明的类，则如果指定的Object参数是表示的类（或其任何子类）的实例，则此方法返回true ；否则返回false 。
+     *
+     * 如果此Class对象表示一个数组类，如果指定的Object参数可以通过恒等转换或扩展引用转换转换为数组类的对象，则此方法返回true ；否则返回false 。
+     *
+     * 如果此Class对象表示一个接口，则如果指定Object参数的类或任何超类实现此接口，则此方法返回true ；否则返回false 。
+     *
+     * 如果此Class对象表示原始类型，则此方法返回false 。
+     * 参形：
+     * obj - 要检查的对象
+     * 返回值：
+     * 如果obj是此类的实例，则为 true
+     * 自：
+     * 1.1
+     * @throws ClassNotFoundException
+     * @throws NoSuchMethodException
+     * @throws InvocationTargetException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
+    @Test
+    public void isInstance() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        //指定的对象实例是否与该类对象兼容，是否可以转换
+        ChinesePeople chinesePeople = new ChinesePeople();
+        Person person = new Person();
+        //父类不能转换为子类
+        System.out.println(chinesePeople.getClass().isInstance(person)); //false
+        //子类可以转换为父类
+        System.out.println(person.getClass().isInstance(chinesePeople)); //true
+        System.out.println(Person.class.isInstance(chinesePeople)); //true
+
+        //对象是本身类的一个实例
+        System.out.println(ChinesePeople.class.isInstance(chinesePeople)); //true
+        //不是一个对象
+        System.out.println(ChinesePeople.class.isInstance(ChinesePeople.class)); //false
+
+        //如果object是数组对象
+        Integer[] integers = new Integer[0];
+        System.out.println(Number.class.isInstance(integers)); //false
+        System.out.println(new Integer[0].getClass().isInstance(integers)); //true
+
+        //Object是所有类的超类
+        System.out.println(Object.class.isInstance(chinesePeople)); //true
+    }
+
+    /**
+     * 确定此Class对象表示的类或接口是否与指定的Class参数表示的类或接口相同，或者是其超类或超接口。如果是，则返回true ；否则返回false 。如果此Class对象表示原始类型，则如果指定的Class参数正是此Class对象，则此方法返回true ；否则返回false 。
+     * 具体来说，该方法测试指定的Class参数表示的类型是否可以通过恒等转换或扩展引用转换转换为该Class对象表示的类型。有关详细信息，请参阅Java 语言规范的第 5.1.1 和 5.1.4 节。
+     * 参形：
+     * cls – 要检查的Class对象
+     * 返回值：
+     * boolean值，指示是否可以将cls类型的对象分配给此类的对象
+     * 抛出：
+     * NullPointerException – 如果指定的 Class 参数为 null。
+     * 自：
+     * 1.1
      */
     @Test
     public void isAssignableFrom() throws ClassNotFoundException {
 
         Class chinesePeople = Class.forName("lang.ChinesePeople");
+        //同类
         assert chinesePeople.isAssignableFrom(ChinesePeople.class);
+        //Person 是ChinesePeople 的超类
         assert Person.class.isAssignableFrom(chinesePeople);
+        // ChinesePeople 不是Person的超类
         assert !chinesePeople.isAssignableFrom(Person.class);
     }
 
