@@ -1,5 +1,6 @@
 package lang;
 
+import lang.test.Dog;
 import org.junit.Test;
 
 import java.beans.JavaBean;
@@ -17,8 +18,7 @@ import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.net.URL;
 import java.security.ProtectionDomain;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * java.lang.Class 测试类
@@ -142,8 +142,21 @@ public class ClassTest {
         System.out.println(Number.class.isInstance(integers)); //false
         System.out.println(new Integer[0].getClass().isInstance(integers)); //true
 
+        Person[] persons = new Person[0];
+        ChinesePeople[] chinesePeoples = new ChinesePeople[0];
+        Person[] chinesePeople2 = new ChinesePeople[0];
+        //chinesePeople是Person的子类，兼容
+        System.out.println(persons.getClass().isInstance(chinesePeoples)); //true
+        //chinesePeople2 是ChinesePeople对象数组，与chinesePeoples兼容
+        System.out.println(chinesePeoples.getClass().isInstance(chinesePeople2)); //true
+
+
         //Object是所有类的超类
         System.out.println(Object.class.isInstance(chinesePeople)); //true
+
+
+        //------------instanceof-------------------
+        System.out.println(chinesePeoples instanceof Person[]);
     }
 
     /**
@@ -158,6 +171,7 @@ public class ClassTest {
      * 自：
      * 1.1
      */
+    //这个也是表示类对象时候相同，或者兼容（超类或接口），但该方法表示左边的对象是否右边参数的超类、接口或同对象，是顺序的
     @Test
     public void isAssignableFrom() throws ClassNotFoundException {
 
@@ -169,6 +183,7 @@ public class ClassTest {
         // ChinesePeople 不是Person的超类
         assert !chinesePeople.isAssignableFrom(Person.class);
     }
+
 
     /**
      * 确定指定的类对象是否表示接口类型
@@ -194,18 +209,35 @@ public class ClassTest {
     }
 
     /**
-     * 确定指定的类对象是否表示基本类型
+     * 确定指定的类对象是否表示原型类型
+     *
+     * 只有一下几种才返回真
+     Boolean.TYPE ,
+     Character.TYPE ,
+     Byte.TYPE ，
+     Short.TYPE ，
+     Integer.TYPE ，
+     Long.TYPE ,
+     Float.TYPE ，
+     Double.TYPE ,
+     Void.TYPE
      */
     @Test
     public void isPrimitive() {
+        System.out.println(Boolean.TYPE.isPrimitive()); //true
+        System.out.println(Person.class.isPrimitive()); //false
 
-        assert Boolean.TYPE.isPrimitive();
+        Integer[] integers = new Integer[0];
+        System.out.println(integers.getClass().isPrimitive()); //false
+        Integer a = 1;
+        System.out.println(a.getClass().isPrimitive());//false
     }
 
     @Test
     public void isAnnotation() {
         //确定此类对象是否表示注解类型
-        assert Name.class.isAnnotation();
+        System.out.println(Test.class.isAnnotation()); //true
+        System.out.println(Test.class.isInterface()); //true
     }
 
 
@@ -213,7 +245,7 @@ public class ClassTest {
     public void isSynthetic() {
         //确定此类是否表示合成类
         //http://blog.sina.com.cn/s/blog_1534f339a0102y88n.html
-        assert !ChinesePeople.class.isSynthetic();
+        System.out.println(ChinesePeople.class.isSynthetic()); //false
     }
 
     /**
@@ -233,6 +265,15 @@ public class ClassTest {
         System.out.println(byte.class.getName());
         System.out.println((new Object[3]).getClass().getName());
         System.out.println((new Object[1][2]).getClass().getName());
+
+        /**
+         * lang.ChinesePeople
+         * lang.Animal
+         * java.lang.String
+         * byte
+         * [Ljava.lang.Object;
+         * [[Ljava.lang.Object;
+         */
     }
 
     /**
@@ -241,9 +282,13 @@ public class ClassTest {
      */
     @Test
     public void getClassLoader() {
-
         System.out.println(ChinesePeople.class.getClassLoader());
         System.out.println(String.class.getClassLoader());
+
+        /**
+         * jdk.internal.loader.ClassLoaders$AppClassLoader@47f37ef1
+         * null
+         */
     }
 
     /**
@@ -254,11 +299,18 @@ public class ClassTest {
      */
     @Test
     public void getModule() {
-
+        //ChinesePeople 位于lang包中，定义了一个modele名为java.test
         System.out.println(List.class.getModule());
         System.out.println(ChinesePeople.class.getModule());
         System.out.println(new Integer[0].getClass().getModule());
         System.out.println(String.class.getModule());
+
+        /**
+         * module java.base
+         * module java.test
+         * module java.base
+         * module java.base
+         */
     }
 
     /**
@@ -269,9 +321,17 @@ public class ClassTest {
     public void getTypeParameters() {
 
         TypeVariable[] typeVariables = List.class.getTypeParameters();
-        System.out.println(typeVariables[0].getName());
+        System.out.println(Arrays.toString(typeVariables));
         TypeVariable[] typeVariables1 = Animal.class.getTypeParameters();
         System.out.println(typeVariables1.length);
+        TypeVariable[] typeVariables2 = TreeMap.class.getTypeParameters();
+        System.out.println(Arrays.toString(typeVariables2));
+
+        /**
+         * [E]
+         * 0
+         * [K, V]
+         */
     }
 
     /**
@@ -282,12 +342,33 @@ public class ClassTest {
     @Test
     public void getSuperclass() {
 
+        //ChinesePeople 继承Person，返回class lang.Person
         System.out.println(ChinesePeople.class.getSuperclass());
+        //Person实现了Animal，Person的超类是class java.lang.Object
         System.out.println(Person.class.getSuperclass());
+        //Bird实现了Animal，同理，所以该方法说的超类是指继承的父类
+        System.out.println(Bird.class.getSuperclass());
+        //Object、接口、原始类型、void返回null
         System.out.println(Animal.class.getSuperclass());
         System.out.println(Object.class.getSuperclass());
         System.out.println(byte.class.getSuperclass());
+        System.out.println(void.class.getSuperclass());
+        //数组类型返回Object
         System.out.println(new Object[0].getClass().getSuperclass());
+        //枚举的超类
+        System.out.println(Status.class.getSuperclass());
+
+        /**
+         * class lang.Person
+         * class java.lang.Object
+         * class java.lang.Object
+         * null
+         * null
+         * null
+         * null
+         * class java.lang.Object
+         * class java.lang.Enum
+         */
     }
 
     /**
@@ -305,6 +386,18 @@ public class ClassTest {
         System.out.println(type.getTypeName());
         Type type1 = Person.class.getGenericSuperclass();
         System.out.println(type1.getTypeName());
+        //返回null
+        Type type2 = Object.class.getGenericSuperclass();
+        System.out.println(type2);
+        Type type3 = Animal.class.getGenericSuperclass();
+        System.out.println(type3);
+
+        /**
+         * lang.Person
+         * java.lang.Object
+         * null
+         * null
+         */
     }
 
     /**
@@ -320,13 +413,12 @@ public class ClassTest {
     /**
      * 返回完全限定的包名称。
      * 如果此类是顶级类，则此方法返回该类所属的包的完全限定名称，如果该类位于未命名的包中，则返回空字符串。
-     * <p>
-     * 如果该类是一个成员的类，则此方法等效于调用getPackageName()上enclosing class 。
-     * <p>
-     * 如果该类是local class或anonymous class ，则此方法等效于调用getPackageName()上declaring class的的enclosing method或enclosing
-     * constructor 。
-     * <p>
-     * 如果此类表示数组类型，则此方法返回元素类型的包名称。 如果此类表示基本类型或void，则返回包名“ java.lang ”。
+     * 如果此类是成员类，则此方法等效于在封闭类上调用getPackageName() 。
+     * 如果此类是本地类或匿名类，则此方法等效于在封闭方法或封闭构造函数的声明类上调用getPackageName() 。
+     * 如果此类表示数组类型，则此方法返回元素类型的包名称。如果此类表示原始类型或 void，则返回包名称“ java.lang ”。
+     * 返回值：
+     * 完全限定的包名
+     * 自：9
      */
     @Test
     public void getPackageName() {
@@ -335,6 +427,20 @@ public class ClassTest {
         System.out.println(ChinesePeople.ZjPeople.class.getPackageName());
         System.out.println(Object.class.getPackageName());
         System.out.println(new Object[0].getClass().getPackageName());
+
+        Integer[] integers = new Integer[0];
+        System.out.println(integers.getClass().getPackageName());
+        Dog[] dogs = new Dog[0];
+        System.out.println(dogs.getClass().getPackageName());
+
+        /**
+         * lang
+         * lang
+         * java.lang
+         * java.lang
+         * java.lang
+         * lang.test
+         */
     }
 
     /**
@@ -361,21 +467,28 @@ public class ClassTest {
     @Test
     public void getInterfaces() {
 
+        //ChinesePeople继承的Person,没有实现接口
         Class[] interfaces = ChinesePeople.class.getInterfaces();
-        assert interfaces.length == 0;
+        System.out.println(Arrays.toString(interfaces)); //0
+        //Person实现了接口Animal
         Class[] interfaces2 = Person.class.getInterfaces();
-        assert interfaces2.length == 1;
+        System.out.println(Arrays.toString(interfaces2)); //[interface lang.Animal]
+        //Collection接口返回继承的接口
+        System.out.println(Arrays.toString(Collection.class.getInterfaces())); //[interface java.lang.Iterable]
+        //ArrayList类按顺序返回其实现的接口，不返回继承的类
+        //[interface java.util.List, interface java.util.RandomAccess, interface java.lang.Cloneable, interface java.io.Serializable]
+        System.out.println(Arrays.toString(ArrayList.class.getInterfaces()));
     }
 
     /**
      * 同getInterfaces，只是返回结果为Type类型
+     * 如接口是泛型，则返回带泛型名的接口
      */
     @Test
     public void getGenericInterfaces() {
 
-        Type[] interfaceTypes = Person.class.getGenericInterfaces();
-        assert interfaceTypes.length == 1;
-
+        System.out.println(Arrays.toString(Collection.class.getGenericInterfaces()));
+        //[java.lang.Iterable<E>]
     }
 
     /**
@@ -387,9 +500,13 @@ public class ClassTest {
     public void getComponentType() {
 
         Class componentType = new Object[1].getClass().getComponentType();
-        assert componentType != null;
+        System.out.println(componentType); //class java.lang.Object
+
+        System.out.println(new Integer[0].getClass().getComponentType());//class java.lang.Integer
+
+        //ChinesePeople不是数组
         Class componentType2 = ChinesePeople.class.getComponentType();
-        assert componentType2 == null;
+        System.out.println(componentType2); //null
     }
 
     /**
@@ -400,13 +517,15 @@ public class ClassTest {
     @Test
     public void getModifiers() {
 
-        assert Modifier.isPublic(ChinesePeople.class.getModifiers());
+        System.out.println(ChinesePeople.class.getModifiers()); //1
+        //Modifier提供了各种方法判断获取的整型代表public，还是protected
+        System.out.println(Modifier.isPublic(ChinesePeople.class.getModifiers()));
     }
 
     /**
      * 获取此类的签名者
      * 此类的签名者，如果没有签名者则为null。 特别是，如果此对象表示基本类型或void，则此方法返回null。
-     * //todo
+     * //todo 具体怎么给类签名还不清楚，不过这个方法在Java内部经常看到
      */
     @Test
     public void getSigners() {
@@ -428,7 +547,18 @@ public class ClassTest {
         Runnable runnable = () -> {
         };
         Method method = runnable.getClass().getEnclosingMethod();
-        System.out.println(method.getName());
+        System.out.println(method); //null
+
+        Method method1 = getPerson().getClass().getEnclosingMethod();
+        System.out.println(method1); //private lang.Person lang.ClassTest.getPerson()
+    }
+
+    private Person getPerson() {
+        class BjPerson extends Person {
+
+        }
+
+        return new BjPerson();
     }
 
     /**
